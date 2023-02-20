@@ -1,0 +1,5 @@
+/.esphome/
+.vscode/
+/secrets.yaml
+*/__pycache__/
+*.pyc
