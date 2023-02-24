@@ -28,3 +28,9 @@ CONFIG_SCHEMA = cv.Schema({
 def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
+
+    display = yield cg.get_variable(config[DISPLAY_UART_ID])
+    mainboard = yield cg.get_variable(config[MAINBOARD_UART_ID])
+
+    cg.add(var.register_display_uart(display))
+    cg.add(var.register_mainboard_uart(mainboard))
