@@ -12,6 +12,9 @@ namespace esphome
 
         void PhilipsSeries2200::setup()
         {
+            power_pin_->setup();
+            power_pin_->pin_mode(gpio::FLAG_OUTPUT);
+            power_pin_->digital_write(true);
         }
 
         void PhilipsSeries2200::loop()
@@ -34,6 +37,16 @@ namespace esphome
                 mainboard_uart_.read_array(buffer, size);
 
                 display_uart_.write_array(buffer, size);
+                last_message_to_display_time_ = millis();
+            }
+
+            // Publish power state if required
+            if (power_switch_ != NULL)
+            {
+                if (millis() - last_message_to_display_time_ > POWER_STATE_TIMEOUT)
+                    power_switch_->publish_state(false);
+                else
+                    power_switch_->publish_state(true);
             }
         }
 
