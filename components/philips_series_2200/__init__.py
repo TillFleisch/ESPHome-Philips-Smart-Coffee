@@ -6,7 +6,8 @@ from esphome.components.uart import UARTComponent
 
 from esphome.const import CONF_ID
 
-AUTO_LOAD = ['switch', 'philips_power_switch']
+AUTO_LOAD = ['switch', 'button',
+             'philips_power_switch', 'philips_action_button']
 
 DEPENDENCIES = ['uart']
 

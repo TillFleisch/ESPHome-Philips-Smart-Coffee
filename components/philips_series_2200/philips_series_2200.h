@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
 #include "../philips_power_switch/power.h"
+#include "../philips_action_button/action_button.h"
 
 #define POWER_STATE_TIMEOUT 100
 
@@ -51,6 +52,17 @@ namespace esphome
                 power_switch_->set_mainboard_uart(&mainboard_uart_);
                 power_switch_->set_power_pin(power_pin_);
             };
+
+            /**
+             * @brief Adds an action button to this controller.
+             * No reference is stored, but the correct uart references is passed along.
+             *
+             * @param action_button Action button which will be added to this controller
+             */
+            void add_action_button(philips_action_button::ActionButton *action_button)
+            {
+                action_button->set_uart_device(&mainboard_uart_);
+            }
 
         private:
             long last_message_to_display_time_ = 0;
