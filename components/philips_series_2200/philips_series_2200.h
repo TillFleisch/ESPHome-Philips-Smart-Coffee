@@ -49,9 +49,9 @@ namespace esphome
              */
             void register_power_switch(philips_power_switch::Power *power_switch)
             {
-                power_switch_ = power_switch;
-                power_switch_->set_mainboard_uart(&mainboard_uart_);
-                power_switch_->set_power_pin(power_pin_);
+                power_switch->set_mainboard_uart(&mainboard_uart_);
+                power_switch->set_power_pin(power_pin_);
+                power_switches_.push_back(power_switch);
             };
 
             /**
@@ -81,7 +81,7 @@ namespace esphome
             GPIOPin *power_pin_;
             /// @brief power switch reference
             // TODO: allow multiple power_switches
-            philips_power_switch::Power *power_switch_;
+            std::vector<philips_power_switch::Power *> power_switches_;
 
             /// @brief list of status sensors to update with messages
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;

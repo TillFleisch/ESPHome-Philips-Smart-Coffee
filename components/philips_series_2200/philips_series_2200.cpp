@@ -54,17 +54,23 @@ namespace esphome
             }
 
             // Publish power state if required as long as the display is requesting messages
-            if (power_switch_ != NULL)
+            if (power_switches_.size() > 0)
             {
                 if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
                 {
-                    power_switch_->publish_state(false);
+                    // Update power switches
+                    for (philips_power_switch::Power *power_switch : power_switches_)
+                        power_switch->publish_state(false);
+
+                    // Update status sensors
                     for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
                         status_sensor->set_state_off();
                 }
                 else
                 {
-                    power_switch_->publish_state(true);
+                    // Update power switches
+                    for (philips_power_switch::Power *power_switch : power_switches_)
+                        power_switch->publish_state(true);
                 }
             }
 
