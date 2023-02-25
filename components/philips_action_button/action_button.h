@@ -28,6 +28,10 @@ namespace esphome
                 MAKE_HOW_WATER,
                 SELECT_STEAM,
                 MAKE_STEAM,
+                SELECT_BEAN,
+                SELECT_SIZE,
+                SELECT_AQUA_CLEAN,
+                SELECT_CALC_CLEAN,
                 PLAY_PAUSE,
             };
 

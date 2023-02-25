@@ -67,12 +67,21 @@ namespace esphome
 
                 // press/play or subsequent press/play
                 if (action_ == PLAY_PAUSE)
-                {
                     write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x19, 0x32});
-                    return;
-                }
-
-                ESP_LOGE(TAG, "Invalid Action provided!");
+                else if (action_ == SELECT_BEAN)
+                    // bean button
+                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x09, 0x2F});
+                else if (action_ == SELECT_SIZE)
+                    // size button
+                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x04, 0x00, 0x20, 0x05});
+                else if (action_ == SELECT_AQUA_CLEAN)
+                    // aqua clean button
+                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x10, 0x00, 0x0D, 0x36});
+                else if (action_ == SELECT_CALC_CLEAN)
+                    // calc clean button
+                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x20, 0x00, 0x28, 0x37});
+                else
+                    ESP_LOGE(TAG, "Invalid Action provided!");
             }
         } // namespace philips_action_button
     }     // namespace philips_series_2200
