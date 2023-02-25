@@ -65,7 +65,7 @@ namespace esphome
             }
 
         private:
-            long last_message_to_display_time_ = 0;
+            long last_message_from_display_time_ = 0;
 
             /// @brief reference to uart connected to the display unit
             uart::UARTDevice display_uart_;

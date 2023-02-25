@@ -28,6 +28,7 @@ namespace esphome
                 display_uart_.read_array(buffer, size);
 
                 mainboard_uart_.write_array(buffer, size);
+                last_message_from_display_time_ = millis();
             }
 
             // Pipe to display
@@ -37,13 +38,12 @@ namespace esphome
                 mainboard_uart_.read_array(buffer, size);
 
                 display_uart_.write_array(buffer, size);
-                last_message_to_display_time_ = millis();
             }
 
-            // Publish power state if required
+            // Publish power state if required as long as the display is requesting messages
             if (power_switch_ != NULL)
             {
-                if (millis() - last_message_to_display_time_ > POWER_STATE_TIMEOUT)
+                if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
                     power_switch_->publish_state(false);
                 else
                     power_switch_->publish_state(true);
