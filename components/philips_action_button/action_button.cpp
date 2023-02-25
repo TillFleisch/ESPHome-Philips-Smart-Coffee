@@ -46,7 +46,7 @@ namespace esphome
                 }
 
                 // Hot water
-                if (action_ == SELECT_HOT_WATER || action_ == MAKE_HOW_WATER)
+                if (action_ == SELECT_HOT_WATER || action_ == MAKE_HOT_WATER)
                 {
                     write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x04, 0x00, 0x00, 0x21, 0x01});
                     if (action_ == SELECT_HOT_WATER)

@@ -25,7 +25,7 @@ namespace esphome
                 SELECT_ESPRESSO,
                 MAKE_ESPRESSO,
                 SELECT_HOT_WATER,
-                MAKE_HOW_WATER,
+                MAKE_HOT_WATER,
                 SELECT_STEAM,
                 MAKE_STEAM,
                 SELECT_BEAN,
