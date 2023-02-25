@@ -63,6 +63,9 @@ The ribbon cable wires have the following functionalities.
 
 The Wemos D1 Mini has a built in Voltage regulator, thus connecting it to the 5V provided by the mainboard is no problem. If you use a different ESP Module/Board please make sure it is 5V tolerant or use a Voltage regulator. Otherwise you might release magic smoke.
 
+# Communication protocol
+More information on the communication protocol used by this component can be found [here](protocol.md).
+
 # Related Work
 
 - [SmartPhilips2200](https://github.com/chris7topher/SmartPhilips2200) by [@chris7topher](https://github.com/chris7topher)
