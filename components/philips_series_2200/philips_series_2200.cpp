@@ -31,6 +31,15 @@ namespace esphome
                 last_message_from_display_time_ = millis();
             }
 
+            // Read until start index
+            while (mainboard_uart_.available())
+            {
+                uint8_t buffer = mainboard_uart_.peek();
+                if (buffer == 0xD5)
+                    break;
+                display_uart_.write(mainboard_uart_.read());
+            }
+
             // Pipe to display
             if (mainboard_uart_.available())
             {
@@ -38,16 +47,29 @@ namespace esphome
                 mainboard_uart_.read_array(buffer, size);
 
                 display_uart_.write_array(buffer, size);
+
+                // Update status sensors
+                for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
+                    status_sensor->update_status(buffer, size);
             }
 
             // Publish power state if required as long as the display is requesting messages
             if (power_switch_ != NULL)
             {
                 if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
+                {
                     power_switch_->publish_state(false);
+                    for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
+                        status_sensor->set_state_off();
+                }
                 else
+                {
                     power_switch_->publish_state(true);
+                }
             }
+
+            display_uart_.flush();
+            mainboard_uart_.flush();
         }
 
         void PhilipsSeries2200::dump_config()

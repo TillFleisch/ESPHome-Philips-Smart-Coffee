@@ -4,6 +4,7 @@
 #include "esphome/components/uart/uart.h"
 #include "../philips_power_switch/power.h"
 #include "../philips_action_button/action_button.h"
+#include "../philips_status_sensor/status_sensor.h"
 
 #define POWER_STATE_TIMEOUT 100
 
@@ -64,6 +65,11 @@ namespace esphome
                 action_button->set_uart_device(&mainboard_uart_);
             }
 
+            void add_status_sensor(philips_status_sensor::StatusSensor *status_sensor)
+            {
+                status_sensors_.push_back(status_sensor);
+            }
+
         private:
             long last_message_from_display_time_ = 0;
 
@@ -74,7 +80,11 @@ namespace esphome
             /// @brief pin connect to display panel power transistor/mosfet
             GPIOPin *power_pin_;
             /// @brief power switch reference
+            // TODO: allow multiple power_switches
             philips_power_switch::Power *power_switch_;
+
+            /// @brief list of status sensors to update with messages
+            std::vector<philips_status_sensor::StatusSensor *> status_sensors_;
         };
 
     } // namespace philips_series_2200
