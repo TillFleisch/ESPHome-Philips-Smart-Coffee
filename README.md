@@ -7,6 +7,8 @@ This component provides a `Power Switch`, a `Status sensor` and various `Buttons
 
 ![Provided entities in HomeAssistant](ha_entities.png)
 
+You might break/brick your coffee machine by modifying it in any way, shape or form. If you want to use this component, do so at your own risk.
+
 # Configuration variables
 
 A example configuration can be found [here](example.yaml)
@@ -33,6 +35,41 @@ A example configuration can be found [here](example.yaml)
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
+
+# Fully automated coffee
+
+The following script can be used to make a fully automated cup of coffee.
+This script will only continue to brew coffee under 2 conditions:
+
+- There was no cleaning cycle during start-up
+- A Mug is present
+
+```yaml
+script:
+  - id: coffee_script
+    then:
+      - if:
+          condition:
+            lambda: 'return id(status).state == "OFF";'
+          then:
+            - switch.turn_on: power
+            - wait_until:
+                condition:
+                  lambda: 'return (id(status).state == "Idle") || (id(status).state == "Cleaning");'
+                timeout: 120s
+            - if:
+                condition:
+                  lambda: 'return (id(status).state == "Idle") && id(mug_sensor).state;'
+                then:
+                  - delay: 5s
+                  - button.press: make_coffee_button
+          else:
+            if:
+              condition:
+                lambda: 'return (id(status).state == "Idle") && id(mug_sensor).state;'
+              then:
+                - button.press: make_coffee_button
+```
 
 # Wiring
 
@@ -64,6 +101,7 @@ The ribbon cable wires have the following functionalities.
 The Wemos D1 Mini has a built in Voltage regulator, thus connecting it to the 5V provided by the mainboard is no problem. If you use a different ESP Module/Board please make sure it is 5V tolerant or use a Voltage regulator. Otherwise you might release magic smoke.
 
 # Communication protocol
+
 More information on the communication protocol used by this component can be found [here](protocol.md).
 
 # Related Work
