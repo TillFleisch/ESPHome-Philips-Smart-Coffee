@@ -4,6 +4,7 @@ This project integrates a Philips Series 2200 Coffee Machine into into [Home Ass
 This component has been developed on a Philips EP2220 and an ESP8266.
 
 This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input.
+The `Power Switch` can be used to turn on the coffee machine with and without a cleaning cycle during startup.
 
 ![Provided entities in HomeAssistant](ha_entities.png)
 
@@ -23,6 +24,7 @@ A example configuration can be found [here](example.yaml)
 ## Philips Power switch
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **clean**(**Optional**: boolean): If set to true the machine will perform a cleaning cycle during startup. Otherwise the machine will power on without cleaning. Defaults to `true`.
 - All other options from [Switch](https://esphome.io/components/switch/index.html#config-switch)
 
 ## Philips Action Button
@@ -39,6 +41,8 @@ A example configuration can be found [here](example.yaml)
 # Fully automated coffee
 
 The following script can be used to make a fully automated cup of coffee.
+The power switch used in this case does not perform a cleaning cycle.
+The cleaning check is required since after power loss the machine always cleans.
 This script will only continue to brew coffee under 2 conditions:
 
 - There was no cleaning cycle during start-up

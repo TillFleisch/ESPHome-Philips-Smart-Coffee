@@ -21,7 +21,7 @@ The last 2 Bytes are some sort of checksum. The rule for determining this checks
 
 ### Power on message
 
-There seem to be 2 messages responsible for powering on the machine.
+There seem to be 3 messages responsible for powering on the machine.
 
 `D5 55 0A 01 02 00 02 00 00 00 0E 12`
 
@@ -29,7 +29,13 @@ Makes the machine beep, but does not actually power on the machine.
 
 `D5 55 01 01 02 00 02 00 00 00 25 27`
 
-Beeps and powers on the machine. This message is used in this project.
+Beeps and powers on the machine, but without a cleaning cycle during startup.
+
+`D5 55 02 01 02 00 02 00 00 00 38 15`
+
+Beeps, powers on the machine and includes a cycle during startup.
+
+The last 2 Messages are used within this project.
 The 3rd byte is likely responsible for turning the coffee machine on, since it's `00` in all other messages.
 
 ### Power off message

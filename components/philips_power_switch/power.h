@@ -53,11 +53,22 @@ namespace esphome
                     power_pin_ = pin;
                 }
 
+                /**
+                 * @brief Sets the cleaning status of this power switch.
+                 * If true the machine will clean during startup
+                 */
+                void set_cleaning(bool cleaning)
+                {
+                    cleaning_ = cleaning;
+                }
+
             private:
                 /// @brief Reference to uart which is connected to the mainboard
                 uart::UARTDevice *mainboard_uart_;
                 /// @brief power pin which is used for display power
                 GPIOPin *power_pin_;
+                /// @brief True if the coffee machine is supposed to clean
+                bool cleaning_ = true;
             };
 
         } // namespace power_switch
