@@ -22,6 +22,7 @@ namespace esphome
             {
                 if (state)
                 {
+                    ESP_LOGCONFIG(TAG, "---POWER ON---");
                     // Send pre-power on message
                     for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array({0xD5, 0x55, 0x0A, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0E, 0x12});
@@ -49,6 +50,7 @@ namespace esphome
                 }
                 else
                 {
+                    ESP_LOGCONFIG(TAG, "---POWER ON---");
                     // Send power off message
                     for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x01, 0x00, 0x00, 0x1D, 0x3B});
