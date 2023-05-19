@@ -25,8 +25,14 @@ namespace esphome
             if (display_uart_.available())
             {
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
+                uint8_t i = 0;
                 display_uart_.read_array(buffer, size);
+                ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY--");
 
+                for (i=0, i<=size, i++)
+                {
+                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, buffer(size));
+                }
                 mainboard_uart_.write_array(buffer, size);
             }
 
@@ -43,8 +49,15 @@ namespace esphome
             if (mainboard_uart_.available())
             {
                 uint8_t size = std::min(mainboard_uart_.available(), BUFFER_SIZE);
+                uint8_t i = 0;
                 mainboard_uart_.read_array(buffer, size);
 
+                ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD--");
+
+                for (i=0, i<=size, i++)
+                {
+                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, buffer(size));
+                }
                 display_uart_.write_array(buffer, size);
 
                 // Only process messages starting with start bytes
