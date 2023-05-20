@@ -6,7 +6,7 @@
 #include "../philips_action_button/action_button.h"
 #include "../philips_status_sensor/status_sensor.h"
 
-#define POWER_STATE_TIMEOUT 250
+#define POWER_STATE_TIMEOUT 500
 
 namespace esphome
 {
