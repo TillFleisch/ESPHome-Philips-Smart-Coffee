@@ -24,7 +24,7 @@ namespace esphome
 
                 ESP_LOGCONFIG(TAG, "--DATA RECEIVED--");
 
-                for (i=0, i<=len, i++)
+                for (i=0; i<=len; i++)
                 {
                     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, data(len));
                 }
