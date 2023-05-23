@@ -22,12 +22,12 @@ namespace esphome
             {
                 int i;
 
-                ESP_LOGCONFIG(TAG, "--DATA RECEIVED--");
+                // ESP_LOGCONFIG(TAG, "--DATA RECEIVED--");
 
-                for (i=0; i<=len; i++)
-                {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, &data(len));
-                }
+                // for (i=0; i<=len; i++)
+                // {
+                //     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, &data(len));
+                // }
                 // reject invalid messages
                 if (len < 19 && data[0] != 0xD5 && data[1] != 0x55)
                     return;
