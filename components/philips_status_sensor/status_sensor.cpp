@@ -26,7 +26,7 @@ namespace esphome
 
                 for (i=0; i<=len; i++)
                 {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, data(len));
+                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, &data(len));
                 }
                 // reject invalid messages
                 if (len < 19 && data[0] != 0xD5 && data[1] != 0x55)
