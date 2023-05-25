@@ -25,9 +25,9 @@ namespace esphome
             if (display_uart_.available())
             {
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
-                uint8_t i = 0;
+                // uint8_t i = 0;
                 display_uart_.read_array(buffer, size);
-                ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY-- %.*x", size, buffer);
+                // ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY-- %.*x", size, buffer);
 
                 // for (i=0; i<=size; i++)
                 // {
@@ -49,10 +49,10 @@ namespace esphome
             if (mainboard_uart_.available())
             {
                 uint8_t size = std::min(mainboard_uart_.available(), BUFFER_SIZE);
-                uint8_t i = 0;
+                // uint8_t i = 0;
                 mainboard_uart_.read_array(buffer, size);
 
-                ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD-- %.*x", size, buffer);
+                // ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD-- %.*x", size, buffer);
 
                 // for (i=0; i<=size; i++)
                 // {
