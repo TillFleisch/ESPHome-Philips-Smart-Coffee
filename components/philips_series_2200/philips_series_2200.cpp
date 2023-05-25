@@ -27,12 +27,12 @@ namespace esphome
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
                 uint8_t i = 0;
                 display_uart_.read_array(buffer, size);
-                ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY--");
+                ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY-- %.*x", size, buffer);
 
-                for (i=0; i<=size; i++)
-                {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
-                }
+                // for (i=0; i<=size; i++)
+                // {
+                //     ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
+                // }
                 mainboard_uart_.write_array(buffer, size);
             }
 
@@ -52,12 +52,12 @@ namespace esphome
                 uint8_t i = 0;
                 mainboard_uart_.read_array(buffer, size);
 
-                ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD--");
+                ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD-- %.*x", size, buffer);
 
-                for (i=0; i<=size; i++)
-                {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
-                }
+                // for (i=0; i<=size; i++)
+                // {
+                //     ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
+                // }
                 display_uart_.write_array(buffer, size);
 
                 // Only process messages starting with start bytes
