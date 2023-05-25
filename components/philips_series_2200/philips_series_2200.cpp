@@ -31,7 +31,7 @@ namespace esphome
 
                 for (i=0; i<=size; i++)
                 {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", size, buffer[size]);
+                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
                 }
                 mainboard_uart_.write_array(buffer, size);
             }
@@ -56,7 +56,7 @@ namespace esphome
 
                 for (i=0; i<=size; i++)
                 {
-                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", size, buffer[size]);
+                    ESP_LOGCONFIG(TAG, "--DATA[%d] = %#02x--", i, buffer[i]);
                 }
                 display_uart_.write_array(buffer, size);
 
