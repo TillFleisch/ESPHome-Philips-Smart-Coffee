@@ -29,7 +29,7 @@ namespace esphome
                 display_uart_.read_array(buffer, size);
                 ESP_LOGCONFIG(TAG, "--DATA RECEIVED DISPLAY--");
 
-                for (i=0, i<=size, i++)
+                for (i=0; i<=size; i++)
                 {
                     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, buffer(size));
                 }
@@ -54,7 +54,7 @@ namespace esphome
 
                 ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD--");
 
-                for (i=0, i<=size, i++)
+                for (i=0; i<=size,; i++)
                 {
                     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", len, buffer(size));
                 }
