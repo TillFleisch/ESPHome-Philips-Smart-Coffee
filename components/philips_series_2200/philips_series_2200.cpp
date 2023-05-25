@@ -33,7 +33,7 @@ namespace esphome
                 {
                     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", size, buffer[size]);
                 }
-                mainboard_uart_.write_array(buffer, size)
+                mainboard_uart_.write_array(buffer, size);
             }
 
             // Read until start index
@@ -54,7 +54,7 @@ namespace esphome
 
                 ESP_LOGCONFIG(TAG, "--DATA RECEIVED MAINBOARD--");
 
-                for (i=0; i<=size,; i++)
+                for (i=0; i<=size; i++)
                 {
                     ESP_LOGCONFIG(TAG, "--DATA[%d] = %d--", size, buffer[size]);
                 }
