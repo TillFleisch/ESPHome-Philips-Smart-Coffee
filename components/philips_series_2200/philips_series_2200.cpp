@@ -26,7 +26,7 @@ namespace esphome
             {
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
                 display_uart_.read_array(buffer, size);
-                
+
                 mainboard_uart_.write_array(buffer, size);
             }
 
