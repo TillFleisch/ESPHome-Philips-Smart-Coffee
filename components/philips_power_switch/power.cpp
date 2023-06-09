@@ -26,15 +26,18 @@ namespace esphome
                     for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array({0xD5, 0x55, 0x0A, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0E, 0x12});
 
+                    ESP_LOGE(TAG, "POWER - MESSAGES SENT");
                     // Send power on message
                     if (cleaning_)
                     {
+                        ESP_LOGE(TAG, "CLEANING!");
                         // Send power on command with cleaning
                         for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                             mainboard_uart_->write_array({0xD5, 0x55, 0x02, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x38, 0x15});
                     }
                     else
                     {
+                        ESP_LOGE(TAG, "NO CLEANING!");
                         // Send power on command without cleaning
                         for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                             mainboard_uart_->write_array({0xD5, 0x55, 0x01, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x25, 0x27});
@@ -49,6 +52,7 @@ namespace esphome
                 }
                 else
                 {
+                    ESP_LOGE(TAG, "ELSE OFF!");
                     // Send power off message
                     for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x01, 0x00, 0x00, 0x1D, 0x3B});
