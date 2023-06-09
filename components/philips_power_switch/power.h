@@ -5,6 +5,10 @@
 #include "esphome/components/uart/uart.h"
 
 #define MESSAGE_REPETITIONS 5
+<<<<<<< HEAD
+=======
+#define POWER_TRIP_DELAY 2000
+>>>>>>> 4750f53 (increased transistor delay)
 
 namespace esphome
 {
