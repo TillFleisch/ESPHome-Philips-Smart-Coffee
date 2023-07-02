@@ -5,7 +5,7 @@
 #include "../philips_power_switch/power.h"
 #include "../philips_action_button/action_button.h"
 #include "../philips_status_sensor/status_sensor.h"
-#include "../philips_bean_sensor/bean_sensor.h"
+#include "../philips_bean_settings/bean_settings.h"
 #include "../philips_water_sensor/water_sensor.h"
 
 #define POWER_STATE_TIMEOUT 500
@@ -85,12 +85,13 @@ namespace esphome
             }
 
             /**
-             * @brief Adds a bean sensor to this controller
-             * @param bean_sensor reference to a bean sensor
+             * @brief Adds a bean settings entity to this controller
+             * @param bean_settings reference to a bean settings entity
              */
-            void add_bean_sensor(philips_bean_sensor::BeanSensor *bean_sensor)
+            void add_bean_settings(philips_bean_settings::BeanSettings *bean_settings)
             {
-                bean_sensors_.push_back(bean_sensor);
+                bean_settings->set_uart_device(&mainboard_uart_);
+                bean_settings_.push_back(bean_settings);
             }
 
             /**
@@ -123,8 +124,8 @@ namespace esphome
             /// @brief list of status sensors to update with messages
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;
 
-            /// @brief list of registered bean sensors
-            std::vector<philips_bean_sensor::BeanSensor *> bean_sensors_;
+            /// @brief list of registered bean settings
+            std::vector<philips_bean_settings::BeanSettings *> bean_settings_;
 
             /// @brief list of registered water sensors
             std::vector<philips_water_sensor::WaterSensor *> water_sensors_;
