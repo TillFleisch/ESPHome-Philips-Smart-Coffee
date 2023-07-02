@@ -59,6 +59,10 @@ namespace esphome
                     // Update bean sensors
                     for (philips_bean_sensor::BeanSensor *bean_sensor : bean_sensors_)
                         bean_sensor->update_status(buffer, size);
+
+                    // Update water sensors
+                    for (philips_water_sensor::WaterSensor *water_sensor : water_sensors_)
+                        water_sensor->update_status(buffer, size);
                 }
             }
 

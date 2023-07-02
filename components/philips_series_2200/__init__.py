@@ -11,7 +11,8 @@ AUTO_LOAD = ['switch', 'button',
              'philips_power_switch',
              'philips_action_button',
              'philips_status_sensor',
-             'philips_bean_sensor']
+             'philips_bean_sensor',
+             'philips_water_sensor']
 
 DEPENDENCIES = ['uart']
 

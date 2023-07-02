@@ -6,6 +6,7 @@
 #include "../philips_action_button/action_button.h"
 #include "../philips_status_sensor/status_sensor.h"
 #include "../philips_bean_sensor/bean_sensor.h"
+#include "../philips_water_sensor/water_sensor.h"
 
 #define POWER_STATE_TIMEOUT 500
 
@@ -92,6 +93,15 @@ namespace esphome
                 bean_sensors_.push_back(bean_sensor);
             }
 
+            /**
+             * @brief Adds a water sensor to this controller
+             * @param water_sensor reference to a water sensor
+             */
+            void add_water_sensor(philips_water_sensor::WaterSensor *water_sensor)
+            {
+                water_sensors_.push_back(water_sensor);
+            }
+
         private:
             long last_message_from_mainboard_time_ = 0;
 
@@ -115,6 +125,9 @@ namespace esphome
 
             /// @brief list of registered bean sensors
             std::vector<philips_bean_sensor::BeanSensor *> bean_sensors_;
+
+            /// @brief list of registered water sensors
+            std::vector<philips_water_sensor::WaterSensor *> water_sensors_;
         };
 
     } // namespace philips_series_2200
