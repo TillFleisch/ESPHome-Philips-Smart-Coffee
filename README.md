@@ -40,6 +40,20 @@ A example configuration can be found [here](example.yaml)
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
 - **use_cappuccino**(**Optional**, boolean): If set to true `Cappuccino selected` selected will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
+## Bean Sensor
+
+- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
+- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`.
+- All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)
+
+## Water Sensor
+
+- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
+- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`, `HOT_WATER`.
+- All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)
+
 # Fully automated coffee
 
 The following script can be used to make a fully automated cup of coffee.
