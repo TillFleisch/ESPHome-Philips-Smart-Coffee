@@ -55,6 +55,10 @@ namespace esphome
                     // Update status sensors
                     for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
                         status_sensor->update_status(buffer, size);
+
+                    // Update bean sensors
+                    for (philips_bean_sensor::BeanSensor *bean_sensor : bean_sensors_)
+                        bean_sensor->update_status(buffer, size);
                 }
             }
 
