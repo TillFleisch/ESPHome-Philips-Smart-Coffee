@@ -47,12 +47,12 @@ A example configuration can be found [here](example.yaml)
 - **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
-## Water Sensor
+## Size Settings
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
 - **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`, `HOT_WATER`.
-- All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)
+- All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 # Fully automated coffee
 

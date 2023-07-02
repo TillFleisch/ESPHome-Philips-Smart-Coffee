@@ -20,7 +20,7 @@ namespace esphome
 
             void BeanSettings::control(float value)
             {
-                target_amount_ = std::isnan(value) ? -1 : value;
+                target_amount_ = (std::isnan(value) || std::isnan(state)) ? -1 : value;
             }
 
             void BeanSettings::update_status(uint8_t *data, size_t len)

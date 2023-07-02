@@ -6,7 +6,7 @@
 #include "../philips_action_button/action_button.h"
 #include "../philips_status_sensor/status_sensor.h"
 #include "../philips_bean_settings/bean_settings.h"
-#include "../philips_water_sensor/water_sensor.h"
+#include "../philips_size_settings/size_settings.h"
 
 #define POWER_STATE_TIMEOUT 500
 
@@ -95,12 +95,13 @@ namespace esphome
             }
 
             /**
-             * @brief Adds a water sensor to this controller
-             * @param water_sensor reference to a water sensor
+             * @brief Adds a size settings entity to this controller
+             * @param water_sensor reference to a size setting
              */
-            void add_water_sensor(philips_water_sensor::WaterSensor *water_sensor)
+            void add_size_settings(philips_size_settings::SizeSettings *size_setting)
             {
-                water_sensors_.push_back(water_sensor);
+                size_setting->set_uart_device(&mainboard_uart_);
+                size_setting_.push_back(size_setting);
             }
 
         private:
@@ -128,7 +129,7 @@ namespace esphome
             std::vector<philips_bean_settings::BeanSettings *> bean_settings_;
 
             /// @brief list of registered water sensors
-            std::vector<philips_water_sensor::WaterSensor *> water_sensors_;
+            std::vector<philips_size_settings::SizeSettings *> size_setting_;
         };
 
     } // namespace philips_series_2200

@@ -1,24 +1,29 @@
 #include "esphome/core/log.h"
-#include "water_sensor.h"
+#include "size_settings.h"
 
 namespace esphome
 {
     namespace philips_series_2200
     {
-        namespace philips_water_sensor
+        namespace philips_size_settings
         {
-            static const char *TAG = "philips_water_sensor";
+            static const char *TAG = "philips_size_settings";
 
-            void WaterSensor::setup()
+            void SizeSettings::setup()
             {
             }
 
-            void WaterSensor::dump_config()
+            void SizeSettings::dump_config()
             {
-                LOG_SENSOR(TAG, "Philips Water Sensor", this);
+                LOG_NUMBER(TAG, "Philips Water Sensor", this);
             }
 
-            void WaterSensor::update_status(uint8_t *data, size_t len)
+            void SizeSettings::control(float value)
+            {
+                target_amount_ = (std::isnan(value) || std::isnan(state)) ? -1 : value;
+            }
+
+            void SizeSettings::update_status(uint8_t *data, size_t len)
             {
                 // reject invalid messages
                 if (len < 19 && data[0] != 0xD5 && data[1] != 0x55)
@@ -51,6 +56,22 @@ namespace esphome
                         default:
                             break;
                         }
+
+                        // press the size button until the target value has been reached
+                        if (target_amount_ != -1 && state != target_amount_ && millis() - last_transmission_ > BUTTON_SEQUENCE_DELAY)
+                        {
+                            for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
+                                mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x04, 0x00, 0x20, 0x05});
+                            mainboard_uart_->flush();
+                            last_transmission_ = millis();
+                        }
+
+                        // Unset the target state to allow for manual control
+                        if (state == target_amount_)
+                        {
+                            target_amount_ = -1;
+                        }
+
                         return;
                     }
                 }
@@ -58,6 +79,6 @@ namespace esphome
                 update_state(NAN);
             }
 
-        } // namespace philips_water_sensor
+        } // namespace philips_size_settings
     }     // namespace philips_series_2200
 } // namespace esphome
