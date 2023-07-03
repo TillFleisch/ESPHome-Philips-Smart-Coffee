@@ -42,6 +42,14 @@ namespace esphome
             void set_power_pin(GPIOPin *pin) { power_pin_ = pin; };
 
             /**
+             * @brief Sets the invert status of the power pin
+             */
+            void set_invert_power_pin(bool invert)
+            {
+                invert_ = invert;
+            }
+
+            /**
              * @brief Reference to a power switch object.
              * The switch state will be updated based on the presence/absence of display update messages.
              *
@@ -75,10 +83,16 @@ namespace esphome
 
             /// @brief reference to uart connected to the display unit
             uart::UARTDevice display_uart_;
+
             /// @brief reference to uart connected to the mainboard
             uart::UARTDevice mainboard_uart_;
+
             /// @brief pin connect to display panel power transistor/mosfet
             GPIOPin *power_pin_;
+
+            /// @brief indicates if the power pin should be inverted
+            bool invert_ = false;
+
             /// @brief power switch reference
             // TODO: allow multiple power_switches
             std::vector<philips_power_switch::Power *> power_switches_;
