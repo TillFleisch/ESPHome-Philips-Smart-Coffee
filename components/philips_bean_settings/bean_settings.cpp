@@ -56,7 +56,7 @@ namespace esphome
                         }
 
                         // press the bean button until the target value has been reached
-                        if (target_amount_ != -1 && state != target_amount_ && millis() - last_transmission_ > BUTTON_SEQUENCE_DELAY)
+                        if (target_amount_ != -1 && state != target_amount_ && millis() - last_transmission_ > SETTINGS_BUTTON_SEQUENCE_DELAY)
                         {
                             for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                                 mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x09, 0x2F});
