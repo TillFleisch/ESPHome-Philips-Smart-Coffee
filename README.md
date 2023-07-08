@@ -38,6 +38,7 @@ A example configuration can be found [here](example.yaml)
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
+- **use_cappuccino**(**Optional**, boolean): If set to true `Cappuccino selected` selected will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
 # Fully automated coffee
 
