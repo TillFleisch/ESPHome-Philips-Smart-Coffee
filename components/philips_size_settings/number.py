@@ -19,7 +19,8 @@ Source = philips_size_settings_ns.enum("Source")
 SOURCES = {
     "COFFEE": Source.COFFEE,
     "ESPRESSO": Source.ESPRESSO,
-    "HOT_WATER": Source.HOT_WATER
+    "CAPPUCCINO": Source.CAPPUCCINO,
+    "HOT_WATER": Source.HOT_WATER,
 }
 
 CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({

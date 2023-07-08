@@ -36,7 +36,9 @@ namespace esphome
                        status_sensor_->get_raw_state().compare("2x Coffee selected") == 0)) ||
                      (source_ == ESPRESSO &&
                       (status_sensor_->get_raw_state().compare("Espresso selected") == 0 ||
-                       status_sensor_->get_raw_state().compare("2x Espresso selected") == 0))))
+                       status_sensor_->get_raw_state().compare("2x Espresso selected") == 0)) ||
+                     (source_ == CAPPUCCINO &&
+                      status_sensor_->get_raw_state().compare("Cappuccino selected") == 0)))
                 {
                     if (data[9] == 0x07)
                     {

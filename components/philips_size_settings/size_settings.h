@@ -22,6 +22,7 @@ namespace esphome
             {
                 COFFEE = 0,
                 ESPRESSO,
+                CAPPUCCINO,
                 HOT_WATER
             };
 

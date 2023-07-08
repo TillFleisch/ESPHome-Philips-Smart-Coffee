@@ -18,7 +18,8 @@ BeanSettings = philips_bean_settings_ns.class_(
 Source = philips_bean_settings_ns.enum("Source")
 SOURCES = {
     "COFFEE": Source.COFFEE,
-    "ESPRESSO": Source.ESPRESSO
+    "ESPRESSO": Source.ESPRESSO,
+    "CAPPUCCINO": Source.CAPPUCCINO
 }
 
 CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
