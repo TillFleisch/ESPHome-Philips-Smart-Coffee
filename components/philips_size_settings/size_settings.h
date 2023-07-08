@@ -6,7 +6,7 @@
 #include "../philips_status_sensor/status_sensor.h"
 
 #define MESSAGE_REPETITIONS 5
-#define SETTINGS_BUTTON_SEQUENCE_DELAY 250
+#define SETTINGS_BUTTON_SEQUENCE_DELAY 500
 
 namespace esphome
 {
