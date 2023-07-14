@@ -44,14 +44,14 @@ A example configuration can be found [here](example.yaml)
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
-- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`, `CAPPUCCINO`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
+- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 ## Size Settings
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
-- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `COFFEE`, `CAPPUCCINO`, `HOT_WATER`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
+- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`, `HOT_WATER`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 # Fully automated coffee
