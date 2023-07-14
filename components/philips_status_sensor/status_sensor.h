@@ -39,6 +39,15 @@ namespace esphome
                 };
 
                 /**
+                 * @brief set the cappuccino flag which indicates if cappuccino is reported instead of steam
+                 *
+                 */
+                void set_use_cappuccino(bool value)
+                {
+                    use_cappuccino_ = value;
+                }
+
+                /**
                  * @brief Published the state if it's different form the currently published state.
                  *
                  */
@@ -72,6 +81,9 @@ namespace esphome
 
                 /// @brief status of the play/pause led
                 bool play_pause_led_ = false;
+
+                /// @brief indicates if cappuccino should be reported instead of steam
+                bool use_cappuccino_ = false;
 
                 /// @brief time of play/pause change
                 long play_pause_last_change_ = 0;

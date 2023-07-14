@@ -5,6 +5,8 @@
 #include "../philips_power_switch/power.h"
 #include "../philips_action_button/action_button.h"
 #include "../philips_status_sensor/status_sensor.h"
+#include "../philips_bean_settings/bean_settings.h"
+#include "../philips_size_settings/size_settings.h"
 
 #define POWER_STATE_TIMEOUT 500
 
@@ -73,9 +75,33 @@ namespace esphome
                 action_button->set_uart_device(&mainboard_uart_);
             }
 
+            /**
+             * @brief Adds a status sensor to this controller
+             * @param status_sensor reference to a status sensor
+             */
             void add_status_sensor(philips_status_sensor::StatusSensor *status_sensor)
             {
                 status_sensors_.push_back(status_sensor);
+            }
+
+            /**
+             * @brief Adds a bean settings entity to this controller
+             * @param bean_settings reference to a bean settings entity
+             */
+            void add_bean_settings(philips_bean_settings::BeanSettings *bean_settings)
+            {
+                bean_settings->set_uart_device(&mainboard_uart_);
+                bean_settings_.push_back(bean_settings);
+            }
+
+            /**
+             * @brief Adds a size settings entity to this controller
+             * @param water_sensor reference to a size setting
+             */
+            void add_size_settings(philips_size_settings::SizeSettings *size_setting)
+            {
+                size_setting->set_uart_device(&mainboard_uart_);
+                size_setting_.push_back(size_setting);
             }
 
         private:
@@ -94,11 +120,16 @@ namespace esphome
             bool invert_ = false;
 
             /// @brief power switch reference
-            // TODO: allow multiple power_switches
             std::vector<philips_power_switch::Power *> power_switches_;
 
             /// @brief list of status sensors to update with messages
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;
+
+            /// @brief list of registered bean settings
+            std::vector<philips_bean_settings::BeanSettings *> bean_settings_;
+
+            /// @brief list of registered water sensors
+            std::vector<philips_size_settings::SizeSettings *> size_setting_;
         };
 
     } // namespace philips_series_2200

@@ -57,3 +57,16 @@ button:
     action: PLAY_PAUSE
     name: "Select play/pause"
     icon: mdi:play-pause
+
+number:
+  - platform: philips_bean_settings
+    name: "Coffee beans"
+    controller_id: philip
+    status_sensor_id: status
+    source: COFFEE
+
+  - platform: philips_size_settings
+    name: "Coffee size"
+    controller_id: philip
+    status_sensor_id: status
+    source: COFFEE
