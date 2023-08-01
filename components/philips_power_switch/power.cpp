@@ -53,10 +53,10 @@ namespace esphome
                     power_pin_->digital_write(!power_pin_->digital_read());
 =======
                     ESP_LOGE(TAG, "TRANSISTOR!");
-                    power_pin_->digital_write(0);
+                    power_pin_->digital_write(!power_pin_->digital_read());
                     ESP_LOGE(TAG, "DISPLAY OFF (1s)!");
                     delay(POWER_TRIP_DELAY);
-                    power_pin_->digital_write(1);
+                    power_pin_->digital_write(!power_pin_->digital_read());
                     ESP_LOGE(TAG, "DISPLAY ON!");
 >>>>>>> 4750f53 (increased transistor delay)
                 }
