@@ -27,6 +27,14 @@ namespace esphome
                     for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array({0xD5, 0x55, 0x0A, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0E, 0x12});
 
+                    // Perform power trip (invert state twice)
+                    ESP_LOGE(TAG, "TRANSISTOR!");
+                    power_pin_->digital_write(!power_pin_->digital_read());
+                    ESP_LOGE(TAG, "DISPLAY OFF (1s)!");
+                    delay(POWER_TRIP_DELAY);
+                    power_pin_->digital_write(!power_pin_->digital_read());
+                    ESP_LOGE(TAG, "DISPLAY ON!");
+
                     ESP_LOGE(TAG, "POWER - MESSAGES SENT");
                     // Send power on message
                     if (cleaning_)
@@ -47,18 +55,9 @@ namespace esphome
                     mainboard_uart_->flush();
 
                     // Perform power trip (invert state twice)
-<<<<<<< HEAD
                     power_pin_->digital_write(!power_pin_->digital_read());
                     delay(power_trip_delay_);
                     power_pin_->digital_write(!power_pin_->digital_read());
-=======
-                    ESP_LOGE(TAG, "TRANSISTOR!");
-                    power_pin_->digital_write(!power_pin_->digital_read());
-                    ESP_LOGE(TAG, "DISPLAY OFF (1s)!");
-                    delay(POWER_TRIP_DELAY);
-                    power_pin_->digital_write(!power_pin_->digital_read());
-                    ESP_LOGE(TAG, "DISPLAY ON!");
->>>>>>> 4750f53 (increased transistor delay)
                 }
                 else
                 {
