@@ -21,6 +21,7 @@ MAINBOARD_UART_ID = 'mainboard_uart'
 POWER_PIN = 'power_pin'
 CONTROLLER_ID = 'controller_id'
 INVERT_POWER_PIN = 'invert_power_pin'
+POWER_TRIP_DELAY = 'power_trip_delay'
 
 philips_series_2200_ns = cg.esphome_ns.namespace('philips_series_2200')
 PhilipsSeries2200 = philips_series_2200_ns.class_(
@@ -31,7 +32,14 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Required(DISPLAY_UART_ID): cv.use_id(UARTComponent),
     cv.Required(MAINBOARD_UART_ID): cv.use_id(UARTComponent),
     cv.Required(POWER_PIN): pins.gpio_output_pin_schema,
-    cv.Optional(INVERT_POWER_PIN, default=False): cv.boolean
+    cv.Optional(INVERT_POWER_PIN, default=False): cv.boolean,
+    cv.Optional(POWER_TRIP_DELAY, default="1000ms"): cv.All(
+            cv.positive_time_period_milliseconds,
+            cv.Range(
+                min=cv.TimePeriod(milliseconds=0),
+                max_included=cv.TimePeriod(milliseconds=10000),
+            ),
+        ),
 }).extend(cv.COMPONENT_SCHEMA)
 
 
@@ -47,3 +55,4 @@ def to_code(config):
     cg.add(var.register_mainboard_uart(mainboard))
     cg.add(var.set_power_pin(pin))
     cg.add(var.set_invert_power_pin(config[INVERT_POWER_PIN]))
+    cg.add(var.set_power_trip_delay(config[POWER_TRIP_DELAY]))

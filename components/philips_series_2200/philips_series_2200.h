@@ -51,6 +51,11 @@ namespace esphome
                 invert_ = invert;
             }
 
+            void set_power_trip_delay(uint32_t time)
+            {
+                power_trip_delay_ = time;
+            }
+
             /**
              * @brief Reference to a power switch object.
              * The switch state will be updated based on the presence/absence of display update messages.
@@ -61,6 +66,7 @@ namespace esphome
             {
                 power_switch->set_mainboard_uart(&mainboard_uart_);
                 power_switch->set_power_pin(power_pin_);
+                power_switch->set_power_trip_delay(power_trip_delay_);
                 power_switches_.push_back(power_switch);
             };
 
@@ -118,6 +124,9 @@ namespace esphome
 
             /// @brief indicates if the power pin should be inverted
             bool invert_ = false;
+
+            /// @brief length of poweroutage applied to the display
+            uint32_t power_trip_delay_ = 1000;
 
             /// @brief power switch reference
             std::vector<philips_power_switch::Power *> power_switches_;

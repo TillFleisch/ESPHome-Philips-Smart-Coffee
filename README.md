@@ -21,6 +21,7 @@ A example configuration can be found [here](example.yaml)
 - **mainboard_uart**(**Required**, string): ID of the UART-Component connected to the mainboard
 - **power_pin**(**Required**, [Pin](https://esphome.io/guides/configuration-types.html#config-pin)): Pin to which the MOSFET/Transistor is connected. This pin is used to temporarily turn of the display unit.
 - **invert_power_pin**(**Optional**: boolean): If set to true the output of the power pin will be inverted. Defaults to `false`.
+- **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `1s`.
 
 ## Philips Power switch
 

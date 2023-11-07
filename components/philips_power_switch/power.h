@@ -5,7 +5,6 @@
 #include "esphome/components/uart/uart.h"
 
 #define MESSAGE_REPETITIONS 5
-#define POWER_TRIP_DELAY 500
 
 namespace esphome
 {
@@ -54,6 +53,14 @@ namespace esphome
                 }
 
                 /**
+                 * @brief Sets the time period which is used for removing power to the display.
+                 */
+                void set_power_trip_delay(uint32_t time)
+                {
+                    power_trip_delay_ = time;
+                }
+
+                /**
                  * @brief Sets the cleaning status of this power switch.
                  * If true the machine will clean during startup
                  */
@@ -69,6 +76,8 @@ namespace esphome
                 GPIOPin *power_pin_;
                 /// @brief True if the coffee machine is supposed to clean
                 bool cleaning_ = true;
+                /// @brief length of poweroutage applied to the display
+                uint32_t power_trip_delay_ = 1000;
             };
 
         } // namespace power_switch

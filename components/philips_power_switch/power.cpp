@@ -44,7 +44,7 @@ namespace esphome
 
                     // Perform power trip (invert state twice)
                     power_pin_->digital_write(!power_pin_->digital_read());
-                    delay(POWER_TRIP_DELAY);
+                    delay(power_trip_delay_);
                     power_pin_->digital_write(!power_pin_->digital_read());
                 }
                 else
