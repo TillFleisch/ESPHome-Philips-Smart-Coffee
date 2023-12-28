@@ -32,7 +32,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Required(MAINBOARD_UART_ID): cv.use_id(UARTComponent),
     cv.Required(POWER_PIN): pins.gpio_output_pin_schema,
     cv.Optional(INVERT_POWER_PIN, default=False): cv.boolean,
-    cv.Optional(POWER_TRIP_DELAY, default="1000ms"): cv.All(
+    cv.Optional(POWER_TRIP_DELAY, default="500ms"): cv.All(
             cv.positive_time_period_milliseconds,
             cv.Range(
                 min=cv.TimePeriod(milliseconds=0),

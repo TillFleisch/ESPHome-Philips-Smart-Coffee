@@ -125,8 +125,8 @@ namespace esphome
             /// @brief indicates if the power pin should be inverted
             bool invert_ = false;
 
-            /// @brief length of poweroutage applied to the display
-            uint32_t power_trip_delay_ = 1000;
+            /// @brief length of power outage applied to the display
+            uint32_t power_trip_delay_ = 500;
 
             /// @brief power switch reference
             std::vector<philips_power_switch::Power *> power_switches_;

@@ -76,8 +76,8 @@ namespace esphome
                 GPIOPin *power_pin_;
                 /// @brief True if the coffee machine is supposed to clean
                 bool cleaning_ = true;
-                /// @brief length of poweroutage applied to the display
-                uint32_t power_trip_delay_ = 1000;
+                /// @brief length of power outage applied to the display
+                uint32_t power_trip_delay_ = 500;
             };
 
         } // namespace power_switch
