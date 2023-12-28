@@ -16,6 +16,23 @@ namespace esphome
 
             void Power::loop()
             {
+                if (should_power_trip_ && millis() - last_power_trip_ > power_trip_delay_ + POWER_TRIP_RETRY_DELAY)
+                {
+                    if (power_trip_count_ > MAX_POWER_TRIP_COUNT)
+                    {
+                        should_power_trip_ = false;
+                        ESP_LOGE(TAG, "Power tripping display failed!");
+                        return;
+                    }
+
+                    // Perform power trip (invert state twice)
+                    power_pin_->digital_write(!power_pin_->digital_read());
+                    delay(power_trip_delay_);
+                    power_pin_->digital_write(!power_pin_->digital_read());
+
+                    last_power_trip_ = millis();
+                    power_trip_count_++;
+                }
             }
 
             void Power::write_state(bool state)
@@ -42,10 +59,9 @@ namespace esphome
 
                     mainboard_uart_->flush();
 
-                    // Perform power trip (invert state twice)
-                    power_pin_->digital_write(!power_pin_->digital_read());
-                    delay(power_trip_delay_);
-                    power_pin_->digital_write(!power_pin_->digital_read());
+                    // Perform power trip in component loop
+                    should_power_trip_ = true;
+                    power_trip_count_ = 0;
                 }
                 else
                 {
@@ -61,6 +77,22 @@ namespace esphome
             void Power::dump_config()
             {
                 ESP_LOGCONFIG(TAG, "Philips Series 2200 Power Switch");
+            }
+
+            void Power::update_state(bool state)
+            {
+                if (this->state != state)
+                {
+                    // Stop further power trips after successfully tripping
+                    if (state && should_power_trip_)
+                    {
+                        ESP_LOGD(TAG, "Performed %i power trip(s).", power_trip_count_);
+                        should_power_trip_ = false;
+                        power_trip_count_ = 0;
+                    }
+
+                    publish_state(state);
+                }
             }
 
         } // namespace power_switch

@@ -28,6 +28,7 @@ namespace esphome
                 display_uart_.read_array(buffer, size);
 
                 mainboard_uart_.write_array(buffer, size);
+                last_message_from_display_time_ = millis();
             }
 
             // Read until start index
@@ -67,11 +68,11 @@ namespace esphome
             }
 
             // Publish power state if required as long as the display is requesting messages
-            if (millis() - last_message_from_mainboard_time_ > POWER_STATE_TIMEOUT)
+            if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
             {
                 // Update power switches
                 for (philips_power_switch::Power *power_switch : power_switches_)
-                    power_switch->publish_state(false);
+                    power_switch->update_state(false);
 
                 // Update status sensors
                 for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
@@ -81,7 +82,7 @@ namespace esphome
             {
                 // Update power switches
                 for (philips_power_switch::Power *power_switch : power_switches_)
-                    power_switch->publish_state(true);
+                    power_switch->update_state(true);
             }
 
             display_uart_.flush();

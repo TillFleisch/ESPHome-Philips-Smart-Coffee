@@ -5,6 +5,8 @@
 #include "esphome/components/uart/uart.h"
 
 #define MESSAGE_REPETITIONS 5
+#define POWER_TRIP_RETRY_DELAY 100
+#define MAX_POWER_TRIP_COUNT 5
 
 namespace esphome
 {
@@ -69,6 +71,11 @@ namespace esphome
                     cleaning_ = cleaning;
                 }
 
+                /**
+                 * @brief Processes and publish the new switch state.
+                 */
+                void update_state(bool state);
+
             private:
                 /// @brief Reference to uart which is connected to the mainboard
                 uart::UARTDevice *mainboard_uart_;
@@ -78,6 +85,12 @@ namespace esphome
                 bool cleaning_ = true;
                 /// @brief length of power outage applied to the display
                 uint32_t power_trip_delay_ = 500;
+                /// @brief Determines wether a power trip should be performed
+                bool should_power_trip_ = false;
+                /// @brief Time of last power trip
+                long last_power_trip_ = 0;
+                /// @brief nr of power performed power trips
+                int power_trip_count_ = 0;
             };
 
         } // namespace power_switch
