@@ -81,7 +81,7 @@ The 9th byte is used to transmit the right hand side button group in a similar f
 
 This should be possible but determining the correct checksum is required.
 
-## Messages from the display to the mainboard
+## Messages from the mainboard to the display
 
 All messages have the following structure:
 
