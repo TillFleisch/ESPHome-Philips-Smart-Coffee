@@ -4,20 +4,22 @@ from esphome.components import switch
 from esphome.const import CONF_ID
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 
-DEPENDENCIES = ['philips_series_2200']
+DEPENDENCIES = ["philips_series_2200"]
 
-CLEAN_DURING_START = 'clean'
+CLEAN_DURING_START = "clean"
 
-power_switch_namespace = cg.esphome_ns.namespace(
-    'philips_series_2200').namespace("philips_power_switch")
-PowerSwitch = power_switch_namespace.class_(
-    'Power', switch.Switch, cg.Component)
+power_switch_namespace = cg.esphome_ns.namespace("philips_series_2200").namespace(
+    "philips_power_switch"
+)
+PowerSwitch = power_switch_namespace.class_("Power", switch.Switch, cg.Component)
 
-CONFIG_SCHEMA = switch.SWITCH_SCHEMA.extend({
-    cv.GenerateID(): cv.declare_id(PowerSwitch),
-    cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-    cv.Optional(CLEAN_DURING_START, default=True): cv.boolean
-}).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = switch.SWITCH_SCHEMA.extend(
+    {
+        cv.GenerateID(): cv.declare_id(PowerSwitch),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Optional(CLEAN_DURING_START, default=True): cv.boolean,
+    }
+).extend(cv.COMPONENT_SCHEMA)
 
 
 def to_code(config):

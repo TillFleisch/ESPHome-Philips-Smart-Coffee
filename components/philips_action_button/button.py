@@ -4,14 +4,16 @@ from esphome.components import button
 from esphome.const import CONF_ID
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 
-DEPENDENCIES = ['philips_series_2200']
+DEPENDENCIES = ["philips_series_2200"]
 
-CONF_ACTION = 'action'
+CONF_ACTION = "action"
 
-philips_action_button_ns = cg.esphome_ns.namespace(
-    'philips_series_2200').namespace('philips_action_button')
+philips_action_button_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
+    "philips_action_button"
+)
 ActionButton = philips_action_button_ns.class_(
-    "ActionButton", button.Button, cg.Component)
+    "ActionButton", button.Button, cg.Component
+)
 
 Action = philips_action_button_ns.enum("ActionButton")
 ACTIONS = {
@@ -19,7 +21,7 @@ ACTIONS = {
     "SELECT_COFFEE": Action.SELECT_COFFEE,
     "SELECT_ESPRESSO": Action.SELECT_ESPRESSO,
     "MAKE_ESPRESSO": Action.MAKE_ESPRESSO,
-    "SELECT_HOT_WATER":   Action.SELECT_HOT_WATER,
+    "SELECT_HOT_WATER": Action.SELECT_HOT_WATER,
     "MAKE_HOT_WATER": Action.MAKE_HOT_WATER,
     "SELECT_STEAM": Action.SELECT_STEAM,
     "MAKE_STEAM": Action.MAKE_STEAM,
@@ -34,9 +36,7 @@ CONFIG_SCHEMA = button.BUTTON_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(ActionButton),
         cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-        cv.Required(CONF_ACTION): cv.enum(
-            ACTIONS, upper=True, space="_"
-        )
+        cv.Required(CONF_ACTION): cv.enum(ACTIONS, upper=True, space="_"),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 

@@ -5,32 +5,36 @@ from esphome.const import CONF_MODE
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 from ..philips_status_sensor.text_sensor import STATUS_SENSOR_ID, StatusSensor
 
-AUTO_LOAD = ['number']
-DEPENDENCIES = ['philips_series_2200', 'philips_status_sensor']
+AUTO_LOAD = ["number"]
+DEPENDENCIES = ["philips_series_2200", "philips_status_sensor"]
 
-CONF_SOURCE = 'source'
+CONF_SOURCE = "source"
 
-philips_bean_settings_ns = cg.esphome_ns.namespace(
-    'philips_series_2200').namespace('philips_bean_settings')
+philips_bean_settings_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
+    "philips_bean_settings"
+)
 BeanSettings = philips_bean_settings_ns.class_(
-    'BeanSettings', number.Number, cg.Component)
+    "BeanSettings", number.Number, cg.Component
+)
 
 Source = philips_bean_settings_ns.enum("Source")
 SOURCES = {
     "COFFEE": Source.COFFEE,
     "ESPRESSO": Source.ESPRESSO,
-    "CAPPUCCINO": Source.CAPPUCCINO
+    "CAPPUCCINO": Source.CAPPUCCINO,
 }
 
-CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
-    cv.GenerateID(): cv.declare_id(BeanSettings),
-    cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-    cv.Required(STATUS_SENSOR_ID): cv.use_id(StatusSensor),
-    cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(number.NUMBER_MODES, upper=True),
-    cv.Required(CONF_SOURCE): cv.enum(
-            SOURCES, upper=True, space="_"
-        )
-}).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend(
+    {
+        cv.GenerateID(): cv.declare_id(BeanSettings),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Required(STATUS_SENSOR_ID): cv.use_id(StatusSensor),
+        cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(
+            number.NUMBER_MODES, upper=True
+        ),
+        cv.Required(CONF_SOURCE): cv.enum(SOURCES, upper=True, space="_"),
+    }
+).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):

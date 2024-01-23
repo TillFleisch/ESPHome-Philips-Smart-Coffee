@@ -5,15 +5,17 @@ from esphome.const import CONF_MODE
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 from ..philips_status_sensor.text_sensor import STATUS_SENSOR_ID, StatusSensor
 
-AUTO_LOAD = ['number']
-DEPENDENCIES = ['philips_series_2200', 'philips_status_sensor']
+AUTO_LOAD = ["number"]
+DEPENDENCIES = ["philips_series_2200", "philips_status_sensor"]
 
-CONF_SOURCE = 'source'
+CONF_SOURCE = "source"
 
-philips_size_settings_ns = cg.esphome_ns.namespace(
-    'philips_series_2200').namespace('philips_size_settings')
+philips_size_settings_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
+    "philips_size_settings"
+)
 SizeSettings = philips_size_settings_ns.class_(
-    'SizeSettings', number.Number, cg.Component)
+    "SizeSettings", number.Number, cg.Component
+)
 
 Source = philips_size_settings_ns.enum("Source")
 SOURCES = {
@@ -23,15 +25,17 @@ SOURCES = {
     "HOT_WATER": Source.HOT_WATER,
 }
 
-CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
-    cv.GenerateID(): cv.declare_id(SizeSettings),
-    cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-    cv.Required(STATUS_SENSOR_ID): cv.use_id(StatusSensor),
-    cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(number.NUMBER_MODES, upper=True),
-    cv.Required(CONF_SOURCE): cv.enum(
-            SOURCES, upper=True, space="_"
-        )
-}).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend(
+    {
+        cv.GenerateID(): cv.declare_id(SizeSettings),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Required(STATUS_SENSOR_ID): cv.use_id(StatusSensor),
+        cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(
+            number.NUMBER_MODES, upper=True
+        ),
+        cv.Required(CONF_SOURCE): cv.enum(SOURCES, upper=True, space="_"),
+    }
+).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):

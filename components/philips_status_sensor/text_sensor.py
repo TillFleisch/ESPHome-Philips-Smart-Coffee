@@ -4,19 +4,23 @@ from esphome.components import text_sensor
 from esphome.const import CONF_ID
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 
-USE_CAPPUCCINO = 'use_cappuccino'
+USE_CAPPUCCINO = "use_cappuccino"
 STATUS_SENSOR_ID = "status_sensor_id"
 
-philips_status_sensor_ns = cg.esphome_ns.namespace(
-    'philips_series_2200').namespace('philips_status_sensor')
+philips_status_sensor_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
+    "philips_status_sensor"
+)
 StatusSensor = philips_status_sensor_ns.class_(
-    'StatusSensor', text_sensor.TextSensor, cg.Component)
+    "StatusSensor", text_sensor.TextSensor, cg.Component
+)
 
-CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend({
-    cv.GenerateID(): cv.declare_id(StatusSensor),
-    cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-    cv.Optional(USE_CAPPUCCINO, default=False): cv.boolean
-}).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend(
+    {
+        cv.GenerateID(): cv.declare_id(StatusSensor),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Optional(USE_CAPPUCCINO, default=False): cv.boolean,
+    }
+).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):
