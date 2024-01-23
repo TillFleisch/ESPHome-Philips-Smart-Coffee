@@ -7,6 +7,7 @@ from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 DEPENDENCIES = ["philips_series_2200"]
 
 CONF_ACTION = "action"
+CONF_LONG_PRESS = "long_press"
 
 philips_action_button_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
     "philips_action_button"
@@ -32,13 +33,26 @@ ACTIONS = {
     "PLAY_PAUSE": Action.PLAY_PAUSE,
 }
 
-CONFIG_SCHEMA = button.BUTTON_SCHEMA.extend(
-    {
-        cv.GenerateID(): cv.declare_id(ActionButton),
-        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
-        cv.Required(CONF_ACTION): cv.enum(ACTIONS, upper=True, space="_"),
-    }
-).extend(cv.COMPONENT_SCHEMA)
+
+def validate_long_press(config):
+    """Validate that long press only applies to select options."""
+    if config[CONF_LONG_PRESS] and "MAKE" in config[CONF_ACTION]:
+        raise cv.Invalid(f"Action {config[CONF_ACTION]} does not support long press.")
+
+    return config
+
+
+CONFIG_SCHEMA = cv.All(
+    button.BUTTON_SCHEMA.extend(
+        {
+            cv.GenerateID(): cv.declare_id(ActionButton),
+            cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+            cv.Required(CONF_ACTION): cv.enum(ACTIONS, upper=True, space="_"),
+            cv.Optional(CONF_LONG_PRESS, default=False): cv.boolean,
+        },
+    ).extend(cv.COMPONENT_SCHEMA),
+    validate_long_press,
+)
 
 
 async def to_code(config):
@@ -48,4 +62,5 @@ async def to_code(config):
     await button.register_button(var, config)
 
     cg.add(var.set_action(config[CONF_ACTION]))
+    cg.add(var.set_long_press(config[CONF_LONG_PRESS]))
     cg.add(parent.add_action_button(var))

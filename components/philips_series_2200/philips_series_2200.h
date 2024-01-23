@@ -79,6 +79,7 @@ namespace esphome
             void add_action_button(philips_action_button::ActionButton *action_button)
             {
                 action_button->set_uart_device(&mainboard_uart_);
+                action_buttons_.push_back(action_button);
             }
 
             /**
@@ -140,6 +141,9 @@ namespace esphome
 
             /// @brief list of registered water sensors
             std::vector<philips_size_settings::SizeSettings *> size_setting_;
+
+            /// @brief list of registered action buttons
+            std::vector<philips_action_button::ActionButton *> action_buttons_;
         };
 
     } // namespace philips_series_2200

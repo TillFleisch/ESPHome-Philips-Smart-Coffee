@@ -20,26 +20,27 @@ A example configuration can be found [here](example.yaml)
 - **display_uart**(**Required**, string): ID of the UART-Component connected to the display unit
 - **mainboard_uart**(**Required**, string): ID of the UART-Component connected to the mainboard
 - **power_pin**(**Required**, [Pin](https://esphome.io/guides/configuration-types.html#config-pin)): Pin to which the MOSFET/Transistor is connected. This pin is used to temporarily turn of the display unit.
-- **invert_power_pin**(**Optional**: boolean): If set to true the output of the power pin will be inverted. Defaults to `false`.
+- **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 
 ## Philips Power switch
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
-- **clean**(**Optional**: boolean): If set to true the machine will perform a cleaning cycle during startup. Otherwise the machine will power on without cleaning. Defaults to `true`.
+- **clean**(**Optional**: boolean): If set to `true` the machine will perform a cleaning cycle during startup. Otherwise the machine will power on without cleaning. Defaults to `true`.
 - All other options from [Switch](https://esphome.io/components/switch/index.html#config-switch)
 
 ## Philips Action Button
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`.
+- **long_press**(**Optional**, boolean): If set to `true` this button will perform a long press. This option is only available for actions which don't include `MAKE`.
 - All other options from [Button](https://esphome.io/components/button/index.html#config-button)
 
 ## Philips Status Sensor
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
-- **use_cappuccino**(**Optional**, boolean): If set to true `Cappuccino selected` selected will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
+- **use_cappuccino**(**Optional**, boolean): If set to `true`, `Cappuccino selected` will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
 ## Bean Settings
 
