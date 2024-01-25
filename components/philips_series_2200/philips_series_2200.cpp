@@ -14,7 +14,7 @@ namespace esphome
         {
             power_pin_->setup();
             power_pin_->pin_mode(gpio::FLAG_OUTPUT);
-            power_pin_->digital_write(!invert_);
+            power_pin_->digital_write(initial_pin_state_);
         }
 
         void PhilipsSeries2200::loop()
