@@ -72,6 +72,16 @@ namespace esphome
                 }
 
                 /**
+                 * @brief Sets the initial state reference on this power switch
+                 *
+                 * @param initial_state hub components initial state reference
+                 */
+                void set_initial_state(bool *initial_state)
+                {
+                    initial_state_ = initial_state;
+                }
+
+                /**
                  * @brief Processes and publish the new switch state.
                  */
                 void update_state(bool state);
@@ -91,6 +101,8 @@ namespace esphome
                 long last_power_trip_ = 0;
                 /// @brief nr of power performed power trips
                 int power_trip_count_ = 0;
+                /// @brief initial power state reference
+                bool *initial_state_;
             };
 
         } // namespace power_switch
