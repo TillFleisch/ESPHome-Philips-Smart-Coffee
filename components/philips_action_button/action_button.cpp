@@ -15,6 +15,24 @@ namespace esphome
                 LOG_BUTTON("", "Philips Action Button", this);
             }
 
+            void ActionButton::loop()
+            {
+                // Repeated message sending for long presses
+                if (millis() - press_start_ <= LONG_PRESS_DURATION)
+                {
+                    if (millis() - last_message_sent_ > LONG_PRESS_REPETITION_DELAY)
+                    {
+                        last_message_sent_ = millis();
+                        perform_action();
+                    }
+                    is_long_pressing_ = true;
+                }
+                else
+                {
+                    is_long_pressing_ = false;
+                }
+            }
+
             void ActionButton::write_array(const std::vector<uint8_t> &data)
             {
                 for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
@@ -23,6 +41,21 @@ namespace esphome
             }
 
             void ActionButton::press_action()
+            {
+                if (should_long_press_)
+                {
+                    // Reset button press start time
+                    press_start_ = millis();
+                    last_message_sent_ = 0;
+                }
+                else
+                {
+                    // Perform a single button press
+                    perform_action();
+                }
+            }
+
+            void ActionButton::perform_action()
             {
                 auto action = action_;
                 // Coffee

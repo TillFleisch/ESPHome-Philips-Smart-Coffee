@@ -27,7 +27,20 @@ namespace esphome
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
                 display_uart_.read_array(buffer, size);
 
-                mainboard_uart_.write_array(buffer, size);
+                // Check if a action button is currently performing a long press
+                bool long_pressing = false;
+                for (philips_action_button::ActionButton *button : action_buttons_)
+                {
+                    if (button->is_long_pressing())
+                    {
+                        long_pressing = true;
+                        break;
+                    }
+                }
+
+                // Drop messages if button long-press is currently injecting messages
+                if (!long_pressing)
+                    mainboard_uart_.write_array(buffer, size);
                 last_message_from_display_time_ = millis();
             }
 

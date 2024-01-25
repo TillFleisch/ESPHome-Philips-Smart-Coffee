@@ -97,19 +97,19 @@ The following table show the purpose of each byte and their known states
 | 0    | START             |
 | 1    | START             |
 | 2    | INSTRUCTION       |
-| 3    | Espresso-LED      | `03`/`07` - half/full brightness ; `38` - 2x espresso |
-| 4    | Hot Water-LED     | `03`/`07` - half/full brightness                      |
-| 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee    |
-| 6    | Steam-LED         | `03`/`07` - half/full brightness                      |
-| 7    |                   | unknown                                               |
-| 8    | Bean-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs            |
-| 9    | Bean-LED          | `07` - show led group; `38` - powder selected         |
-| 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs            |
-| 11   | Size-LED          | `07` - show led group                                 |
-| 12   |                   | probably aqua_clean/calc_clean                        |
-| 13   |                   | probably aqua_clean/calc_clean                        |
-| 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                     |
-| 15   | Play/Pause-LED    | `07` - on                                             |
+| 3    | Espresso-LED      | `03`/`07` - half/full brightness ; `38` - 2x espresso          |
+| 4    | Hot Water-LED     | `03`/`07` - half/full brightness                               |
+| 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee             |
+| 6    | Steam-LED         | `03`/`07` - half/full brightness                               |
+| 7    |                   | unknown                                                        |
+| 8    | Bean-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                     |
+| 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
+| 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
+| 11   | Size-LED          | `07` - show led group                                          |
+| 12   |                   | probably aqua_clean/calc_clean                                 |
+| 13   |                   | probably aqua_clean/calc_clean                                 |
+| 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
+| 15   | Play/Pause-LED    | `07` - on                                                      |
 | 16   | checksum          |
 | 17   | checksum          |
 
