@@ -18,7 +18,7 @@ namespace esphome
             void ActionButton::loop()
             {
                 // Repeated message sending for long presses
-                if (millis() - press_start_ <= LONG_PRESS_DURATION)
+                if (should_long_press_ && millis() - press_start_ <= LONG_PRESS_DURATION)
                 {
                     if (millis() - last_message_sent_ > LONG_PRESS_REPETITION_DELAY)
                     {
