@@ -95,6 +95,6 @@ namespace esphome
                 }
             }
 
-        } // namespace power_switch
+        } // namespace philips_power_switch
     }     // namespace philips_series_2200
 } // namespace esphome

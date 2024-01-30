@@ -2,6 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import number
 from esphome.const import CONF_MODE
+
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
 from ..philips_status_sensor.text_sensor import STATUS_SENSOR_ID, StatusSensor
 
