@@ -1,4 +1,4 @@
-# ESPHome Smart Coffee (Philips Series 2200)
+# ESPHome Smart Coffee (Philips Series 2200) [![CI](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml)
 
 This project integrates a Philips Series 2200 Coffee Machine into into [Home Assistant](https://home-assistant.io) through [ESPHome](https://esphome.io).
 This component has been developed on a Philips EP2220 and an ESP8266.

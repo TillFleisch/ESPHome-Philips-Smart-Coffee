@@ -1,0 +1,78 @@
+esphome:
+  name: philip
+
+esp8266:
+  board: d1_mini
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+
+logger:
+  baud_rate: 0
+
+uart:
+  - tx_pin: GPIO1
+    rx_pin: GPIO3
+    baud_rate: 115200
+    id: uart_mainboard
+  - tx_pin: GPIO15
+    rx_pin: GPIO13
+    baud_rate: 115200
+    id: uart_display
+
+philips_series_2200:
+  display_uart: uart_display
+  mainboard_uart: uart_mainboard
+  power_pin: GPIO12
+  invert_power_pin: true
+  power_trip_delay: 750ms
+  id: philip
+
+text_sensor:
+  - platform: philips_status_sensor
+    controller_id: philip
+    id: status
+    name: "Status"
+  - platform: philips_status_sensor
+    controller_id: philip
+    use_cappuccino: true
+    name: "Status cappuccino"
+
+switch:
+  - platform: philips_power_switch
+    controller_id: philip
+    name: "Cleaning Power"
+    icon: mdi:coffee-maker
+  - platform: philips_power_switch
+    controller_id: philip
+    name: "Power"
+    clean: false
+    icon: mdi:coffee-maker
+
+button:
+  - platform: philips_action_button
+    controller_id: philip
+    action: MAKE_COFFEE
+    name: "Make Coffee"
+    icon: mdi:coffee
+
+  - platform: philips_action_button
+    controller_id: philip
+    action: SELECT_HOT_WATER
+    name: "Select Hot Water"
+    long_press: true
+    icon: mdi:tea
+
+number:
+  - platform: philips_bean_settings
+    name: "Coffee beans"
+    controller_id: philip
+    status_sensor_id: status
+    source: COFFEE
+  - platform: philips_size_settings
+    name: "Coffee size"
+    controller_id: philip
+    status_sensor_id: status
+    source: COFFEE
