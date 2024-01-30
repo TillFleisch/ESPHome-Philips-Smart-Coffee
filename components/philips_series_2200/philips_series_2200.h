@@ -27,21 +27,30 @@ namespace esphome
              *
              * @param uart display uart reference
              */
-            void register_display_uart(uart::UARTComponent *uart) { display_uart_ = uart::UARTDevice(uart); };
+            void register_display_uart(uart::UARTComponent *uart)
+            {
+                display_uart_ = uart::UARTDevice(uart);
+            };
 
             /**
              * @brief Set the reference to the uart port connected to the Mainboard
              *
              * @param uart Mainboard uart reference
              */
-            void register_mainboard_uart(uart::UARTComponent *uart) { mainboard_uart_ = uart::UARTDevice(uart); };
+            void register_mainboard_uart(uart::UARTComponent *uart)
+            {
+                mainboard_uart_ = uart::UARTDevice(uart);
+            };
 
             /**
              * @brief Sets the pin used for power tripping the display unit
              *
              * @param pin GPIO pin
              */
-            void set_power_pin(GPIOPin *pin) { power_pin_ = pin; };
+            void set_power_pin(GPIOPin *pin)
+            {
+                power_pin_ = pin;
+            };
 
             /**
              * @brief Sets the invert status of the power pin

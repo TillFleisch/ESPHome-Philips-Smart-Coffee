@@ -52,14 +52,20 @@ namespace esphome
                  *
                  * @param action Action to use
                  */
-                void set_action(Action action) { action_ = action; };
+                void set_action(Action action)
+                {
+                    action_ = action;
+                };
 
                 /**
                  * @brief Reference to uart which is connected to the mainboard
                  *
                  * @param uart uart connected to mainboard
                  */
-                void set_uart_device(uart::UARTDevice *uart) { mainboard_uart_ = uart; };
+                void set_uart_device(uart::UARTDevice *uart)
+                {
+                    mainboard_uart_ = uart;
+                };
 
                 /**
                  * @brief Sets the long press parameter on this button component.

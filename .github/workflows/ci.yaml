@@ -1,0 +1,129 @@
+name: CI
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      esphome_version:
+        description: "ESPHome PyPi Package version to use"
+        required: false
+        type: string
+  push:
+    branches: [main, dev]
+
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        include:
+          - id: test
+            file: tests/full.yaml
+            name: Test tests/full.yaml
+            pio_cache_key: full
+          - id: test
+            file: tests/base.yaml
+            name: Test tests/base.yaml
+            pio_cache_key: base
+          - id: clang-format
+            name: Run clang-format
+          - id: yamllint
+            name: Run yamllint
+          - id: black-format
+            name: Run black-format
+          - id: isort
+            name: Run isort
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        id: python
+        with:
+          python-version: "3.9"
+
+      - name: Cache virtualenv
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          # yamllint disable-line rule:line-length
+          key: venv-${{ steps.python.outputs.python-version }}
+          restore-keys: |
+            venv-${{ steps.python.outputs.python-version }}
+      - name: Set up virtualenv
+        # yamllint disable rule:line-length
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -U pip
+          pip install -r requirements.txt
+          if [ ${{ github.event.inputs.esphome_version != '' }} == true ]; then pip install ESPHome==${{ github.event.inputs.esphome_version }}; else pip install -U ESPHome; fi
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> $GITHUB_PATH
+          echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> $GITHUB_ENV
+        # yamllint enable rule:line-length
+
+      # Use per check platformio cache because checks use different parts
+      - name: Cache platformio
+        uses: actions/cache@v3
+        with:
+          path: ~/.platformio
+          # yamllint disable-line rule:line-length
+          key: platformio-${{ matrix.pio_cache_key }}-${{ hashFiles('platformio.ini') }}
+        if: matrix.id == 'test'
+
+      - run: esphome compile ${{ matrix.file }}
+        if: matrix.id == 'test'
+        env:
+          # Also cache libdeps, store them in a ~/.platformio subfolder
+          PLATFORMIO_LIBDEPS_DIR: ~/.platformio/libdeps
+
+      - name: Run clang-format
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: "13"
+          check-path: "components"
+        if: matrix.id == 'clang-format'
+
+      - name: Run yamllint
+        if: matrix.id == 'yamllint'
+        uses: frenck/action-yamllint@v1.4.0
+
+      - name: Run black-format
+        if: matrix.id == 'black-format'
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          version: "~= 24.1"
+
+      - name: Run isort
+        if: matrix.id == 'isort'
+        uses: isort/isort-action@master
+        with:
+          requirementsFiles: "requirements.txt"
+
+  ci-status:
+    name: CI Status
+    runs-on: ubuntu-latest
+    needs: [ci]
+    if: always()
+    steps:
+      - name: Successful deploy
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failing deploy
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1

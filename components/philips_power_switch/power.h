@@ -105,6 +105,6 @@ namespace esphome
                 bool *initial_state_;
             };
 
-        } // namespace power_switch
+        } // namespace philips_power_switch
     }     // namespace philips_series_2200
 } // namespace esphome

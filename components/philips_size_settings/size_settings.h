@@ -45,7 +45,10 @@ namespace esphome
                  *
                  * @param source Source of the value
                  */
-                void set_source(Source source) { source_ = source; };
+                void set_source(Source source)
+                {
+                    source_ = source;
+                };
 
                 /**
                  * @brief Sets the status sensor reference
@@ -61,7 +64,10 @@ namespace esphome
                  *
                  * @param uart uart connected to mainboard
                  */
-                void set_uart_device(uart::UARTDevice *uart) { mainboard_uart_ = uart; };
+                void set_uart_device(uart::UARTDevice *uart)
+                {
+                    mainboard_uart_ = uart;
+                };
 
                 /**
                  * @brief Published the state if it's different form the currently published state.
