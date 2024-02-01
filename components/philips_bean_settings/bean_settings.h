@@ -3,7 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/number/number.h"
 #include "esphome/components/uart/uart.h"
-#include "../philips_status_sensor/status_sensor.h"
+#include "../philips_series_2200/text_sensor/status_sensor.h"
 
 #define MESSAGE_REPETITIONS 5
 #define SETTINGS_BUTTON_SEQUENCE_DELAY 500

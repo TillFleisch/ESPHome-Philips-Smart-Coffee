@@ -68,6 +68,7 @@ namespace esphome
                 {
                     last_message_from_mainboard_time_ = millis();
 
+#ifdef USE_TEXT_SENSOR
                     // Update status sensors
                     for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
                         status_sensor->update_status(buffer, size);
@@ -79,6 +80,7 @@ namespace esphome
                     // Update size settings
                     for (philips_size_settings::SizeSettings *size_setting : size_setting_)
                         size_setting->update_status(buffer, size);
+#endif
                 }
             }
 
@@ -91,9 +93,11 @@ namespace esphome
                     power_switch->update_state(false);
 #endif
 
+#ifdef USE_TEXT_SENSOR
                 // Update status sensors
                 for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
                     status_sensor->set_state_off();
+#endif
             }
             else
             {

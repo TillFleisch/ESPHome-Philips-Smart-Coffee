@@ -4,13 +4,7 @@ from esphome import pins
 from esphome.components.uart import UARTComponent
 from esphome.const import CONF_ID
 
-AUTO_LOAD = [
-    "text_sensor",
-    "number",
-    "philips_status_sensor",
-    "philips_bean_settings",
-    "philips_size_settings",
-]
+AUTO_LOAD = ["number"]
 
 DEPENDENCIES = ["uart"]
 

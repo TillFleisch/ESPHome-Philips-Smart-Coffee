@@ -4,10 +4,10 @@ from esphome.components import number
 from esphome.const import CONF_MODE
 
 from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
-from ..philips_status_sensor.text_sensor import STATUS_SENSOR_ID, StatusSensor
+from ..philips_series_2200.text_sensor import STATUS_SENSOR_ID, StatusSensor
 
 AUTO_LOAD = ["number"]
-DEPENDENCIES = ["philips_series_2200", "philips_status_sensor"]
+DEPENDENCIES = ["philips_series_2200"]
 
 CONF_SOURCE = "source"
 

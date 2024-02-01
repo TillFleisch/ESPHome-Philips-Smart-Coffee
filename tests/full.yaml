@@ -31,11 +31,11 @@ philips_series_2200:
   id: philip
 
 text_sensor:
-  - platform: philips_status_sensor
+  - platform: philips_series_2200
     controller_id: philip
     id: status
     name: "Status"
-  - platform: philips_status_sensor
+  - platform: philips_series_2200
     controller_id: philip
     use_cappuccino: true
     name: "Status cappuccino"

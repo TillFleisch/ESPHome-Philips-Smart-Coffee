@@ -3,14 +3,12 @@ import esphome.config_validation as cv
 from esphome.components import text_sensor
 from esphome.const import CONF_ID
 
-from ..philips_series_2200 import CONTROLLER_ID, PhilipsSeries2200
+from .. import CONTROLLER_ID, PhilipsSeries2200, philips_series_2200_ns
 
 USE_CAPPUCCINO = "use_cappuccino"
 STATUS_SENSOR_ID = "status_sensor_id"
 
-philips_status_sensor_ns = cg.esphome_ns.namespace("philips_series_2200").namespace(
-    "philips_status_sensor"
-)
+philips_status_sensor_ns = philips_series_2200_ns.namespace("philips_status_sensor")
 StatusSensor = philips_status_sensor_ns.class_(
     "StatusSensor", text_sensor.TextSensor, cg.Component
 )
