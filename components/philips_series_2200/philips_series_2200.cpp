@@ -74,13 +74,9 @@ namespace esphome
                         status_sensor->update_status(buffer, size);
 
 #ifdef USE_NUMBER
-                    // Update bean settings
-                    for (philips_bean_settings::BeanSettings *bean_setting : bean_settings_)
-                        bean_setting->update_status(buffer, size);
-
-                    // Update size settings
-                    for (philips_size_settings::SizeSettings *size_setting : size_setting_)
-                        size_setting->update_status(buffer, size);
+                    // Update beverage settings
+                    for (philips_beverage_setting::BeverageSetting *beverage_setting : beverage_settings_)
+                        beverage_setting->update_status(buffer, size);
 #endif
 #endif
                 }

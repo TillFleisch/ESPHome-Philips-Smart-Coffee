@@ -11,8 +11,7 @@
 #ifdef USE_TEXT_SENSOR
 #include "text_sensor/status_sensor.h"
 #ifdef USE_NUMBER
-#include "number/bean_settings.h"
-#include "number/size_settings.h"
+#include "number/beverage_setting.h"
 #endif
 #endif
 
@@ -116,24 +115,15 @@ namespace esphome
 
 #ifdef USE_NUMBER
             /**
-             * @brief Adds a bean settings entity to this controller
-             * @param bean_settings reference to a bean settings entity
+             * @brief Adds a beverage setting entity to this controller
+             * @param beverage_setting reference to a beverage setting entity
              */
-            void add_bean_settings(philips_bean_settings::BeanSettings *bean_settings)
+            void add_beverage_setting(philips_beverage_setting::BeverageSetting *beverage_setting)
             {
-                bean_settings->set_uart_device(&mainboard_uart_);
-                bean_settings_.push_back(bean_settings);
+                beverage_setting->set_uart_device(&mainboard_uart_);
+                beverage_settings_.push_back(beverage_setting);
             }
 
-            /**
-             * @brief Adds a size settings entity to this controller
-             * @param water_sensor reference to a size setting
-             */
-            void add_size_settings(philips_size_settings::SizeSettings *size_setting)
-            {
-                size_setting->set_uart_device(&mainboard_uart_);
-                size_setting_.push_back(size_setting);
-            }
 #endif
 #endif
 
@@ -166,11 +156,8 @@ namespace esphome
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;
 
 #ifdef USE_NUMBER
-            /// @brief list of registered bean settings
-            std::vector<philips_bean_settings::BeanSettings *> bean_settings_;
-
-            /// @brief list of registered water sensors
-            std::vector<philips_size_settings::SizeSettings *> size_setting_;
+            /// @brief list of registered beverage settings
+            std::vector<philips_beverage_setting::BeverageSetting *> beverage_settings_;
 #endif
 #endif
 
