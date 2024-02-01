@@ -85,9 +85,11 @@ namespace esphome
             // Publish power state if required as long as the display is requesting messages
             if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
             {
+#ifdef USE_SWITCH
                 // Update power switches
                 for (philips_power_switch::Power *power_switch : power_switches_)
                     power_switch->update_state(false);
+#endif
 
                 // Update status sensors
                 for (philips_status_sensor::StatusSensor *status_sensor : status_sensors_)
@@ -95,9 +97,11 @@ namespace esphome
             }
             else
             {
+#ifdef USE_SWITCH
                 // Update power switches
                 for (philips_power_switch::Power *power_switch : power_switches_)
                     power_switch->update_state(true);
+#endif
             }
 
             display_uart_.flush();

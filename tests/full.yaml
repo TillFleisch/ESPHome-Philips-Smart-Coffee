@@ -41,11 +41,11 @@ text_sensor:
     name: "Status cappuccino"
 
 switch:
-  - platform: philips_power_switch
+  - platform: philips_series_2200
     controller_id: philip
     name: "Cleaning Power"
     icon: mdi:coffee-maker
-  - platform: philips_power_switch
+  - platform: philips_series_2200
     controller_id: philip
     name: "Power"
     clean: false

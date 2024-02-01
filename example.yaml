@@ -35,7 +35,7 @@ text_sensor:
     name: "Status"
 
 switch:
-  - platform: philips_power_switch
+  - platform: philips_series_2200
     controller_id: philip
     name: "Power"
     icon: mdi:coffee-maker

@@ -2,7 +2,9 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
-#include "../philips_power_switch/power.h"
+#ifdef USE_SWITCH
+#include "switch/power.h"
+#endif
 #ifdef USE_BUTTON
 #include "button/action_button.h"
 #endif
@@ -67,6 +69,7 @@ namespace esphome
                 power_trip_delay_ = time;
             }
 
+#ifdef USE_SWITCH
             /**
              * @brief Reference to a power switch object.
              * The switch state will be updated based on the presence/absence of display update messages.
@@ -81,6 +84,7 @@ namespace esphome
                 power_switch->set_initial_state(&initial_pin_state_);
                 power_switches_.push_back(power_switch);
             };
+#endif
 
 #ifdef USE_BUTTON
             /**
@@ -144,8 +148,10 @@ namespace esphome
             /// @brief length of power outage applied to the display
             uint32_t power_trip_delay_ = 500;
 
+#ifdef USE_SWITCH
             /// @brief power switch reference
             std::vector<philips_power_switch::Power *> power_switches_;
+#endif
 
             /// @brief list of status sensors to update with messages
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;

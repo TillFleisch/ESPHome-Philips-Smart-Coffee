@@ -5,10 +5,8 @@ from esphome.components.uart import UARTComponent
 from esphome.const import CONF_ID
 
 AUTO_LOAD = [
-    "switch",
     "text_sensor",
     "number",
-    "philips_power_switch",
     "philips_status_sensor",
     "philips_bean_settings",
     "philips_size_settings",
