@@ -10,8 +10,10 @@
 #endif
 #ifdef USE_TEXT_SENSOR
 #include "text_sensor/status_sensor.h"
-#include "../philips_bean_settings/bean_settings.h"
-#include "../philips_size_settings/size_settings.h"
+#ifdef USE_NUMBER
+#include "number/bean_settings.h"
+#include "number/size_settings.h"
+#endif
 #endif
 
 #define POWER_STATE_TIMEOUT 500
@@ -112,6 +114,7 @@ namespace esphome
                 status_sensors_.push_back(status_sensor);
             }
 
+#ifdef USE_NUMBER
             /**
              * @brief Adds a bean settings entity to this controller
              * @param bean_settings reference to a bean settings entity
@@ -131,6 +134,7 @@ namespace esphome
                 size_setting->set_uart_device(&mainboard_uart_);
                 size_setting_.push_back(size_setting);
             }
+#endif
 #endif
 
         private:
@@ -161,11 +165,13 @@ namespace esphome
             /// @brief list of status sensors to update with messages
             std::vector<philips_status_sensor::StatusSensor *> status_sensors_;
 
+#ifdef USE_NUMBER
             /// @brief list of registered bean settings
             std::vector<philips_bean_settings::BeanSettings *> bean_settings_;
 
             /// @brief list of registered water sensors
             std::vector<philips_size_settings::SizeSettings *> size_setting_;
+#endif
 #endif
 
 #ifdef USE_BUTTON

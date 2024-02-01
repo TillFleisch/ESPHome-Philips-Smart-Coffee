@@ -42,18 +42,13 @@ A example configuration can be found [here](example.yaml)
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
 - **use_cappuccino**(**Optional**, boolean): If set to `true`, `Cappuccino selected` will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
-## Bean Settings
+## Bean and Size Settings
 
+- **type**(**Required**, string): The type of this number component. One of `size` and `bean`. If `size` is selected, this component will report/manipulate the beverage size. If `bean` is used, this component will report/manipulate the beverage strength.
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
 - **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
-- All other options from [Number](https://esphome.io/components/number/index.html#config-number)
-
-## Size Settings
-
-- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
-- **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
-- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`, `HOT_WATER`. When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
+- **source**(**Required**, int): The source of this sensor. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`, `HOT_WATER`(only for size). When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 # Fully automated coffee

@@ -4,8 +4,6 @@ from esphome import pins
 from esphome.components.uart import UARTComponent
 from esphome.const import CONF_ID
 
-AUTO_LOAD = ["number"]
-
 DEPENDENCIES = ["uart"]
 
 DISPLAY_UART_ID = "display_uart"
