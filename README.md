@@ -29,7 +29,7 @@ A example configuration can be found [here](example.yaml)
 - **clean**(**Optional**: boolean): If set to `true` the machine will perform a cleaning cycle during startup. Otherwise the machine will power on without cleaning. Defaults to `true`.
 - All other options from [Switch](https://esphome.io/components/switch/index.html#config-switch)
 
-## Philips Action Button
+## Action Button
 
 - **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
 - **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`.

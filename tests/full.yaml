@@ -52,13 +52,13 @@ switch:
     icon: mdi:coffee-maker
 
 button:
-  - platform: philips_action_button
+  - platform: philips_series_2200
     controller_id: philip
     action: MAKE_COFFEE
     name: "Make Coffee"
     icon: mdi:coffee
 
-  - platform: philips_action_button
+  - platform: philips_series_2200
     controller_id: philip
     action: SELECT_HOT_WATER
     name: "Select Hot Water"

@@ -29,6 +29,7 @@ namespace esphome
 
                 // Check if a action button is currently performing a long press
                 bool long_pressing = false;
+#ifdef USE_BUTTON
                 for (philips_action_button::ActionButton *button : action_buttons_)
                 {
                     if (button->is_long_pressing())
@@ -37,6 +38,7 @@ namespace esphome
                         break;
                     }
                 }
+#endif
 
                 // Drop messages if button long-press is currently injecting messages
                 if (!long_pressing)

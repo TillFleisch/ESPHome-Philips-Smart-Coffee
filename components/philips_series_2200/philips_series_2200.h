@@ -3,7 +3,9 @@
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
 #include "../philips_power_switch/power.h"
-#include "../philips_action_button/action_button.h"
+#ifdef USE_BUTTON
+#include "button/action_button.h"
+#endif
 #include "../philips_status_sensor/status_sensor.h"
 #include "../philips_bean_settings/bean_settings.h"
 #include "../philips_size_settings/size_settings.h"
@@ -80,6 +82,7 @@ namespace esphome
                 power_switches_.push_back(power_switch);
             };
 
+#ifdef USE_BUTTON
             /**
              * @brief Adds an action button to this controller.
              * No reference is stored, but the correct uart references is passed along.
@@ -91,6 +94,7 @@ namespace esphome
                 action_button->set_uart_device(&mainboard_uart_);
                 action_buttons_.push_back(action_button);
             }
+#endif
 
             /**
              * @brief Adds a status sensor to this controller
@@ -152,8 +156,10 @@ namespace esphome
             /// @brief list of registered water sensors
             std::vector<philips_size_settings::SizeSettings *> size_setting_;
 
+#ifdef USE_BUTTON
             /// @brief list of registered action buttons
             std::vector<philips_action_button::ActionButton *> action_buttons_;
+#endif
         };
 
     } // namespace philips_series_2200
