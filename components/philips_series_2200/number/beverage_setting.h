@@ -3,7 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/number/number.h"
 #include "esphome/components/uart/uart.h"
-#include "../philips_status_sensor/status_sensor.h"
+#include "../text_sensor/status_sensor.h"
 
 #define MESSAGE_REPETITIONS 5
 #define SETTINGS_BUTTON_SEQUENCE_DELAY 500
@@ -12,7 +12,7 @@ namespace esphome
 {
     namespace philips_series_2200
     {
-        namespace philips_bean_settings
+        namespace philips_beverage_setting
         {
             /**
              * @brief Source/target of the value
@@ -22,13 +22,14 @@ namespace esphome
             {
                 COFFEE = 0,
                 ESPRESSO,
-                CAPPUCCINO
+                CAPPUCCINO,
+                HOT_WATER
             };
 
             /**
-             * @brief Reports the currently selected bean count of the coffee machine from the selected source.
+             * @brief Reports the currently selected size/bean count of the coffee machine from the selected source.
              */
-            class BeanSettings : public number::Number, public Component
+            class BeverageSetting : public number::Number, public Component
             {
             public:
                 void setup() override;
@@ -40,7 +41,16 @@ namespace esphome
                 void control(float value);
 
                 /**
-                 * @brief Set the source used by this bean settings entity.
+                 * Sets the type of this beverage setting.
+                 * @param is_bean True for bean, False for size
+                 */
+                void set_type(bool is_bean)
+                {
+                    is_bean_ = is_bean;
+                }
+
+                /**
+                 * @brief Set the source used by this size/bean settings entity.
                  *
                  * @param source Source of the value
                  */
@@ -92,6 +102,9 @@ namespace esphome
                 void update_status(uint8_t *data, size_t len);
 
             private:
+                /// @brief Indicated if this setting component applies to beans, size otherwise
+                bool is_bean_ = false;
+
                 /// @brief Indicator for the sensors source value
                 Source source_;
 
@@ -108,6 +121,6 @@ namespace esphome
                 philips_status_sensor::StatusSensor *status_sensor_;
             };
 
-        } // namespace philips_bean_settings
+        } // namespace philips_beverage_setting
     }     // namespace philips_series_2200
 } // namespace esphome
