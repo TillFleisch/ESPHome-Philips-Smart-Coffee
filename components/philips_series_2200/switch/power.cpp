@@ -40,20 +40,20 @@ namespace esphome
                 if (state)
                 {
                     // Send pre-power on message
-                    for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
+                    for (unsigned int i = 0; i <= POWER_MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array(command_pre_power_on);
 
                     // Send power on message
                     if (cleaning_)
                     {
                         // Send power on command with cleaning
-                        for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
+                        for (unsigned int i = 0; i <= POWER_MESSAGE_REPETITIONS; i++)
                             mainboard_uart_->write_array(command_power_with_cleaning);
                     }
                     else
                     {
                         // Send power on command without cleaning
-                        for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
+                        for (unsigned int i = 0; i <= POWER_MESSAGE_REPETITIONS; i++)
                             mainboard_uart_->write_array(command_power_without_cleaning);
                     }
 
@@ -66,7 +66,7 @@ namespace esphome
                 else
                 {
                     // Send power off message
-                    for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
+                    for (unsigned int i = 0; i <= POWER_MESSAGE_REPETITIONS; i++)
                         mainboard_uart_->write_array(command_power_off);
                     mainboard_uart_->flush();
                 }
