@@ -67,7 +67,7 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return id(status).state == "OFF";'
+            lambda: 'return id(status).state == "Off";'
           then:
             - switch.turn_on: power
             - wait_until:

@@ -30,12 +30,12 @@ namespace esphome
                 void update_status(uint8_t *data, size_t len);
 
                 /**
-                 * @brief Sets the status to OFF
+                 * @brief Sets the status to Off
                  */
                 void set_state_off()
                 {
-                    if (state != "OFF")
-                        publish_state("OFF");
+                    if (state != "Off")
+                        publish_state("Off");
                 };
 
                 /**
