@@ -20,7 +20,8 @@ namespace esphome
              */
             enum Source
             {
-                COFFEE = 0,
+                ANY = 0,
+                COFFEE,
                 ESPRESSO,
                 CAPPUCCINO,
                 HOT_WATER

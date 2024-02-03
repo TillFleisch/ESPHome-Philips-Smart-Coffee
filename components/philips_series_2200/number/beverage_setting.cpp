@@ -31,15 +31,17 @@ namespace esphome
 
                 // only apply status if source is currently selected
                 if (status_sensor_->has_state() &&
-                    ((source_ == COFFEE &&
+                    (((source_ == COFFEE || source_ == ANY) &&
                       (status_sensor_->get_raw_state().compare("Coffee selected") == 0 ||
-                       status_sensor_->get_raw_state().compare("2x Coffee selected") == 0)) ||
-                     (source_ == ESPRESSO &&
+                       status_sensor_->get_raw_state().compare("2x Coffee selected") == 0 ||
+                       (!is_bean_ && status_sensor_->get_raw_state().compare("Ground Coffee selected") == 0))) ||
+                     ((source_ == ESPRESSO || source_ == ANY) &&
                       (status_sensor_->get_raw_state().compare("Espresso selected") == 0 ||
-                       status_sensor_->get_raw_state().compare("2x Espresso selected") == 0)) ||
-                     (!is_bean_ && source_ == HOT_WATER &&
+                       status_sensor_->get_raw_state().compare("2x Espresso selected") == 0 ||
+                       (!is_bean_ && status_sensor_->get_raw_state().compare("Ground Espresso selected") == 0))) ||
+                     (!is_bean_ && (source_ == HOT_WATER || source_ == ANY) &&
                       status_sensor_->get_raw_state().compare("Hot water selected") == 0) ||
-                     (source_ == CAPPUCCINO &&
+                     ((source_ == CAPPUCCINO || source_ == ANY) &&
                       status_sensor_->get_raw_state().compare("Cappuccino selected") == 0)))
                 {
                     if (data[is_bean_ ? 9 : 11] == 0x07)
