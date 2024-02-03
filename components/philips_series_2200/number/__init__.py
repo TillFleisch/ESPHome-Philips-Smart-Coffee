@@ -22,6 +22,7 @@ BeverageSettings = philips_beverage_settings_ns.class_(
 
 Source = philips_beverage_settings_ns.enum("Source")
 SOURCES = {
+    "ANY": Source.ANY,
     "COFFEE": Source.COFFEE,
     "ESPRESSO": Source.ESPRESSO,
     "CAPPUCCINO": Source.CAPPUCCINO,
@@ -37,7 +38,9 @@ SUB_SCHEMA = number.NUMBER_SCHEMA.extend(
         cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(
             number.NUMBER_MODES, upper=True
         ),
-        cv.Required(CONF_SOURCE): cv.enum(SOURCES, upper=True, space="_"),
+        cv.Optional(CONF_SOURCE, default="ANY"): cv.enum(
+            SOURCES, upper=True, space="_"
+        ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
