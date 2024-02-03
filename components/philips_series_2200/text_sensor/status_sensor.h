@@ -86,7 +86,7 @@ namespace esphome
                 bool use_cappuccino_ = false;
 
                 /// @brief time of play/pause change
-                long play_pause_last_change_ = 0;
+                uint32_t play_pause_last_change_ = 0;
             };
         } // namespace philips_status_sensor
     }     // namespace philips_series_2200
