@@ -4,6 +4,7 @@
 #include "esphome/components/number/number.h"
 #include "esphome/components/uart/uart.h"
 #include "../text_sensor/status_sensor.h"
+#include "../commands.h"
 
 #define MESSAGE_REPETITIONS 5
 #define SETTINGS_BUTTON_SEQUENCE_DELAY 500

@@ -26,7 +26,7 @@ namespace esphome
             void BeverageSetting::update_status(uint8_t *data, size_t len)
             {
                 // reject invalid messages
-                if (len < 19 && data[0] != 0xD5 && data[1] != 0x55)
+                if (len < 19 && data[0] != message_header[0] && data[1] != message_header[1])
                     return;
 
                 // only apply status if source is currently selected
@@ -44,17 +44,17 @@ namespace esphome
                      ((source_ == CAPPUCCINO || source_ == ANY) &&
                       status_sensor_->get_raw_state().compare("Cappuccino selected") == 0)))
                 {
-                    if (data[is_bean_ ? 9 : 11] == 0x07)
+                    if (data[is_bean_ ? 9 : 11] == led_on)
                     {
                         switch (data[is_bean_ ? 8 : 10])
                         {
-                        case 0x00:
+                        case led_off:
                             update_state(1);
                             break;
-                        case 0x38:
+                        case led_second:
                             update_state(2);
                             break;
-                        case 0x3F:
+                        case led_third:
                             update_state(3);
                             break;
                         default:
@@ -66,9 +66,9 @@ namespace esphome
                         {
                             for (unsigned int i = 0; i <= MESSAGE_REPETITIONS; i++)
                                 if (is_bean_)
-                                    mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x09, 0x2F});
+                                    mainboard_uart_->write_array(command_press_bean);
                                 else
-                                    mainboard_uart_->write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x04, 0x00, 0x20, 0x05});
+                                    mainboard_uart_->write_array(command_press_size);
                             mainboard_uart_->flush();
                             last_transmission_ = millis();
                         }

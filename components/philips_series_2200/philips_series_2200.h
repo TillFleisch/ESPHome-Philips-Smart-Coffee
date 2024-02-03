@@ -2,6 +2,7 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
+#include "commands.h"
 #ifdef USE_SWITCH
 #include "switch/power.h"
 #endif

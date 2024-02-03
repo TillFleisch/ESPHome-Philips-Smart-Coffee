@@ -61,7 +61,7 @@ namespace esphome
                 // Coffee
                 if (action == SELECT_COFFEE || action == MAKE_COFFEE)
                 {
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x08, 0x00, 0x00, 0x39, 0x1C});
+                    write_array(command_press_coffee);
                     if (action == SELECT_COFFEE)
                         return;
 
@@ -72,7 +72,7 @@ namespace esphome
                 // Espresso
                 if (action == SELECT_ESPRESSO || action == MAKE_ESPRESSO)
                 {
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x02, 0x00, 0x00, 0x09, 0x2D});
+                    write_array(command_press_espresso);
                     if (action == SELECT_ESPRESSO)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
@@ -82,7 +82,7 @@ namespace esphome
                 // Hot water
                 if (action == SELECT_HOT_WATER || action == MAKE_HOT_WATER)
                 {
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x04, 0x00, 0x00, 0x21, 0x01});
+                    write_array(command_press_hot_water);
                     if (action == SELECT_HOT_WATER)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
@@ -92,7 +92,7 @@ namespace esphome
                 // Steam
                 if (action == SELECT_STEAM || action == MAKE_STEAM)
                 {
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x10, 0x00, 0x00, 0x09, 0x26});
+                    write_array(command_press_steam);
                     if (action == SELECT_STEAM)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
@@ -101,19 +101,19 @@ namespace esphome
 
                 // press/play or subsequent press/play
                 if (action == PLAY_PAUSE)
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x19, 0x32});
+                    write_array(command_press_play_pause);
                 else if (action == SELECT_BEAN)
                     // bean button
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x09, 0x2F});
+                    write_array(command_press_bean);
                 else if (action == SELECT_SIZE)
                     // size button
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x04, 0x00, 0x20, 0x05});
+                    write_array(command_press_size);
                 else if (action == SELECT_AQUA_CLEAN)
                     // aqua clean button
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x10, 0x00, 0x0D, 0x36});
+                    write_array(command_press_aqua_clean);
                 else if (action == SELECT_CALC_CLEAN)
                     // calc clean button
-                    write_array({0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x20, 0x00, 0x28, 0x37});
+                    write_array(command_press_calc_clean);
                 else
                     ESP_LOGE(TAG, "Invalid Action provided!");
             }
