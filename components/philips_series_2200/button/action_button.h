@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/button/button.h"
 #include "esphome/components/uart/uart.h"
+#include "../commands.h"
 
 #define MESSAGE_REPETITIONS 5
 #define BUTTON_SEQUENCE_DELAY 100

@@ -50,7 +50,7 @@ namespace esphome
             while (mainboard_uart_.available())
             {
                 uint8_t buffer = mainboard_uart_.peek();
-                if (buffer == 0xD5)
+                if (buffer == message_header[0])
                     break;
                 display_uart_.write(mainboard_uart_.read());
             }
@@ -64,7 +64,7 @@ namespace esphome
                 display_uart_.write_array(buffer, size);
 
                 // Only process messages starting with start bytes
-                if (size > 1 && buffer[0] == 0xD5 && buffer[1] == 0x55)
+                if (size > 1 && buffer[0] == message_header[0] && buffer[1] == message_header[1])
                 {
                     last_message_from_mainboard_time_ = millis();
 

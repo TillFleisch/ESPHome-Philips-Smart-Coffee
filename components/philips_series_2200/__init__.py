@@ -13,6 +13,9 @@ CONTROLLER_ID = "controller_id"
 INVERT_POWER_PIN = "invert_power_pin"
 POWER_TRIP_DELAY = "power_trip_delay"
 
+CONF_COMMAND_SET = "model"
+COMMAND_SETS = {"EP_2220": "PHILIPS_EP2220"}
+
 philips_series_2200_ns = cg.esphome_ns.namespace("philips_series_2200")
 PhilipsSeries2200 = philips_series_2200_ns.class_("PhilipsSeries2200", cg.Component)
 
@@ -30,11 +33,17 @@ CONFIG_SCHEMA = cv.Schema(
                 max_included=cv.TimePeriod(milliseconds=10000),
             ),
         ),
+        cv.Optional(CONF_COMMAND_SET, default="EP_2220"): cv.enum(
+            COMMAND_SETS, upper=True, space="_"
+        ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
 
 def to_code(config):
+    # Use user-specified command set, default to EP_2200
+    cg.add_define(config[CONF_COMMAND_SET])
+
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
 
