@@ -116,9 +116,9 @@ namespace esphome
                 /// @brief true if the component is currently performing a long press
                 bool is_long_pressing_ = false;
                 /// @brief time at which the button press was started
-                long press_start_ = -(LONG_PRESS_DURATION + 1);
+                uint32_t press_start_ = -(LONG_PRESS_DURATION + 1);
                 /// @brief time at which the last message was sent
-                long last_message_sent_ = 0;
+                uint32_t last_message_sent_ = 0;
             };
         } // namespace philips_action_button
     }     // namespace philips_series_2200

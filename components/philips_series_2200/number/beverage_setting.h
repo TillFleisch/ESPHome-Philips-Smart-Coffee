@@ -115,7 +115,7 @@ namespace esphome
                 int8_t target_amount_ = -1;
 
                 /// @brief timestamp of the last transmission
-                long last_transmission_ = 0;
+                uint32_t last_transmission_ = 0;
 
                 /// @brief reference to a status sensor
                 philips_status_sensor::StatusSensor *status_sensor_;
