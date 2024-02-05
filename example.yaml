@@ -22,52 +22,52 @@ uart:
     baud_rate: 115200
     id: uart_display
 
-philips_series_2200:
+philips_coffee_machine:
   display_uart: uart_display
   mainboard_uart: uart_mainboard
   power_pin: GPIO12
   id: philip
 
 text_sensor:
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     controller_id: philip
     id: status
     name: "Status"
 
 switch:
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     controller_id: philip
     name: "Power"
     icon: mdi:coffee-maker
 
 button:
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     controller_id: philip
     action: MAKE_COFFEE
     name: "Make Coffee"
     icon: mdi:coffee
 
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     controller_id: philip
     action: SELECT_HOT_WATER
     name: "Select Hot Water"
     icon: mdi:tea
 
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     controller_id: philip
     action: PLAY_PAUSE
     name: "Select play/pause"
     icon: mdi:play-pause
 
 number:
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     type: bean
     name: "Coffee beans"
     controller_id: philip
     status_sensor_id: status
     source: COFFEE
 
-  - platform: philips_series_2200
+  - platform: philips_coffee_machine
     type: size
     name: "Coffee size"
     controller_id: philip

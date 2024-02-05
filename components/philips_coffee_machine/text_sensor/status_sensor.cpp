@@ -3,7 +3,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_status_sensor
         {
@@ -158,5 +158,5 @@ namespace esphome
             }
 
         } // namespace philips_status_sensor
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

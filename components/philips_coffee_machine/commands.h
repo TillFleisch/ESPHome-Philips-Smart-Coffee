@@ -4,7 +4,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
 #if defined(PHILIPS_EP2220)
 #define USE_DEFAULT_PHILIPS_COMMAND_SET
@@ -47,5 +47,5 @@ namespace esphome
         const std::vector<uint8_t> command_press_calc_clean =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x20, 0x00, 0x28, 0x37};
 #endif
-    } // namespace philips_series_2200
+    } // namespace philips_coffee_machine
 } // namespace esphome

@@ -12,7 +12,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_action_button
         {
@@ -122,5 +122,5 @@ namespace esphome
                 uint32_t last_message_sent_ = 0;
             };
         } // namespace philips_action_button
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

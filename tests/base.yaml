@@ -22,7 +22,7 @@ uart:
     baud_rate: 115200
     id: uart_display
 
-philips_series_2200:
+philips_coffee_machine:
   display_uart: uart_display
   mainboard_uart: uart_mainboard
   power_pin: GPIO12

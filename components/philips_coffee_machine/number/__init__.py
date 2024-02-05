@@ -3,17 +3,17 @@ import esphome.config_validation as cv
 from esphome.components import number
 from esphome.const import CONF_MODE, CONF_TYPE
 
-from .. import CONTROLLER_ID, PhilipsSeries2200, philips_series_2200_ns
+from .. import CONTROLLER_ID, PhilipsCoffeeMachine, philips_coffee_machine_ns
 from ..text_sensor import STATUS_SENSOR_ID, StatusSensor
 
 AUTO_LOAD = ["number"]
-DEPENDENCIES = ["philips_series_2200"]
+DEPENDENCIES = ["philips_coffee_machine"]
 
 CONF_TYPE_SIZE = "size"
 CONF_TYPE_BEAN = "bean"
 CONF_SOURCE = "source"
 
-philips_beverage_settings_ns = philips_series_2200_ns.namespace(
+philips_beverage_settings_ns = philips_coffee_machine_ns.namespace(
     "philips_beverage_setting"
 )
 BeverageSettings = philips_beverage_settings_ns.class_(
@@ -33,7 +33,7 @@ SOURCES = {
 SUB_SCHEMA = number.NUMBER_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(BeverageSettings),
-        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
         cv.Required(STATUS_SENSOR_ID): cv.use_id(StatusSensor),
         cv.Optional(CONF_MODE, default="SLIDER"): cv.enum(
             number.NUMBER_MODES, upper=True

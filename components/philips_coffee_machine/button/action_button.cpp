@@ -3,7 +3,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_action_button
         {
@@ -118,5 +118,5 @@ namespace esphome
                     ESP_LOGE(TAG, "Invalid Action provided!");
             }
         } // namespace philips_action_button
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

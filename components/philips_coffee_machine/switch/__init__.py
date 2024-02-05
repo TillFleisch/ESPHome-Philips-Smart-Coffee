@@ -3,19 +3,19 @@ import esphome.config_validation as cv
 from esphome.components import switch
 from esphome.const import CONF_ID
 
-from .. import CONTROLLER_ID, PhilipsSeries2200, philips_series_2200_ns
+from .. import CONTROLLER_ID, PhilipsCoffeeMachine, philips_coffee_machine_ns
 
-DEPENDENCIES = ["philips_series_2200"]
+DEPENDENCIES = ["philips_coffee_machine"]
 
 CLEAN_DURING_START = "clean"
 
-power_switch_namespace = philips_series_2200_ns.namespace("philips_power_switch")
+power_switch_namespace = philips_coffee_machine_ns.namespace("philips_power_switch")
 PowerSwitch = power_switch_namespace.class_("Power", switch.Switch, cg.Component)
 
 CONFIG_SCHEMA = switch.SWITCH_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(PowerSwitch),
-        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
         cv.Optional(CLEAN_DURING_START, default=True): cv.boolean,
     }
 ).extend(cv.COMPONENT_SCHEMA)

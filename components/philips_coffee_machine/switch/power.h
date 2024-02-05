@@ -11,7 +11,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_power_switch
         {
@@ -119,5 +119,5 @@ namespace esphome
             };
 
         } // namespace philips_power_switch
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

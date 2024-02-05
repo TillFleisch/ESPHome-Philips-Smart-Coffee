@@ -3,14 +3,14 @@ import esphome.config_validation as cv
 from esphome.components import button
 from esphome.const import CONF_ID
 
-from .. import CONTROLLER_ID, PhilipsSeries2200, philips_series_2200_ns
+from .. import CONTROLLER_ID, PhilipsCoffeeMachine, philips_coffee_machine_ns
 
-DEPENDENCIES = ["philips_series_2200"]
+DEPENDENCIES = ["philips_coffee_machine"]
 
 CONF_ACTION = "action"
 CONF_LONG_PRESS = "long_press"
 
-philips_action_button_ns = philips_series_2200_ns.namespace("philips_action_button")
+philips_action_button_ns = philips_coffee_machine_ns.namespace("philips_action_button")
 ActionButton = philips_action_button_ns.class_(
     "ActionButton", button.Button, cg.Component
 )
@@ -45,7 +45,7 @@ CONFIG_SCHEMA = cv.All(
     button.BUTTON_SCHEMA.extend(
         {
             cv.GenerateID(): cv.declare_id(ActionButton),
-            cv.Required(CONTROLLER_ID): cv.use_id(PhilipsSeries2200),
+            cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
             cv.Required(CONF_ACTION): cv.enum(ACTIONS, upper=True, space="_"),
             cv.Optional(CONF_LONG_PRESS, default=False): cv.boolean,
         },

@@ -17,12 +17,14 @@ CONF_POWER_MESSAGE_REPETITIONS = "power_message_repetitions"
 CONF_COMMAND_SET = "model"
 COMMAND_SETS = {"EP_2220": "PHILIPS_EP2220"}
 
-philips_series_2200_ns = cg.esphome_ns.namespace("philips_series_2200")
-PhilipsSeries2200 = philips_series_2200_ns.class_("PhilipsSeries2200", cg.Component)
+philips_coffee_machine_ns = cg.esphome_ns.namespace("philips_coffee_machine")
+PhilipsCoffeeMachine = philips_coffee_machine_ns.class_(
+    "PhilipsCoffeeMachine", cg.Component
+)
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(PhilipsSeries2200),
+        cv.GenerateID(): cv.declare_id(PhilipsCoffeeMachine),
         cv.Required(DISPLAY_UART_ID): cv.use_id(UARTComponent),
         cv.Required(MAINBOARD_UART_ID): cv.use_id(UARTComponent),
         cv.Required(POWER_PIN): pins.gpio_output_pin_schema,

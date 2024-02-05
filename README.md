@@ -1,6 +1,6 @@
-# ESPHome Smart Coffee (Philips Series 2200) [![CI](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml)
+# ESPHome Smart Coffee (Philips Series 2200/3200) [![CI](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml)
 
-This project integrates a Philips Series 2200 Coffee Machine into into [Home Assistant](https://home-assistant.io) through [ESPHome](https://esphome.io).
+This project integrates a Philips Series 2200/3200 Coffee Machine into into [Home Assistant](https://home-assistant.io) through [ESPHome](https://esphome.io).
 This component has been developed on a Philips EP2220 and an ESP8266.
 
 This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input.
@@ -14,7 +14,7 @@ You might break/brick your coffee machine by modifying it in any way, shape or f
 
 A example configuration can be found [here](example.yaml)
 
-## Philips Series 2200
+## Philips Coffee Machine
 
 - **id**(**Required**, string):Controller ID which will be used for entity configuration.
 - **display_uart**(**Required**, string): ID of the UART-Component connected to the display unit
@@ -27,27 +27,27 @@ A example configuration can be found [here](example.yaml)
 
 ## Philips Power switch
 
-- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - **clean**(**Optional**: boolean): If set to `true` the machine will perform a cleaning cycle during startup. Otherwise the machine will power on without cleaning. Defaults to `true`.
 - All other options from [Switch](https://esphome.io/components/switch/index.html#config-switch)
 
 ## Action Button
 
-- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`.
 - **long_press**(**Optional**, boolean): If set to `true` this button will perform a long press. This option is only available for actions which don't include `MAKE`.
 - All other options from [Button](https://esphome.io/components/button/index.html#config-button)
 
 ## Philips Status Sensor
 
-- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
 - **use_cappuccino**(**Optional**, boolean): If set to `true`, `Cappuccino selected` will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
 ## Bean and Size Settings
 
 - **type**(**Required**, string): The type of this number component. One of `size` and `bean`. If `size` is selected, this component will report/manipulate the beverage size. If `bean` is used, this component will report/manipulate the beverage strength.
-- **controller_id**(**Required**, string): The Philips Series 2200-Controller to which this entity belongs
+- **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
 - **source**(**Optional**, int): The source of this sensor. If non is provided, any selected beverage will enable this component. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`, `HOT_WATER`(only for size). When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)

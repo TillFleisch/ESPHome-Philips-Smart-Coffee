@@ -11,7 +11,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_status_sensor
         {
@@ -90,5 +90,5 @@ namespace esphome
                 uint32_t play_pause_last_change_ = 0;
             };
         } // namespace philips_status_sensor
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome
