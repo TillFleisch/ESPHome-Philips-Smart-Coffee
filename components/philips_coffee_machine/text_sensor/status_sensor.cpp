@@ -104,7 +104,11 @@ namespace esphome
                 if (data[3] == led_off && data[4] == led_off && data[5] == led_off && data[6] == led_on)
                 {
                     if (millis() - play_pause_last_change_ < BLINK_THRESHOLD)
-                        update_state(use_cappuccino_ ? "Cappuccino selected" : "Steam selected");
+#ifdef PHILIPS_EP2235
+                        update_state("Cappuccino selected");
+#else
+                        update_state("Steam selected");
+#endif
                     else
                         update_state("Busy");
                     return;

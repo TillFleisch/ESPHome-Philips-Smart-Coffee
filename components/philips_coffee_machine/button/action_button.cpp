@@ -61,7 +61,7 @@ namespace esphome
                 // Coffee
                 if (action == SELECT_COFFEE || action == MAKE_COFFEE)
                 {
-                    write_array(command_press_coffee);
+                    write_array(command_press_1);
                     if (action == SELECT_COFFEE)
                         return;
 
@@ -72,7 +72,7 @@ namespace esphome
                 // Espresso
                 if (action == SELECT_ESPRESSO || action == MAKE_ESPRESSO)
                 {
-                    write_array(command_press_espresso);
+                    write_array(command_press_2);
                     if (action == SELECT_ESPRESSO)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
@@ -82,22 +82,35 @@ namespace esphome
                 // Hot water
                 if (action == SELECT_HOT_WATER || action == MAKE_HOT_WATER)
                 {
-                    write_array(command_press_hot_water);
+                    write_array(command_press_3);
                     if (action == SELECT_HOT_WATER)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
                     action = PLAY_PAUSE;
                 }
 
+#ifdef PHILIPS_EP2220
                 // Steam
                 if (action == SELECT_STEAM || action == MAKE_STEAM)
                 {
-                    write_array(command_press_steam);
+                    write_array(command_press_4);
                     if (action == SELECT_STEAM)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
                     action = PLAY_PAUSE;
                 }
+#endif
+#ifdef PHILIPS_EP2235
+                // Cappuccino
+                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
+                {
+                    write_array(command_press_4);
+                    if (action == SELECT_CAPPUCCINO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+#endif
 
                 // press/play or subsequent press/play
                 if (action == PLAY_PAUSE)

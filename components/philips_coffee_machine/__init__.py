@@ -15,7 +15,10 @@ POWER_TRIP_DELAY = "power_trip_delay"
 CONF_POWER_MESSAGE_REPETITIONS = "power_message_repetitions"
 
 CONF_COMMAND_SET = "model"
-COMMAND_SETS = {"EP_2220": "PHILIPS_EP2220"}
+COMMAND_SETS = {
+    "EP_2220": "PHILIPS_EP2220",
+    "EP_2235": "PHILIPS_EP2235",
+}
 
 philips_coffee_machine_ns = cg.esphome_ns.namespace("philips_coffee_machine")
 PhilipsCoffeeMachine = philips_coffee_machine_ns.class_(
@@ -46,7 +49,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 def to_code(config):
     # Use user-specified command set, default to EP_2200
-    cg.add_define(config[CONF_COMMAND_SET])
+    cg.add_define(COMMAND_SETS[config[CONF_COMMAND_SET]])
 
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)

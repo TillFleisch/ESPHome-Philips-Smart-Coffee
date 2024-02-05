@@ -23,7 +23,7 @@ A example configuration can be found [here](example.yaml)
 - **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
-- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP2220`. Defaults to `EP2220`.
+- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP2220`, `EP2235`. Defaults to `EP2220`.
 
 ## Philips Power switch
 
@@ -34,7 +34,7 @@ A example configuration can be found [here](example.yaml)
 ## Action Button
 
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
-- **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`.
+- **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `SELECT_CAPPUCCINO`, `MAKE_CAPPUCCINO`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`. Note that some options are only available on select models.
 - **long_press**(**Optional**, boolean): If set to `true` this button will perform a long press. This option is only available for actions which don't include `MAKE`.
 - All other options from [Button](https://esphome.io/components/button/index.html#config-button)
 
@@ -42,14 +42,13 @@ A example configuration can be found [here](example.yaml)
 
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor)
-- **use_cappuccino**(**Optional**, boolean): If set to `true`, `Cappuccino selected` will be reported instead of `Steam selected`. This option is intended for machines like the EP2230 which can make cappuccino. Default to `false`.
 
 ## Bean and Size Settings
 
 - **type**(**Required**, string): The type of this number component. One of `size` and `bean`. If `size` is selected, this component will report/manipulate the beverage size. If `bean` is used, this component will report/manipulate the beverage strength.
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
-- **source**(**Optional**, int): The source of this sensor. If non is provided, any selected beverage will enable this component. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO`, `HOT_WATER`(only for size). When selecting `CAPPUCCINO` the related status sensor must use `use_cappuccino = true`.
+- **source**(**Optional**, int): The source of this sensor. If non is provided, any selected beverage will enable this component. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO` (only on `EP2235`), `HOT_WATER`(only for size).
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 # Fully automated coffee

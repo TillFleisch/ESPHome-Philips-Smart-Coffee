@@ -6,7 +6,7 @@ namespace esphome
 {
     namespace philips_coffee_machine
     {
-#if defined(PHILIPS_EP2220)
+#if defined(PHILIPS_EP2220) || defined(PHILIPS_EP2235)
 #define USE_DEFAULT_PHILIPS_COMMAND_SET
 #else
 #define USE_DEFAULT_PHILIPS_COMMAND_SET
@@ -30,13 +30,17 @@ namespace esphome
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x01, 0x00, 0x00, 0x1D, 0x3B};
         const std::vector<uint8_t> command_press_play_pause =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x00, 0x01, 0x19, 0x32};
-        const std::vector<uint8_t> command_press_coffee =
+        /// @brief EP2220: Press Coffee Button
+        const std::vector<uint8_t> command_press_1 =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x08, 0x00, 0x00, 0x39, 0x1C};
-        const std::vector<uint8_t> command_press_espresso =
+        /// @brief EP2220: Press Espresso Button
+        const std::vector<uint8_t> command_press_2 =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x02, 0x00, 0x00, 0x09, 0x2D};
-        const std::vector<uint8_t> command_press_hot_water =
+        /// @brief EP2220: Press Hot Water Button
+        const std::vector<uint8_t> command_press_3 =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x04, 0x00, 0x00, 0x21, 0x01};
-        const std::vector<uint8_t> command_press_steam =
+        /// @brief EP2220: Press Steam Button; EP2235 Press Cappuccino Button
+        const std::vector<uint8_t> command_press_4 =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x10, 0x00, 0x00, 0x09, 0x26};
         const std::vector<uint8_t> command_press_bean =
             {0xD5, 0x55, 0x00, 0x01, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x09, 0x2F};

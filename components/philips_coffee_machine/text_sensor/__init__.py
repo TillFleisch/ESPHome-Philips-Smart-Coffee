@@ -5,7 +5,6 @@ from esphome.const import CONF_ID
 
 from .. import CONTROLLER_ID, PhilipsCoffeeMachine, philips_coffee_machine_ns
 
-USE_CAPPUCCINO = "use_cappuccino"
 STATUS_SENSOR_ID = "status_sensor_id"
 
 philips_status_sensor_ns = philips_coffee_machine_ns.namespace("philips_status_sensor")
@@ -17,7 +16,6 @@ CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(StatusSensor),
         cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
-        cv.Optional(USE_CAPPUCCINO, default=False): cv.boolean,
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -28,5 +26,4 @@ async def to_code(config):
     await cg.register_component(var, config)
     await text_sensor.register_text_sensor(var, config)
 
-    cg.add(var.set_use_cappuccino(config[USE_CAPPUCCINO]))
     cg.add(parent.add_status_sensor(var))

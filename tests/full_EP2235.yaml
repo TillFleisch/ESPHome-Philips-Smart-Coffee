@@ -29,16 +29,13 @@ philips_coffee_machine:
   invert_power_pin: true
   power_trip_delay: 750ms
   id: philip
+  model: EP_2235
 
 text_sensor:
   - platform: philips_coffee_machine
     controller_id: philip
     id: status
     name: "Status"
-  - platform: philips_coffee_machine
-    controller_id: philip
-    use_cappuccino: true
-    name: "Status cappuccino"
 
 switch:
   - platform: philips_coffee_machine

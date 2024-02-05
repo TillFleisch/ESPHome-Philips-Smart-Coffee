@@ -31,6 +31,8 @@ namespace esphome
                 MAKE_HOT_WATER,
                 SELECT_STEAM,
                 MAKE_STEAM,
+                SELECT_CAPPUCCINO,
+                MAKE_CAPPUCCINO,
                 SELECT_BEAN,
                 SELECT_SIZE,
                 SELECT_AQUA_CLEAN,
