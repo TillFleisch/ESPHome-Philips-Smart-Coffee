@@ -25,7 +25,19 @@ namespace esphome
                 COFFEE,
                 ESPRESSO,
                 CAPPUCCINO,
-                HOT_WATER
+                HOT_WATER,
+                AMERICANO,
+                LATTE_MACCHIATO,
+            };
+
+            /**
+             * @brief Type of beverage setting
+             */
+            enum Type
+            {
+                BEAN,
+                SIZE,
+                MILK
             };
 
             /**
@@ -44,11 +56,11 @@ namespace esphome
 
                 /**
                  * Sets the type of this beverage setting.
-                 * @param is_bean True for bean, False for size
+                 * @param type setting type to use
                  */
-                void set_type(bool is_bean)
+                void set_type(Type type)
                 {
-                    is_bean_ = is_bean;
+                    type_ = type;
                 }
 
                 /**
@@ -104,8 +116,8 @@ namespace esphome
                 void update_status(uint8_t *data, size_t len);
 
             private:
-                /// @brief Indicated if this setting component applies to beans, size otherwise
-                bool is_bean_ = false;
+                /// @brief Setting type to which this component applies
+                Type type_ = BEAN;
 
                 /// @brief Indicator for the sensors source value
                 Source source_;
