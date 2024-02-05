@@ -111,7 +111,37 @@ namespace esphome
                     action = PLAY_PAUSE;
                 }
 #endif
+#ifdef PHILIPS_EP3243
+                // Latte
+                if (action == SELECT_LATTE || action == MAKE_LATTE)
+                {
+                    write_array(command_press_4);
+                    if (action == SELECT_LATTE)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
 
+                // Americano
+                if (action == SELECT_AMERICANO || action == MAKE_AMERICANO)
+                {
+                    write_array(command_press_5);
+                    if (action == SELECT_AMERICANO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+
+                // Cappuccino
+                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
+                {
+                    write_array(command_press_6);
+                    if (action == SELECT_CAPPUCCINO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+#endif
                 // press/play or subsequent press/play
                 if (action == PLAY_PAUSE)
                     write_array(command_press_play_pause);
