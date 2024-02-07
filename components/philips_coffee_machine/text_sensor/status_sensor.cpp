@@ -108,15 +108,30 @@ namespace esphome
                 if (data[3] == led_off && data[4] == led_off && data[5] == led_off && data[6] == led_on)
                 {
                     if (millis() - play_pause_last_change_ < BLINK_THRESHOLD)
+                    {
 #ifdef PHILIPS_EP2235
-                        update_state("Cappuccino selected");
+                        if (data[9] == led_second)
+                        {
+                            update_state("Ground Cappuccino selected");
+                        }
+                        else if (data[11] == led_off)
+                        {
+                            update_state("Cappuccino programming mode selected");
+                        }
+                        else
+                        {
+                            update_state("Cappuccino selected");
+                        }
 #elif defined(PHILIPS_EP3243)
-                        update_state("Latte Macchiato selected");
+                        update_state(data[9] == led_second ? "Ground Latte Macchiato selected" : "Latte Macchiato selected");
 #else
                         update_state("Steam selected");
 #endif
+                    }
                     else
+                    {
                         update_state("Busy");
+                    }
                     return;
                 }
 
@@ -175,9 +190,20 @@ namespace esphome
                 if (data[3] == led_off && data[4] == led_on && data[5] == led_off && data[6] == led_off)
                 {
                     if (millis() - play_pause_last_change_ < BLINK_THRESHOLD)
-                        update_state("Cappuccino selected");
+                    {
+                        if (data[11] == led_off)
+                        {
+                            update_state("Cappuccino programming mode selected");
+                        }
+                        else
+                        {
+                            update_state(data[9] == led_second ? "Ground Cappuccino selected" : "Cappuccino selected");
+                        }
+                    }
                     else
+                    {
                         update_state("Busy");
+                    }
                     return;
                 }
 
@@ -185,9 +211,24 @@ namespace esphome
                 if (data[3] == led_off && data[4] == led_off && data[5] == led_off && (data[6] == led_second || data[7] == led_on))
                 {
                     if (millis() - play_pause_last_change_ < BLINK_THRESHOLD)
-                        update_state((data[6] == led_second) ? "Americano selected" : "2x Americano selected");
+                    {
+                        if (data[9] == led_second)
+                        {
+                            update_state("Ground Americano selected");
+                        }
+                        else if (data[11] == led_off)
+                        {
+                            update_state("Americano programming mode selected");
+                        }
+                        else
+                        {
+                            update_state((data[6] == led_second) ? "Americano selected" : "2x Americano selected");
+                        }
+                    }
                     else
+                    {
                         update_state("Busy");
+                    }
                     return;
                 }
 #endif

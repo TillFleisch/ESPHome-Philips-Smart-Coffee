@@ -33,25 +33,30 @@ namespace esphome
                     return;
 
                 // only apply status if source is currently selected
+                std::string status = status_sensor_->get_raw_state();
                 if (((source_ == COFFEE || source_ == ANY) &&
-                     (status_sensor_->get_raw_state().compare("Coffee selected") == 0 ||
-                      status_sensor_->get_raw_state().compare("2x Coffee selected") == 0 ||
-                      (type_ != BEAN && status_sensor_->get_raw_state().compare("Ground Coffee selected") == 0))) ||
+                     (status.compare("Coffee selected") == 0 ||
+                      status.compare("2x Coffee selected") == 0 ||
+                      (type_ != BEAN && status.compare("Ground Coffee selected") == 0))) ||
                     ((source_ == ESPRESSO || source_ == ANY) &&
-                     (status_sensor_->get_raw_state().compare("Espresso selected") == 0 ||
-                      status_sensor_->get_raw_state().compare("2x Espresso selected") == 0 ||
-                      (type_ != BEAN && status_sensor_->get_raw_state().compare("Ground Espresso selected") == 0))) ||
+                     (status.compare("Espresso selected") == 0 ||
+                      status.compare("2x Espresso selected") == 0 ||
+                      (type_ != BEAN && status.compare("Ground Espresso selected") == 0))) ||
                     ((source_ == AMERICANO || source_ == ANY) &&
-                     (status_sensor_->get_raw_state().compare("Americano selected") == 0 ||
-                      status_sensor_->get_raw_state().compare("2x Americano selected") == 0 ||
-                      (type_ != BEAN && status_sensor_->get_raw_state().compare("Ground Americano selected") == 0))) ||
-                    (type_ != BEAN && (source_ == HOT_WATER || source_ == ANY) &&
-                     status_sensor_->get_raw_state().compare("Hot water selected") == 0) ||
+                     (status.compare("Americano selected") == 0 ||
+                      status.compare("2x Americano selected") == 0 ||
+                      (type_ != BEAN && status.compare("Ground Americano selected") == 0))) ||
                     ((source_ == CAPPUCCINO || source_ == ANY) &&
-                     status_sensor_->get_raw_state().compare("Cappuccino selected") == 0))
+                     (status.compare("Cappuccino selected") == 0 ||
+                      (type_ != BEAN && status.compare("Ground Cappuccino selected") == 0))) ||
+                    ((source_ == LATTE_MACCHIATO || source_ == ANY) &&
+                     (status.compare("Latte Macchiato selected") == 0 ||
+                      (type_ != BEAN && status.compare("Ground Latte Macchiato selected") == 0))) ||
+                    (type_ != BEAN && (source_ == HOT_WATER || source_ == ANY) &&
+                     status.compare("Hot water selected") == 0))
                 {
-                    uint8_t enable_byte = type_ == BEAN ? 9 : (type_ == SIZE ? 11 : 13);
-                    uint8_t amount_byte = type_ == BEAN ? 8 : (type_ == SIZE ? 10 : 12);
+                    uint8_t enable_byte = type_ == BEAN ? 9 : 11;
+                    uint8_t amount_byte = type_ == BEAN ? 8 : (type_ == SIZE ? 10 : 13);
 
                     if (data[enable_byte] == led_on)
                     {
