@@ -1,9 +1,15 @@
 # ESPHome Smart Coffee (Philips Series 2200/3200) [![CI](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml)
 
 This project integrates a Philips Series 2200/3200 Coffee Machine into into [Home Assistant](https://home-assistant.io) through [ESPHome](https://esphome.io).
-This component has been developed on a Philips EP2220 and an ESP8266.
+This component has been developed on a Philips `EP2220` and an ESP8266 but it will happily run on an ESP32.
+Currently supported Coffee Machine models include:
 
-This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input.
+|Series     | Model Number        |
+|-----------|---------------------|
+|Series 2200| `EP2220`, `EP2235`  |
+|Series 3200| `EP3243`            |
+
+This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input as well as a `Number` component to customize beverage settings such as size and strength.
 The `Power Switch` can be used to turn on the coffee machine with and without a cleaning cycle during startup.
 
 ![Provided entities in HomeAssistant](ha_entities.png)
@@ -23,7 +29,7 @@ A example configuration can be found [here](example.yaml)
 - **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
-- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP2220`, `EP2235`. Defaults to `EP2220`.
+- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`. Defaults to `EP_2220`.
 
 ## Philips Power switch
 
@@ -34,7 +40,7 @@ A example configuration can be found [here](example.yaml)
 ## Action Button
 
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
-- **action**(**Required**, int): The action performed by this button. Select one of `MAKE_COFFEE`, `SELECT_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `SELECT_CAPPUCCINO`, `MAKE_CAPPUCCINO`, `BEAN`, `SIZE`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`. Note that some options are only available on select models.
+- **action**(**Required**, int): The action performed by this button. Select one of `SELECT_COFFEE`, `MAKE_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `SELECT_CAPPUCCINO`, `MAKE_CAPPUCCINO`, `SELECT_LATTE`, `MAKE_LATTE`, `SELECT_AMERICANO`, `MAKE_AMERICANO`, `BEAN`, `SIZE`, `MILK`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`. Note that some options are only available on select models.
 - **long_press**(**Optional**, boolean): If set to `true` this button will perform a long press. This option is only available for actions which don't include `MAKE`.
 - All other options from [Button](https://esphome.io/components/button/index.html#config-button)
 
@@ -45,10 +51,10 @@ A example configuration can be found [here](example.yaml)
 
 ## Bean and Size Settings
 
-- **type**(**Required**, string): The type of this number component. One of `size` and `bean`. If `size` is selected, this component will report/manipulate the beverage size. If `bean` is used, this component will report/manipulate the beverage strength.
+- **type**(**Required**, string): The type of this number component. One of `size`, `bean` and `milk`. If `size` is selected, this component will report/manipulate the beverage size. If `bean` is used, this component will report/manipulate the beverage strength. If `milk` is used, this component will report/manipulate the amount of milk added to the beverage. Note that some options are only available on select models.
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
 - **status_sensor_id**(**Required**, string): Id of a status sensor which is also connected to the controller.
-- **source**(**Optional**, int): The source of this sensor. If non is provided, any selected beverage will enable this component. Select one of `COFFEE`, `ESPRESSO`, `CAPPUCCINO` (only on `EP2235`), `HOT_WATER`(only for size).
+- **source**(**Optional**, int): The source of this sensor. If non is provided, any selected beverage will enable this component. Select one of `COFFEE`, `ESPRESSO`, `HOT_WATER`, `CAPPUCCINO`, `AMERICANO`, `LATTE_MACCHIATO`. Note that some options are only available on select models or setting types.
 - All other options from [Number](https://esphome.io/components/number/index.html#config-number)
 
 # Fully automated coffee
@@ -125,6 +131,7 @@ More information on the communication protocol used by this component can be fou
 
 - [SmartPhilips2200](https://github.com/chris7topher/SmartPhilips2200) by [@chris7topher](https://github.com/chris7topher)
   - The commands used in this Project are different. This is likely due to different model revisions.
+- Thanks to [@quack3d](https://github.com/quack3d) for helping add support for the `EP3243`
 
 # Troubleshooting
 

@@ -1,4 +1,4 @@
-# Communication protocol
+# Communication protocol (EP2220)
 
 The underlining protocol used by this coffee machine is quite simple.
 The mainboard does all the heavy lifting and the display unit is only responsible for I/O.
@@ -92,11 +92,13 @@ All messages have the following structure:
 The structure is similar to the previous messages but the content part is longer. The message above means all LEDs on the display are turned off.
 The following table show the purpose of each byte and their known states
 
-| Byte | Purpose           | Detail                                                |
-| ---- | ----------------- | ----------------------------------------------------- |
-| 0    | START             |
-| 1    | START             |
-| 2    | INSTRUCTION       |
+### EP2220
+
+| Byte | Purpose           | Detail                                                         |
+| ---- | ----------------- | -------------------------------------------------------------- |
+| 0    | START             |                                                                |
+| 1    | START             |                                                                |
+| 2    | INSTRUCTION       |                                                                |
 | 3    | Espresso-LED      | `03`/`07` - half/full brightness ; `38` - 2x espresso          |
 | 4    | Hot Water-LED     | `03`/`07` - half/full brightness                               |
 | 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee             |
@@ -110,8 +112,8 @@ The following table show the purpose of each byte and their known states
 | 13   |                   | probably aqua_clean/calc_clean                                 |
 | 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
 | 15   | Play/Pause-LED    | `07` - on                                                      |
-| 16   | checksum          |
-| 17   | checksum          |
+| 16   | checksum          |                                                                |
+| 17   | checksum          |                                                                |
 
 ## Off LED states
 
@@ -120,3 +122,59 @@ The following table show the purpose of each byte and their known states
 ## Idle LED states
 
 `D5 55 00 07 07 07 07 00 00 00 00 00 00 00 00 00 00 07 2B`
+
+# Other machines
+
+The `EP2235` uses the same protocol as the `EP2220` except for a couple of small differences.
+The `Steam` option has been replaced with `Cappuccino`.
+
+### EP2235
+
+| Byte | Purpose           | Detail                                                         |
+| ---- | ----------------- | -------------------------------------------------------------- |
+| 0    | START             |                                                                |
+| 1    | START             |                                                                |
+| 2    | INSTRUCTION       |                                                                |
+| 3    | Espresso-LED      | `03`/`07` - half/full brightness ; `38` - 2x espresso          |
+| 4    | Hot Water-LED     | `03`/`07` - half/full brightness                               |
+| 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee             |
+| 6    | Cappuccino-LED    | `03`/`07` - half/full brightness;                              |
+| 7    |                   | unknown                                                        |
+| 8    | Bean-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                     |
+| 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
+| 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
+| 11   | Size-LED          | `07` - show led group                                          |
+| 12   |                   | probably aqua_clean/calc_clean                                 |
+| 13   |                   | probably aqua_clean/calc_clean                                 |
+| 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
+| 15   | Play/Pause-LED    | `07` - on                                                      |
+| 16   | checksum          |                                                                |
+| 17   | checksum          |                                                                |
+
+### EP3243
+
+The 3200 series follows a similar protocol schema but uses a new set of messages.
+Note that the milk option is always available when size selection is also available.
+
+| Byte | Purpose                    | Detail                                                            |
+| ---- | -------------------------- | ----------------------------------------------------------------- |
+| 0    | START                      |                                                                   |
+| 1    | START                      |                                                                   |
+| 2    | INSTRUCTION                |                                                                   |
+| 3    | Espresso-LED               | `03`/`07` - half/full brightness ; `38` - 2x espresso             |
+| 4    | Cappuccino-LED             | `03`/`07` - half/full brightness                                  |
+| 5    | Coffee-LED                 | `03`/`07` - half/full brightness; `38` - 2x coffee                |
+| 6    | Latte/Americano-LED        | `03`/`07` (half/full) - latte selected; `38` - Americano selected |
+| 7    | Hot Water/ 2x Americano    | `07` - 2x Americano; `38` - Hot Water selected                    |
+| 8    | Bean-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                        |
+| 9    | Bean-LED                   | `07` - show led group; `38` - powder selected                     |
+| 10   | Size-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED       |
+| 11   | Size-LED                   | `07` - show led group (size and milk)                             |
+| 12   |                            |  probably aqua_clean/calc_clean                                   |
+| 13   | Milk-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                        |
+| 14   | Waste&Warning-LED          | `07` - waste; `38` - warning sign                                 |
+| 15   | Play/Pause-LED             | `07` - on                                                         |
+| 16   | checksum                   |                                                                   |
+| 17   | checksum                   |                                                                   |
+
+Messages from the display to the mainboard can be found [here](components/philips_coffee_machine/commands.h).
