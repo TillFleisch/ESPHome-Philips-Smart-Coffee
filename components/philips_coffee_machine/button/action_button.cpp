@@ -151,6 +151,11 @@ namespace esphome
                 else if (action == SELECT_SIZE)
                     // size button
                     write_array(command_press_size);
+#if defined(PHILIPS_EP3243)
+                else if (action == SELECT_MILK)
+                    // milk button
+                    write_array(command_press_milk);
+#endif
                 else if (action == SELECT_AQUA_CLEAN)
                     // aqua clean button
                     write_array(command_press_aqua_clean);

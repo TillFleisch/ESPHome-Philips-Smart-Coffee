@@ -17,8 +17,8 @@ ActionButton = philips_action_button_ns.class_(
 
 Action = philips_action_button_ns.enum("ActionButton")
 ACTIONS = {
-    "MAKE_COFFEE": Action.MAKE_COFFEE,
     "SELECT_COFFEE": Action.SELECT_COFFEE,
+    "MAKE_COFFEE": Action.MAKE_COFFEE,
     "SELECT_ESPRESSO": Action.SELECT_ESPRESSO,
     "MAKE_ESPRESSO": Action.MAKE_ESPRESSO,
     "SELECT_HOT_WATER": Action.SELECT_HOT_WATER,
@@ -33,6 +33,7 @@ ACTIONS = {
     "MAKE_AMERICANO": Action.MAKE_AMERICANO,
     "BEAN": Action.SELECT_BEAN,
     "SIZE": Action.SELECT_SIZE,
+    "MILK": Action.MILK,
     "AQUA_CLEAN": Action.SELECT_AQUA_CLEAN,
     "CALC_CLEAN": Action.SELECT_CALC_CLEAN,
     "PLAY_PAUSE": Action.PLAY_PAUSE,

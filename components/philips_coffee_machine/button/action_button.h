@@ -39,6 +39,7 @@ namespace esphome
                 MAKE_AMERICANO,
                 SELECT_BEAN,
                 SELECT_SIZE,
+                SELECT_MILK,
                 SELECT_AQUA_CLEAN,
                 SELECT_CALC_CLEAN,
                 PLAY_PAUSE,
