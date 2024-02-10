@@ -151,7 +151,7 @@ The `Steam` option has been replaced with `Cappuccino`.
 | 16   | checksum          |                                                                |
 | 17   | checksum          |                                                                |
 
-### EP3243
+### EP3243/EP3246
 
 The 3200 series follows a similar protocol schema but uses a new set of messages.
 Note that the milk option is always available when size selection is also available.

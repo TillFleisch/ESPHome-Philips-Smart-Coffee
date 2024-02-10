@@ -9,6 +9,7 @@ namespace esphome
 #if defined(PHILIPS_EP2220) || defined(PHILIPS_EP2235)
 #define USE_DEFAULT_PHILIPS_COMMAND_SET
 #elif defined(PHILIPS_EP3243)
+        // Note that the EP3243 and EP3246 are identical except for cosmetic differences
         const uint8_t message_header[2] = {0xD5, 0x55};
         const uint8_t led_off = 0x00;
         const uint8_t led_half = 0x03;

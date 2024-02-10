@@ -7,7 +7,7 @@ Currently supported Coffee Machine models include:
 |Series     | Model Number        |
 |-----------|---------------------|
 |Series 2200| `EP2220`, `EP2235`  |
-|Series 3200| `EP3243`            |
+|Series 3200| `EP3243`, `EP3246`  |
 
 This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input as well as a `Number` component to customize beverage settings such as size and strength.
 The `Power Switch` can be used to turn on the coffee machine with and without a cleaning cycle during startup.
@@ -29,7 +29,7 @@ A example configuration can be found [here](example.yaml)
 - **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
-- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`. Defaults to `EP_2220`.
+- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`.
 
 ## Philips Power switch
 
@@ -131,7 +131,7 @@ More information on the communication protocol used by this component can be fou
 
 - [SmartPhilips2200](https://github.com/chris7topher/SmartPhilips2200) by [@chris7topher](https://github.com/chris7topher)
   - The commands used in this Project are different. This is likely due to different model revisions.
-- Thanks to [@quack3d](https://github.com/quack3d) for helping add support for the `EP3243`
+- Thanks to [@quack3d](https://github.com/quack3d) and [@sendorm](https://github.com/sendorm) for helping add support for the `EP3243` and the `EP3246`.
 
 # Troubleshooting
 
