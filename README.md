@@ -22,6 +22,7 @@ A example configuration can be found [here](example.yaml)
 - **power_pin**(**Required**, [Pin](https://esphome.io/guides/configuration-types.html#config-pin)): Pin to which the MOSFET/Transistor is connected. This pin is used to temporarily turn of the display unit.
 - **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
+- **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
 - **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP2220`. Defaults to `EP2220`.
 
 ## Philips Power switch
@@ -131,3 +132,12 @@ More information on the communication protocol used by this component can be fou
 - Make sure your wiring is correct
 - The UART debug function can be used to analyze communication and verify correct wiring
 - The commands used by the display unit may be different between different revisions/models (see Related Work)
+
+## Display not turning on
+
+With some Hardware combinations and on some coffee machines, the display might not turn on reliably. If this is the case for you please try the following troubleshooting steps to resolve the issue:
+
+- Double-check wiring
+- Try increasing `power_message_repetitions` to `25` or some other value smaller/larger than this.
+- Try increasing `power_trip_delay`
+- Try adjusting `invert_power_pin` depending on the type of transistor used

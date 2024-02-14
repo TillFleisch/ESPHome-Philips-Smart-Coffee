@@ -83,6 +83,16 @@ namespace esphome
                 }
 
                 /**
+                 * @brief Sets the number of message repetitions to use while turning on the machine
+                 *
+                 * @param count number of repetitions
+                 */
+                void set_power_message_repetitions(uint count)
+                {
+                    power_message_repetitions_ = count;
+                }
+
+                /**
                  * @brief Processes and publish the new switch state.
                  */
                 void update_state(bool state);
@@ -101,7 +111,9 @@ namespace esphome
                 /// @brief Time of last power trip
                 uint32_t last_power_trip_ = 0;
                 /// @brief nr of power performed power trips
-                int power_trip_count_ = 0;
+                uint power_trip_count_ = 0;
+                /// @brief determines how often the power on message is repeated
+                uint power_message_repetitions_ = 5;
                 /// @brief initial power state reference
                 bool *initial_state_;
             };
