@@ -12,6 +12,7 @@ POWER_PIN = "power_pin"
 CONTROLLER_ID = "controller_id"
 INVERT_POWER_PIN = "invert_power_pin"
 POWER_TRIP_DELAY = "power_trip_delay"
+CONF_POWER_MESSAGE_REPETITIONS = "power_message_repetitions"
 
 CONF_COMMAND_SET = "model"
 COMMAND_SETS = {"EP_2220": "PHILIPS_EP2220"}
@@ -33,6 +34,7 @@ CONFIG_SCHEMA = cv.Schema(
                 max_included=cv.TimePeriod(milliseconds=10000),
             ),
         ),
+        cv.Optional(CONF_POWER_MESSAGE_REPETITIONS, default=5): cv.positive_int,
         cv.Optional(CONF_COMMAND_SET, default="EP_2220"): cv.enum(
             COMMAND_SETS, upper=True, space="_"
         ),
@@ -54,5 +56,6 @@ def to_code(config):
     cg.add(var.register_display_uart(display))
     cg.add(var.register_mainboard_uart(mainboard))
     cg.add(var.set_power_pin(pin))
+    cg.add(var.set_power_message_repetitions(config[CONF_POWER_MESSAGE_REPETITIONS]))
     cg.add(var.set_invert_power_pin(config[INVERT_POWER_PIN]))
     cg.add(var.set_power_trip_delay(config[POWER_TRIP_DELAY]))

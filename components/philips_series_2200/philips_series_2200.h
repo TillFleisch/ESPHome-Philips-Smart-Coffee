@@ -68,9 +68,24 @@ namespace esphome
                 initial_pin_state_ = !invert;
             }
 
+            /**
+             * @brief Timer period for which the power pin is inverted
+             *
+             * @param time power trip length in ms
+             */
             void set_power_trip_delay(uint32_t time)
             {
                 power_trip_delay_ = time;
+            }
+
+            /**
+             * @brief The number of message repetitions used while turning on the machine
+             *
+             * @param count numer of message to use
+             */
+            void set_power_message_repetitions(uint count)
+            {
+                power_message_repetitions_ = count;
             }
 
 #ifdef USE_SWITCH
@@ -85,6 +100,7 @@ namespace esphome
                 power_switch->set_mainboard_uart(&mainboard_uart_);
                 power_switch->set_power_pin(power_pin_);
                 power_switch->set_power_trip_delay(power_trip_delay_);
+                power_switch->set_power_message_repetitions(power_message_repetitions_);
                 power_switch->set_initial_state(&initial_pin_state_);
                 power_switches_.push_back(power_switch);
             };
@@ -143,6 +159,9 @@ namespace esphome
 
             /// @brief the initial power pin state (may be inverted through user configuration)
             bool initial_pin_state_ = true;
+
+            /// @brief the number of message repetitions to use while turning on the machine
+            uint power_message_repetitions_ = 5;
 
             /// @brief length of power outage applied to the display
             uint32_t power_trip_delay_ = 500;
