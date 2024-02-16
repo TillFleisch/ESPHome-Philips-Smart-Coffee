@@ -35,25 +35,25 @@ namespace esphome
                 // only apply status if source is currently selected
                 std::string status = status_sensor_->get_raw_state();
                 if ((type_ != MILK && (source_ == COFFEE || source_ == ANY) &&
-                     (status.compare("Coffee selected") == 0 ||
-                      status.compare("2x Coffee selected") == 0 ||
-                      (type_ != BEAN && status.compare("Ground Coffee selected") == 0))) ||
+                     (status.compare(state_coffee_selected) == 0 ||
+                      status.compare(state_coffee_2x_selected) == 0 ||
+                      (type_ != BEAN && status.compare(state_ground_coffee_selected) == 0))) ||
                     (type_ != MILK && (source_ == ESPRESSO || source_ == ANY) &&
-                     (status.compare("Espresso selected") == 0 ||
-                      status.compare("2x Espresso selected") == 0 ||
-                      (type_ != BEAN && status.compare("Ground Espresso selected") == 0))) ||
+                     (status.compare(state_espresso_selected) == 0 ||
+                      status.compare(state_espresso_2x_selected) == 0 ||
+                      (type_ != BEAN && status.compare(state_ground_espresso_selected) == 0))) ||
                     (type_ != MILK && (source_ == AMERICANO || source_ == ANY) &&
-                     (status.compare("Americano selected") == 0 ||
-                      status.compare("2x Americano selected") == 0 ||
-                      (type_ != BEAN && status.compare("Ground Americano selected") == 0))) ||
+                     (status.compare(state_americano_selected) == 0 ||
+                      status.compare(state_americano_2x_selected) == 0 ||
+                      (type_ != BEAN && status.compare(state_ground_americano_selected) == 0))) ||
                     ((source_ == CAPPUCCINO || source_ == ANY) &&
-                     (status.compare("Cappuccino selected") == 0 ||
-                      (type_ != BEAN && status.compare("Ground Cappuccino selected") == 0))) ||
+                     (status.compare(state_cappuccino_selected) == 0 ||
+                      (type_ != BEAN && status.compare(state_ground_cappuccino_selected) == 0))) ||
                     ((source_ == LATTE_MACCHIATO || source_ == ANY) &&
-                     (status.compare("Latte Macchiato selected") == 0 ||
-                      (type_ != BEAN && status.compare("Ground Latte Macchiato selected") == 0))) ||
+                     (status.compare(state_latte_selected) == 0 ||
+                      (type_ != BEAN && status.compare(state_ground_latte_selected) == 0))) ||
                     (type_ != BEAN && type_ != MILK && (source_ == HOT_WATER || source_ == ANY) &&
-                     status.compare("Hot water selected") == 0))
+                     status.compare(state_hot_water_selected) == 0))
                 {
                     uint8_t enable_byte = type_ == BEAN ? 9 : 11;
                     uint8_t amount_byte = type_ == BEAN ? 8 : (type_ == SIZE ? 10 : 13);

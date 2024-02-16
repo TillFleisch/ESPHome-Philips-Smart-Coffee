@@ -50,7 +50,7 @@ namespace esphome
                     // This can be circumvented: if the user is on the selection screen/idle we can reset the timer
                     play_pause_last_change_ = millis();
 
-                    update_state("Idle");
+                    update_state(state_idle);
                     return;
                 }
 
@@ -61,30 +61,30 @@ namespace esphome
                 if (data[3] == led_half || data[4] == led_half || data[5] == led_half || data[6] == led_half)
                 {
                     if (play_pause_led_)
-                        update_state("Cleaning");
+                        update_state(state_cleaning);
                     else
-                        update_state("Preparing");
+                        update_state(state_preparing);
                     return;
                 }
 
                 // Water empty led
                 if (data[14] == led_second)
                 {
-                    update_state("Water empty");
+                    update_state(state_water_empty);
                     return;
                 }
 
                 // Waste container led
                 if (data[15] == led_on)
                 {
-                    update_state("Waste container warning");
+                    update_state(state_waste_warning);
                     return;
                 }
 
                 // Warning/Error led
                 if (data[15] == led_second)
                 {
-                    update_state("Error");
+                    update_state(state_error);
                     return;
                 }
 
@@ -95,20 +95,20 @@ namespace esphome
                     {
                         if (data[9] == led_second)
                         {
-                            update_state("Ground Coffee selected");
+                            update_state(state_ground_coffee_selected);
                         }
                         else if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Coffee programming mode selected");
+                            update_state(state_coffee_programming_mode);
                         }
                         else
                         {
-                            update_state((data[5] == led_on) ? "Coffee selected" : "2x Coffee selected");
+                            update_state((data[5] == led_on) ? state_coffee_selected : state_coffee_2x_selected);
                         }
                     }
                     else
                     {
-                        update_state((data[5] == led_on) ? "Brewing Coffee" : "Brewing 2x Coffee");
+                        update_state((data[5] == led_on) ? state_coffee_brewing : state_coffee_2x_brewing);
                     }
                     return;
                 }
@@ -121,45 +121,45 @@ namespace esphome
                     {
                         if (data[9] == led_second)
                         {
-                            update_state("Ground Cappuccino selected");
+                            update_state(state_ground_cappuccino_selected);
                         }
                         else if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Cappuccino programming mode selected");
+                            update_state(state_cappuccino_programming_mode);
                         }
                         else
                         {
-                            update_state("Cappuccino selected");
+                            update_state(state_cappuccino_selected);
                         }
                     }
                     else
                     {
-                        update_state("Brewing Cappuccino");
+                        update_state(state_cappuccino_brewing);
                     }
 #elif defined(PHILIPS_EP3243)
                     if (is_play_pause_blinking)
                     {
                         if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Latte Macchiato programming mode selected");
+                            update_state(state_latte_programming_mode);
                         }
                         else
                         {
-                            update_state(data[9] == led_second ? "Ground Latte Macchiato selected" : "Latte Macchiato selected");
+                            update_state(data[9] == led_second ? state_ground_latte_selected : state_latte_selected);
                         }
                     }
                     else
                     {
-                        update_state("Brewing Latte Macchiato");
+                        update_state(state_latte_brewing);
                     }
 #else
                     if (is_play_pause_blinking)
                     {
-                        update_state("Steam selected");
+                        update_state(state_steam_selected);
                     }
                     else
                     {
-                        update_state("Making Steam");
+                        update_state(state_steam_brewing);
                     }
 #endif
                     return;
@@ -176,16 +176,16 @@ namespace esphome
                     {
                         if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Hot water programming mode selected");
+                            update_state(state_hot_water_programming_mode);
                         }
                         else
                         {
-                            update_state("Hot water selected");
+                            update_state(state_hot_water_selected);
                         }
                     }
                     else
                     {
-                        update_state("Making Hot Water");
+                        update_state(state_hot_water_brewing);
                     }
                     return;
                 }
@@ -197,20 +197,20 @@ namespace esphome
                     {
                         if (data[9] == led_second)
                         {
-                            update_state("Ground Espresso selected");
+                            update_state(state_ground_espresso_selected);
                         }
                         else if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Espresso programming mode selected");
+                            update_state(state_espresso_programming_mode);
                         }
                         else
                         {
-                            update_state((data[3] == led_on) ? "Espresso selected" : "2x Espresso selected");
+                            update_state((data[3] == led_on) ? state_espresso_selected : state_espresso_2x_selected);
                         }
                     }
                     else
                     {
-                        update_state((data[3] == led_on) ? "Brewing Espresso" : "Brewing 2x Espresso");
+                        update_state((data[3] == led_on) ? state_espresso_brewing : state_espresso_2x_brewing);
                     }
                     return;
                 }
@@ -223,16 +223,16 @@ namespace esphome
                     {
                         if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Cappuccino programming mode selected");
+                            update_state(state_cappuccino_programming_mode);
                         }
                         else
                         {
-                            update_state(data[9] == led_second ? "Ground Cappuccino selected" : "Cappuccino selected");
+                            update_state(data[9] == led_second ? state_ground_cappuccino_selected : state_cappuccino_selected);
                         }
                     }
                     else
                     {
-                        update_state("Brewing Cappuccino");
+                        update_state(state_cappuccino_brewing);
                     }
                     return;
                 }
@@ -244,20 +244,20 @@ namespace esphome
                     {
                         if (data[9] == led_second)
                         {
-                            update_state("Ground Americano selected");
+                            update_state(state_ground_americano_selected);
                         }
                         else if (data[11] == led_off && show_size_changed_recently)
                         {
-                            update_state("Americano programming mode selected");
+                            update_state(state_americano_programming_mode);
                         }
                         else
                         {
-                            update_state((data[6] == led_second) ? "Americano selected" : "2x Americano selected");
+                            update_state((data[6] == led_second) ? state_americano_selected : state_americano_2x_selected);
                         }
                     }
                     else
                     {
-                        update_state((data[6] == led_second) ? "Brewing Americano" : "Brewing 2x Americano");
+                        update_state((data[6] == led_second) ? state_americano_brewing : state_americano_2x_brewing);
                     }
                     return;
                 }
