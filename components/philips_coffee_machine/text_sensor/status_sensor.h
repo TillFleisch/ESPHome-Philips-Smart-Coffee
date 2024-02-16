@@ -76,6 +76,9 @@ namespace esphome
 
                 /// @brief time of play/pause change
                 uint32_t play_pause_last_change_ = 0;
+
+                /// @brief time of the last enable size led change
+                uint32_t show_size_led_last_change_ = 0;
             };
         } // namespace philips_status_sensor
     }     // namespace philips_coffee_machine
