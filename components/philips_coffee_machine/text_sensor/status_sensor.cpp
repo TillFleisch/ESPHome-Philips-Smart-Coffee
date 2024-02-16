@@ -123,7 +123,14 @@ namespace esphome
                             update_state("Cappuccino selected");
                         }
 #elif defined(PHILIPS_EP3243)
-                        update_state(data[9] == led_second ? "Ground Latte Macchiato selected" : "Latte Macchiato selected");
+                        if (data[11] == led_off)
+                        {
+                            update_state("Latte Macchiato programming mode selected");
+                        }
+                        else
+                        {
+                            update_state(data[9] == led_second ? "Ground Latte Macchiato selected" : "Latte Macchiato selected");
+                        }
 #else
                         update_state("Steam selected");
 #endif
