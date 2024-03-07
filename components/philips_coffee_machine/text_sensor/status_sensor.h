@@ -4,6 +4,7 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/uart/uart.h"
 #include "../commands.h"
+#include "../localization.h"
 
 // Feel free to lower this, you might get some invalid intermittent state though
 #define REPEAT_REQUIREMENT 30
@@ -35,8 +36,8 @@ namespace esphome
                  */
                 void set_state_off()
                 {
-                    if (state != "Off")
-                        publish_state("Off");
+                    if (state != state_off)
+                        publish_state(state_off);
                 };
 
                 /**
@@ -69,13 +70,16 @@ namespace esphome
                 int new_state_counter_ = 0;
 
                 /// @brief cache for counting new messages
-                std::string new_state_ = "";
+                std::string new_state_ = state_unknown;
 
                 /// @brief status of the play/pause led
                 bool play_pause_led_ = false;
 
                 /// @brief time of play/pause change
                 uint32_t play_pause_last_change_ = 0;
+
+                /// @brief time of the last enable size led change
+                uint32_t show_size_led_last_change_ = 0;
             };
         } // namespace philips_status_sensor
     }     // namespace philips_coffee_machine

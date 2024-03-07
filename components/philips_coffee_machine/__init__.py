@@ -23,6 +23,13 @@ COMMAND_SETS = {
     "EP_3246": "PHILIPS_EP3243",
 }
 
+CONF_LANGUAGE = "language"
+# Using IETF BCP 47 language tags (RFC 5646)
+LANGUAGES = {
+    "en-US": "PHILIPS_COFFEE_LANG_en_US",
+    "de-DE": "PHILIPS_COFFEE_LANG_de_DE",
+}
+
 philips_coffee_machine_ns = cg.esphome_ns.namespace("philips_coffee_machine")
 PhilipsCoffeeMachine = philips_coffee_machine_ns.class_(
     "PhilipsCoffeeMachine", cg.Component
@@ -46,6 +53,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_COMMAND_SET, default="EP_2220"): cv.enum(
             COMMAND_SETS, upper=True, space="_"
         ),
+        cv.Optional(CONF_LANGUAGE, default="en-US"): cv.enum(LANGUAGES, space="-"),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -53,6 +61,7 @@ CONFIG_SCHEMA = cv.Schema(
 def to_code(config):
     # Use user-specified command set, default to EP_2200
     cg.add_define(COMMAND_SETS[config[CONF_COMMAND_SET]])
+    cg.add_define(LANGUAGES[config[CONF_LANGUAGE]])
 
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
