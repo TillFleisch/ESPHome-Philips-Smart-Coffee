@@ -1,23 +1,23 @@
 #include "esphome/core/log.h"
-#include "philips_series_2200.h"
+#include "philips_coffee_machine.h"
 
 #define BUFFER_SIZE 32
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
 
-        static const char *TAG = "philips_series_2200";
+        static const char *TAG = "philips_coffee_machine";
 
-        void PhilipsSeries2200::setup()
+        void PhilipsCoffeeMachine::setup()
         {
             power_pin_->setup();
             power_pin_->pin_mode(gpio::FLAG_OUTPUT);
             power_pin_->digital_write(initial_pin_state_);
         }
 
-        void PhilipsSeries2200::loop()
+        void PhilipsCoffeeMachine::loop()
         {
             uint8_t buffer[BUFFER_SIZE];
 
@@ -110,12 +110,12 @@ namespace esphome
             mainboard_uart_.flush();
         }
 
-        void PhilipsSeries2200::dump_config()
+        void PhilipsCoffeeMachine::dump_config()
         {
-            ESP_LOGCONFIG(TAG, "Philips Series 2200");
+            ESP_LOGCONFIG(TAG, "Philips Coffee Machine");
             display_uart_.check_uart_settings(115200, 1, uart::UART_CONFIG_PARITY_NONE, 8);
             mainboard_uart_.check_uart_settings(115200, 1, uart::UART_CONFIG_PARITY_NONE, 8);
         }
 
-    } // namespace philips_series_2200
+    } // namespace philips_coffee_machine
 } // namespace esphome

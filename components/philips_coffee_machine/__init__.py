@@ -15,14 +15,22 @@ POWER_TRIP_DELAY = "power_trip_delay"
 CONF_POWER_MESSAGE_REPETITIONS = "power_message_repetitions"
 
 CONF_COMMAND_SET = "model"
-COMMAND_SETS = {"EP_2220": "PHILIPS_EP2220"}
+COMMAND_SETS = {
+    "EP_2220": "PHILIPS_EP2220",
+    "EP_2235": "PHILIPS_EP2235",
+    "EP_3243": "PHILIPS_EP3243",
+    # Note that the EP3243 and EP3246 are identical except for cosmetic differences
+    "EP_3246": "PHILIPS_EP3243",
+}
 
-philips_series_2200_ns = cg.esphome_ns.namespace("philips_series_2200")
-PhilipsSeries2200 = philips_series_2200_ns.class_("PhilipsSeries2200", cg.Component)
+philips_coffee_machine_ns = cg.esphome_ns.namespace("philips_coffee_machine")
+PhilipsCoffeeMachine = philips_coffee_machine_ns.class_(
+    "PhilipsCoffeeMachine", cg.Component
+)
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(PhilipsSeries2200),
+        cv.GenerateID(): cv.declare_id(PhilipsCoffeeMachine),
         cv.Required(DISPLAY_UART_ID): cv.use_id(UARTComponent),
         cv.Required(MAINBOARD_UART_ID): cv.use_id(UARTComponent),
         cv.Required(POWER_PIN): pins.gpio_output_pin_schema,
@@ -44,7 +52,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 def to_code(config):
     # Use user-specified command set, default to EP_2200
-    cg.add_define(config[CONF_COMMAND_SET])
+    cg.add_define(COMMAND_SETS[config[CONF_COMMAND_SET]])
 
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)

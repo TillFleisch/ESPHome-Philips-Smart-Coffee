@@ -3,7 +3,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_action_button
         {
@@ -61,7 +61,7 @@ namespace esphome
                 // Coffee
                 if (action == SELECT_COFFEE || action == MAKE_COFFEE)
                 {
-                    write_array(command_press_coffee);
+                    write_array(command_press_1);
                     if (action == SELECT_COFFEE)
                         return;
 
@@ -72,7 +72,7 @@ namespace esphome
                 // Espresso
                 if (action == SELECT_ESPRESSO || action == MAKE_ESPRESSO)
                 {
-                    write_array(command_press_espresso);
+                    write_array(command_press_2);
                     if (action == SELECT_ESPRESSO)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
@@ -82,23 +82,66 @@ namespace esphome
                 // Hot water
                 if (action == SELECT_HOT_WATER || action == MAKE_HOT_WATER)
                 {
-                    write_array(command_press_hot_water);
+                    write_array(command_press_3);
                     if (action == SELECT_HOT_WATER)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
                     action = PLAY_PAUSE;
                 }
 
+#ifdef PHILIPS_EP2220
                 // Steam
                 if (action == SELECT_STEAM || action == MAKE_STEAM)
                 {
-                    write_array(command_press_steam);
+                    write_array(command_press_4);
                     if (action == SELECT_STEAM)
                         return;
                     delay(BUTTON_SEQUENCE_DELAY);
                     action = PLAY_PAUSE;
                 }
+#endif
+#ifdef PHILIPS_EP2235
+                // Cappuccino
+                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
+                {
+                    write_array(command_press_4);
+                    if (action == SELECT_CAPPUCCINO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+#endif
+#ifdef PHILIPS_EP3243
+                // Latte
+                if (action == SELECT_LATTE || action == MAKE_LATTE)
+                {
+                    write_array(command_press_4);
+                    if (action == SELECT_LATTE)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
 
+                // Americano
+                if (action == SELECT_AMERICANO || action == MAKE_AMERICANO)
+                {
+                    write_array(command_press_5);
+                    if (action == SELECT_AMERICANO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+
+                // Cappuccino
+                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
+                {
+                    write_array(command_press_6);
+                    if (action == SELECT_CAPPUCCINO)
+                        return;
+                    delay(BUTTON_SEQUENCE_DELAY);
+                    action = PLAY_PAUSE;
+                }
+#endif
                 // press/play or subsequent press/play
                 if (action == PLAY_PAUSE)
                     write_array(command_press_play_pause);
@@ -108,6 +151,11 @@ namespace esphome
                 else if (action == SELECT_SIZE)
                     // size button
                     write_array(command_press_size);
+#if defined(PHILIPS_EP3243)
+                else if (action == SELECT_MILK)
+                    // milk button
+                    write_array(command_press_milk);
+#endif
                 else if (action == SELECT_AQUA_CLEAN)
                     // aqua clean button
                     write_array(command_press_aqua_clean);
@@ -118,5 +166,5 @@ namespace esphome
                     ESP_LOGE(TAG, "Invalid Action provided!");
             }
         } // namespace philips_action_button
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

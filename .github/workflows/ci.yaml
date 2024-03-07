@@ -32,12 +32,12 @@ jobs:
       matrix:
         include:
           - id: test
-            file: tests/full.yaml
-            name: Test tests/full.yaml
+            file: tests/full*.yaml
+            name: Test tests/full
             pio_cache_key: full
           - id: test
-            file: tests/base.yaml
-            name: Test tests/base.yaml
+            file: tests/base*.yaml
+            name: Test tests/base
             pio_cache_key: base
           - id: clang-format
             name: Run clang-format

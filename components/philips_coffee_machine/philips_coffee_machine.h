@@ -20,10 +20,10 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
 
-        class PhilipsSeries2200 : public Component
+        class PhilipsCoffeeMachine : public Component
         {
         public:
             void setup() override;
@@ -187,5 +187,5 @@ namespace esphome
 #endif
         };
 
-    } // namespace philips_series_2200
+    } // namespace philips_coffee_machine
 } // namespace esphome

@@ -12,7 +12,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_action_button
         {
@@ -31,8 +31,15 @@ namespace esphome
                 MAKE_HOT_WATER,
                 SELECT_STEAM,
                 MAKE_STEAM,
+                SELECT_CAPPUCCINO,
+                MAKE_CAPPUCCINO,
+                SELECT_LATTE,
+                MAKE_LATTE,
+                SELECT_AMERICANO,
+                MAKE_AMERICANO,
                 SELECT_BEAN,
                 SELECT_SIZE,
+                SELECT_MILK,
                 SELECT_AQUA_CLEAN,
                 SELECT_CALC_CLEAN,
                 PLAY_PAUSE,
@@ -122,5 +129,5 @@ namespace esphome
                 uint32_t last_message_sent_ = 0;
             };
         } // namespace philips_action_button
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome

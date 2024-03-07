@@ -11,7 +11,7 @@
 
 namespace esphome
 {
-    namespace philips_series_2200
+    namespace philips_coffee_machine
     {
         namespace philips_status_sensor
         {
@@ -38,15 +38,6 @@ namespace esphome
                     if (state != "Off")
                         publish_state("Off");
                 };
-
-                /**
-                 * @brief set the cappuccino flag which indicates if cappuccino is reported instead of steam
-                 *
-                 */
-                void set_use_cappuccino(bool value)
-                {
-                    use_cappuccino_ = value;
-                }
 
                 /**
                  * @brief Published the state if it's different form the currently published state.
@@ -83,12 +74,9 @@ namespace esphome
                 /// @brief status of the play/pause led
                 bool play_pause_led_ = false;
 
-                /// @brief indicates if cappuccino should be reported instead of steam
-                bool use_cappuccino_ = false;
-
                 /// @brief time of play/pause change
                 uint32_t play_pause_last_change_ = 0;
             };
         } // namespace philips_status_sensor
-    }     // namespace philips_series_2200
+    }     // namespace philips_coffee_machine
 } // namespace esphome
