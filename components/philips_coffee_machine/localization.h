@@ -73,7 +73,7 @@ namespace esphome
         const std::string state_coffee_2x_brewing = "Erogazione 2 Caffè";
 
         const std::string state_ground_espresso_selected = "Selezionate Espresso Premacinato";
-        const std::string state_espresso_programming_mode = "Selezionata Modalità programmazione Espresso"";
+        const std::string state_espresso_programming_mode = "Selezionata Modalità programmazione Espresso";
         const std::string state_espresso_selected = "Selezionato Espresso";
         const std::string state_espresso_2x_selected = "Selezionat1 2 Espressi";
         const std::string state_espresso_brewing = "Erogazione Espresso";
