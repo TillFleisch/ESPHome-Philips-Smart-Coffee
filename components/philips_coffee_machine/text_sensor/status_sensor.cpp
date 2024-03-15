@@ -43,7 +43,7 @@ namespace esphome
 #ifdef PHILIPS_EP3243
                 if (data[3] == led_on && data[4] == led_on && data[5] == led_on && data[13] == led_off && data[14] == led_off && data[15] == led_off)
 #else
-                if (data[3] == led_on && data[4] == led_on && data[5] == led_on && data[6] == led_on)
+                if (data[3] == led_on && data[4] == led_on && data[5] == led_on && data[6] != led_off)
 #endif
                 {
                     // selecting a beverage can result in a short "busy" period since the play/pause button has not been blinking
@@ -114,7 +114,7 @@ namespace esphome
                 }
 
                 // Steam selected
-                if (data[3] == led_off && data[4] == led_off && data[5] == led_off && data[6] == led_on)
+                if (data[3] == led_off && data[4] == led_off && data[5] == led_off && data[6] != led_off)
                 {
 #ifdef PHILIPS_EP2235
                     if (is_play_pause_blinking)
