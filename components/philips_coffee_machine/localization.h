@@ -54,6 +54,54 @@ namespace esphome
 
         const std::string state_steam_selected = "Dampf ausgewählt";
         const std::string state_steam_brewing = "Bereitet Dampf zu";
+
+#elif defined(PHILIPS_COFFEE_LANG_it_IT)
+        const std::string state_unknown = "Sconosciuto";
+        const std::string state_off = "Spento";
+        const std::string state_idle = "In Attesa";
+        const std::string state_cleaning = "Pulizia";
+        const std::string state_preparing = "Preparazione";
+        const std::string state_water_empty = "Serbatoio Acqua Vuoto";
+        const std::string state_waste_warning = "Attenzione Contenitore Fondi Caffè";
+        const std::string state_error = "Errore";
+
+        const std::string state_ground_coffee_selected = "Selezionato Caffè Premacinato";
+        const std::string state_coffee_programming_mode = "Selezionata Modalità programmazione Caffè";
+        const std::string state_coffee_selected = "Selezionato Caffè";
+        const std::string state_coffee_2x_selected = "Selezionati 2 Caffè";
+        const std::string state_coffee_brewing = "Erogazione Caffè";
+        const std::string state_coffee_2x_brewing = "Erogazione 2 Caffè";
+
+        const std::string state_ground_espresso_selected = "Selezionate Espresso Premacinato";
+        const std::string state_espresso_programming_mode = "Selezionata Modalità programmazione Espresso";
+        const std::string state_espresso_selected = "Selezionato Espresso";
+        const std::string state_espresso_2x_selected = "Selezionat1 2 Espressi";
+        const std::string state_espresso_brewing = "Erogazione Espresso";
+        const std::string state_espresso_2x_brewing = "Erogazione 2 Espressi";
+
+        const std::string state_ground_americano_selected = "Selezionato Americano Premacinato";
+        const std::string state_americano_programming_mode = "Selezionata Modalità programmazione Americano";
+        const std::string state_americano_selected = "Selezionato Americano";
+        const std::string state_americano_2x_selected = "Selezionati 2 Americani";
+        const std::string state_americano_brewing = "Erogazione Americano";
+        const std::string state_americano_2x_brewing = "Erogazione 2 Americani";
+
+        const std::string state_ground_cappuccino_selected = "Selezionato Cappuccino Premacinato";
+        const std::string state_cappuccino_programming_mode = "Selezionata Modalità programmazione Cappuccino";
+        const std::string state_cappuccino_selected = "Selezionato Cappuccino";
+        const std::string state_cappuccino_brewing = "Erogazione Cappuccino";
+
+        const std::string state_ground_latte_selected = "Selezionato Latte Macchiato Premacinato";
+        const std::string state_latte_programming_mode = "Selezionata Modalità programmazione Latte Macchiato";
+        const std::string state_latte_selected = "Selezionato Latte Macchiato";
+        const std::string state_latte_brewing = "Erogazione Latte Macchiato";
+
+        const std::string state_hot_water_programming_mode = "Selezionata Modalità programmazione Acqua Calda";
+        const std::string state_hot_water_selected = "Selezionata Acqua Calda";
+        const std::string state_hot_water_brewing = "Erogazione Acqua Calda";
+
+        const std::string state_steam_selected = "Vapore Selezionato";
+        const std::string state_steam_brewing = "Erogazione Vapore";
 #else
 #define PHILIPS_COFFEE_LANG_DEFAULT
 #endif

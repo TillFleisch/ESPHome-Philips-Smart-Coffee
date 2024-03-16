@@ -29,7 +29,7 @@ A example configuration can be found [here](example.yaml)
 - **invert_power_pin**(**Optional**: boolean): If set to `true` the output of the power pin will be inverted. Defaults to `false`.
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
-- **language**(**Optional**: int): Status sensor language. Select one of `en-US`, `de-DE`. Defaults to `en-US`.
+- **language**(**Optional**: int): Status sensor language. Select one of `en-US`, `de-DE`, `it-IT`. Defaults to `en-US`.
 - **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`.
 
 ## Philips Power switch
