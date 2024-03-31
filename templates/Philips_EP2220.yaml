@@ -1,0 +1,121 @@
+substitutions:
+  name: "philips-coffee-machine"
+  friendly_name: "Coffee Machine"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+
+  project:
+    name: TillFleisch.ESPHome-Philips-Smart-Coffee
+    version: "1.0"
+
+esp8266:
+  board: esp12e
+
+dashboard_import:
+  package_import_url: github://TillFleisch/ESPHome-Philips-Smart-Coffee/templates/Philips_EP2220.yaml@main
+
+logger:
+  baud_rate: 0
+
+api:
+
+ota:
+
+wifi:
+  ap:
+
+captive_portal:
+
+external_components:
+  - source: github://TillFleisch/ESPHome-Philips-Smart-Coffee@main
+
+uart:
+  # UART connected to the mainboard
+  - tx_pin: GPIO1
+    rx_pin: GPIO3
+    baud_rate: 115200
+    id: uart_mainboard
+
+  # UART connected to the display
+  - tx_pin: GPIO15
+    rx_pin: GPIO13
+    baud_rate: 115200
+    id: uart_display
+
+philips_coffee_machine:
+  display_uart: uart_display
+  mainboard_uart: uart_mainboard
+  power_pin: GPIO12
+  id: coffee_machine
+  language: en-US
+
+text_sensor:
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    id: status
+    name: "Status"
+
+switch:
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    name: "Power"
+    icon: mdi:coffee-maker
+
+button:
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: SELECT_COFFEE
+    name: "Select Coffee"
+    icon: mdi:coffee
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: SELECT_ESPRESSO
+    name: "Select Espresso"
+    icon: mdi:coffee
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: SELECT_HOT_WATER
+    name: "Select Hot Water"
+    icon: mdi:tea
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: SELECT_STEAM
+    name: "Select Steam"
+    icon: mdi:heat-wave
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: MAKE_COFFEE
+    name: "Make Coffee"
+    icon: mdi:coffee
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: MAKE_ESPRESSO
+    name: "Make Espresso"
+    icon: mdi:coffee
+
+  - platform: philips_coffee_machine
+    controller_id: coffee_machine
+    action: PLAY_PAUSE
+    name: "Select play/pause"
+    icon: mdi:play-pause
+
+number:
+  - platform: philips_coffee_machine
+    type: bean
+    controller_id: coffee_machine
+    status_sensor_id: status
+    name: "Beverage Strength"
+
+  - platform: philips_coffee_machine
+    type: size
+    controller_id: coffee_machine
+    status_sensor_id: status
+    name: "Beverage Size"

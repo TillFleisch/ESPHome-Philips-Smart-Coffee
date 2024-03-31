@@ -9,10 +9,14 @@ Currently supported Coffee Machine models include:
 |Series 2200| `EP2220`, `EP2235`  |
 |Series 3200| `EP3243`, `EP3246`  |
 
+My modified `EP2220`:
+![Modified Coffee Machine](images/machine_inside.jpg)
+More information about the PCB used in this image is available [here](#custom-pcb).
+
 This component provides a `Power Switch`, a `Status sensor` and various `Buttons` which simulate user input as well as a `Number` component to customize beverage settings such as size and strength.
 The `Power Switch` can be used to turn on the coffee machine with and without a cleaning cycle during startup.
 
-![Provided entities in HomeAssistant](ha_entities.png)
+![Provided entities in HomeAssistant](images/ha_entities.png)
 
 You might break/brick your coffee machine by modifying it in any way, shape or form. If you want to use this component, do so at your own risk.
 
@@ -104,8 +108,8 @@ The RX/TX lines are piped through the ESP such that messages can be read, interc
 
 When injecting a 'turn coffee machine on' command, the coffee machine does turn on, but the display unit does not. To circumvent this behavior we can re-boot the display unit by temporarily removing it's power. Thus the display will power on and operate normally. To perform this operation a transistor or MOSFET can be used.
 
-The following wiring guideline can be used to add a Wemos D1 Mini to the coffee machine. **The unlabeled wires should be connected without changes.**
-![Wiring guide](wiring.png)
+The following wiring guideline can be used to add a Wemos D1 Mini to the coffee machine. **The unlabeled wires should be connected without changes.** More schematics are available [here](#custom-pcb).
+![Wiring guide](images/wiring.png)
 
 The ribbon cable wires have the following functionalities.
 
@@ -123,6 +127,17 @@ The ribbon cable wires have the following functionalities.
 ## Voltage regulation
 
 The Wemos D1 Mini has a built in Voltage regulator, thus connecting it to the 5V provided by the mainboard is no problem. If you use a different ESP Module/Board please make sure it is 5V tolerant or use a Voltage regulator. Otherwise you might release magic smoke.
+
+# Custom PCB
+
+This project has convinced me to design my first PCB (printed circuit board). This rather simple ESP8266-12F-based design was inspired by the Wemos D1 Mini, which I was using previously.
+When using this PCB the ribbon cable connecting the mainboard to the display must not be cut in half and no soldering is required.
+
+![PCB Front side](images/pcb.jpg)
+
+The Schematics, PCB Layout and BOM are available [here on oshwlab.com](https://oshwlab.com/tillf/philips-smart-coffee-pcb) and an accompanying 3D-printable case for the small PCB is available [here on printables.com](https://www.printables.com/model/826691-smart-coffee-pcb-case). The SMD components were chosen such that they can still be hand-soldered without a hot-air station or reflow oven, given a little experience. Since this is my first design there may be mistakes and things that could be optimized. Everything is provided as is, without warranty or liability of any kind.
+
+There are also other PCB designs like [this one](https://oshwlab.com/tradstaat/coffeepcb) which relies on using a Wemos D1 Mini and does not require soldering SMD components.
 
 # Communication protocol
 
