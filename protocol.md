@@ -108,12 +108,13 @@ The following table show the purpose of each byte and their known states
 | 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
 | 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
 | 11   | Size-LED          | `07` - show led group                                          |
-| 12   |                   | probably aqua_clean/calc_clean                                 |
-| 13   |                   | probably aqua_clean/calc_clean                                 |
-| 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
-| 15   | Play/Pause-LED    | `07` - on                                                      |
-| 16   | checksum          |                                                                |
+| 12   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 13   |                   | unknown - probably unused                                      |
+| 14   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 15   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
+| 16   | Play/Pause-LED    | `07` - on                                                      |
 | 17   | checksum          |                                                                |
+| 18   | checksum          |                                                                |
 
 ## Off LED states
 
@@ -144,12 +145,13 @@ The `Steam` option has been replaced with `Cappuccino`.
 | 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
 | 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
 | 11   | Size-LED          | `07` - show led group                                          |
-| 12   |                   | probably aqua_clean/calc_clean                                 |
-| 13   |                   | probably aqua_clean/calc_clean                                 |
-| 14   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
-| 15   | Play/Pause-LED    | `07` - on                                                      |
-| 16   | checksum          |                                                                |
+| 12   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 13   |                   | unknown - probably unused                                      |
+| 14   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 15   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
+| 16   | Play/Pause-LED    | `07` - on                                                      |
 | 17   | checksum          |                                                                |
+| 18   | checksum          |                                                                |
 
 ### EP3243/EP3246
 
@@ -170,11 +172,12 @@ Note that the milk option is always available when size selection is also availa
 | 9    | Bean-LED                   | `07` - show led group; `38` - powder selected                     |
 | 10   | Size-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED       |
 | 11   | Size-LED                   | `07` - show led group (size and milk)                             |
-| 12   |                            |  probably aqua_clean/calc_clean                                   |
+| 12   |                            | unknown - probably aqua_clean/calc_clean                          |
 | 13   | Milk-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                        |
-| 14   | Waste&Warning-LED          | `07` - waste; `38` - warning sign                                 |
-| 15   | Play/Pause-LED             | `07` - on                                                         |
-| 16   | checksum                   |                                                                   |
+| 14   |                            | unknown - probably aqua_clean/calc_clean                          |
+| 15   | Waste&Warning-LED          | `07` - waste; `38` - warning sign                                 |
+| 16   | Play/Pause-LED             | `07` - on                                                         |
 | 17   | checksum                   |                                                                   |
+| 18   | checksum                   |                                                                   |
 
 Messages from the display to the mainboard can be found [here](components/philips_coffee_machine/commands.h).
