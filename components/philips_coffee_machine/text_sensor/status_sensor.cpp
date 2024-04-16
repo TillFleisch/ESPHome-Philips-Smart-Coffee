@@ -114,7 +114,7 @@ namespace esphome
                 }
 
                 // Steam selected
-                if (data[3] == led_off && data[4] == led_off && data[5] == led_off && data[6] != led_off)
+                if (data[3] == led_off && data[4] == led_off && data[5] == led_off && (data[6] == led_on || data[6] == led_third))
                 {
 #ifdef PHILIPS_EP2235
                     if (is_play_pause_blinking)
