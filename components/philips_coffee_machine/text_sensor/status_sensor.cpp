@@ -1,5 +1,6 @@
 #include "esphome/core/log.h"
 #include "status_sensor.h"
+#include <string>
 
 namespace esphome
 {
@@ -70,7 +71,8 @@ namespace esphome
                  // All 3 warning leds(check 2)
                 if (data[15] != led_off && data[14] == led_second)
                 {
-                    update_state(state_internal_error + s(data[15]));
+                    string s(data[15]);
+                    update_state(state_internal_error + s);
                     return;
                 }
 
