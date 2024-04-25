@@ -67,6 +67,20 @@ namespace esphome
                     return;
                 }
 
+                 // All 3 warning leds(check 2)
+                if (data[15] == led_second && data[14] == led_second)
+                {
+                    update_state("Internal " + state_error + " (" + std::to_string(data) + ")");
+                    return;
+                }
+
+                // Warning/Error led
+                if (data[15] == led_second)
+                {
+                    update_state(state_error);
+                    return;
+                }
+
                 // Water empty led
                 if (data[14] == led_second)
                 {
@@ -81,13 +95,7 @@ namespace esphome
                     return;
                 }
 
-                // Warning/Error led
-                if (data[15] == led_second)
-                {
-                    update_state(state_error);
-                    return;
-                }
-
+                
                 // Coffee selected
                 if (data[3] == led_off && data[4] == led_off && (data[5] == led_on || data[5] == led_second) && data[6] == led_off)
                 {

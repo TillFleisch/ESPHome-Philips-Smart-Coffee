@@ -1,5 +1,6 @@
 /.esphome/
 .vscode/
+.vs/
 /tests/.gitignore
 /secrets.yaml
 */__pycache__/
