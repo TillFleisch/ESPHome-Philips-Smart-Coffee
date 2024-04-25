@@ -71,7 +71,7 @@ namespace esphome
                  // All 3 warning leds(check 2)
                 if (data[15] != led_off && data[14] == led_second)
                 {
-                    string s(data[15]);
+                    std::string s(data[15]);
                     update_state(state_internal_error + s);
                     return;
                 }
