@@ -16,6 +16,7 @@ namespace esphome
         const std::string state_water_empty = "Wasser leer";
         const std::string state_waste_warning = "Abfallcontainerwarnung";
         const std::string state_error = "Fehler";
+        const std::string state_internal_error = "Interner Fehler";
 
         const std::string state_ground_coffee_selected = "Vorgemahlener Kaffee ausgewählt";
         const std::string state_coffee_programming_mode = "Kaffee Programmiermodus ausgewählt";
@@ -64,6 +65,7 @@ namespace esphome
         const std::string state_water_empty = "Serbatoio Acqua Vuoto";
         const std::string state_waste_warning = "Attenzione Contenitore Fondi Caffè";
         const std::string state_error = "Errore";
+        const std::string state_internal_error = "Errore interno";
 
         const std::string state_ground_coffee_selected = "Selezionato Caffè Premacinato";
         const std::string state_coffee_programming_mode = "Selezionata Modalità programmazione Caffè";
@@ -115,6 +117,7 @@ namespace esphome
         const std::string state_water_empty = "Water empty";
         const std::string state_waste_warning = "Waste container warning";
         const std::string state_error = "Error";
+        const std::string state_internal_error = "Internal Error";
 
         const std::string state_ground_coffee_selected = "Pre-ground Coffee selected";
         const std::string state_coffee_programming_mode = "Coffee programming mode selected";
