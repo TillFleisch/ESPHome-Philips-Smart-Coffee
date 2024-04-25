@@ -75,7 +75,7 @@ namespace esphome
                     char str[(sizeof data) + 1];
                     memcpy(str, data, sizeof data);
                     str[sizeof data] = 0; // Null termination.
-                    update_state(state_internal_error + s);
+                    update_state(state_internal_error + str);
                     return;
                 }
 
