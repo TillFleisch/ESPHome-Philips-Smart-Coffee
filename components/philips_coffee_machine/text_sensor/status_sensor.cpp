@@ -1,5 +1,6 @@
 #include "esphome/core/log.h"
 #include "status_sensor.h"
+#include <string>
 
 namespace esphome
 {
