@@ -71,7 +71,7 @@ namespace esphome
                  // All 3 warning leds(check 2)
                 if (data[15] == led_second && data[14] == led_second)
                 {
-                    update_state("Internal " + state_error + " (" + sString((char *)data) + ")");
+                    update_state("Internal " + state_error + " (" + String((char *)data) + ")");
                     return;
                 }
 
