@@ -52,19 +52,13 @@ namespace esphome
 
                     std::string res;
                     uint8_t separator = ' ';
-                    size_t len = data.size();
-                    char buf[5];
                     for (size_t i = 0; i < len; i++)
                     {
-                        if (i > 0)
-                        {
-                            res += separator;
-                        }
-                        sprintf(buf, "%02X", data[i]);
-                        res += buf;
+                        res += separator;
+                        res += data[i];
                     }
 
-                    update_state(state_idle + separator + res);
+                    update_state(state_idle + res);
                     return;
                 }
 
