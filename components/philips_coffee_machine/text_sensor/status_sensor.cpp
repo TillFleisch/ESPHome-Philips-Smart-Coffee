@@ -50,15 +50,7 @@ namespace esphome
                     // This can be circumvented: if the user is on the selection screen/idle we can reset the timer
                     play_pause_last_change_ = millis();
 
-                    std::string res;
-                    uint8_t separator = ' ';
-                    for (size_t i = 0; i < len; i++)
-                    {
-                        res += separator;
-                        res += data[i];
-                    }
-
-                    update_state(state_idle + res);
+                    update_state(state_idle);
                     return;
                 }
 
