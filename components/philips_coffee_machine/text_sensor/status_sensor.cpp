@@ -67,6 +67,20 @@ namespace esphome
                     return;
                 }
 
+                // 3 warning lights indicate an internal error (i.e. overheating)
+                if (data[15] != led_off && data[14] == led_second)
+                {
+                    update_state(state_internal_error);
+                    return;
+                }
+
+                // Warning/Error led
+                if (data[15] == led_second)
+                {
+                    update_state(state_error);
+                    return;
+                }
+
                 // Water empty led
                 if (data[14] == led_second)
                 {
@@ -78,13 +92,6 @@ namespace esphome
                 if (data[15] == led_on)
                 {
                     update_state(state_waste_warning);
-                    return;
-                }
-
-                // Warning/Error led
-                if (data[15] == led_second)
-                {
-                    update_state(state_error);
                     return;
                 }
 
