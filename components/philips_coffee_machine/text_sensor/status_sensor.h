@@ -7,7 +7,7 @@
 #include "../localization.h"
 
 // Feel free to lower this, you might get some invalid intermittent state though
-#define REPEAT_REQUIREMENT 30
+#define REPEAT_REQUIREMENT 60
 #define BLINK_THRESHOLD 750
 
 namespace esphome
