@@ -103,14 +103,14 @@ The following table show the purpose of each byte and their known states
 | 4    | Hot Water-LED     | `03`/`07` - half/full brightness                               |
 | 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee             |
 | 6    | Steam-LED         | `03`/`07` - half/full brightness                               |
-| 7    |                   | unknown                                                        |
+| 7    |                   | unknown - probably unused                                      |
 | 8    | Bean-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                     |
 | 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
 | 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
-| 11   | Size-LED          | `07` - show led group                                          |
-| 12   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 11   | Size/AquaClean-LED| `07` - show led group; `38` - aqua-clean-orange                |
+| 12   | Calc/Clean        | `00` - both off; `38` - calc/clean-orange; other states unknown|
 | 13   |                   | unknown - probably unused                                      |
-| 14   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 14   | Empty Water-LED   | `38` - water empty                                             |
 | 15   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
 | 16   | Play/Pause-LED    | `07` - on                                                      |
 | 17   | checksum          |                                                                |
@@ -140,14 +140,14 @@ The `Steam` option has been replaced with `Cappuccino`.
 | 4    | Hot Water-LED     | `03`/`07` - half/full brightness                               |
 | 5    | Coffee-LED        | `03`/`07` - half/full brightness; `38` - 2x coffee             |
 | 6    | Cappuccino-LED    | `03`/`07` - half/full brightness;                              |
-| 7    |                   | unknown                                                        |
+| 7    |                   | unknown - probably unused                                      |
 | 8    | Bean-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                     |
 | 9    | Bean-LED          | `07` - show led group; `38` - powder selected                  |
 | 10   | Size-LED          | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED    |
-| 11   | Size-LED          | `07` - show led group                                          |
-| 12   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 11   | Size/AquaClean-LED| `07` - show led group; `38` - aqua-clean-orange                |
+| 12   | Calc/Clean        | `00` - both off; `38` - calc/clean-orange; other states unknown|
 | 13   |                   | unknown - probably unused                                      |
-| 14   |                   | unknown - probably aqua_clean/calc_clean                       |
+| 14   | Empty Water-LED   | `38` - water empty                                             |
 | 15   | Waste&Warning-LED | `07` - waste; `38` - warning sign                              |
 | 16   | Play/Pause-LED    | `07` - on                                                      |
 | 17   | checksum          |                                                                |
@@ -171,10 +171,10 @@ Note that the milk option is always available when size selection is also availa
 | 8    | Bean-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                        |
 | 9    | Bean-LED                   | `07` - show led group; `38` - powder selected                     |
 | 10   | Size-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs; `07` -  Top LED       |
-| 11   | Size-LED                   | `07` - show led group (size and milk)                             |
-| 12   |                            | unknown - probably aqua_clean/calc_clean                          |
+| 11   | Size-AquaClean-LED         | `07` - show led group (size and milk); `38` - aqua-clean-orange   |
+| 12   | Calc/Clean                 | `00` - both off; `38` - calc/clean-orange; other states unknown   |
 | 13   | Milk-LED                   | `00` - 1 LED; `38` - 2 LEDs; `3F` - 3 LEDs                        |
-| 14   |                            | unknown - probably aqua_clean/calc_clean                          |
+| 14   | Empty Water-LED            | `38` - water empty                                                |
 | 15   | Waste&Warning-LED          | `07` - waste; `38` - warning sign                                 |
 | 16   | Play/Pause-LED             | `07` - on                                                         |
 | 17   | checksum                   |                                                                   |
