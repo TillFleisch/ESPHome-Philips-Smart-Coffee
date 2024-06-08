@@ -28,8 +28,9 @@ namespace esphome
 
                 /**
                  * @brief Updates the status of this sensor based on the messages sent by the mainboard
+                 * @param data incoming data from the motherboard (19 bytes)
                  */
-                void update_status(uint8_t *data, size_t len);
+                void update_status(uint8_t *data);
 
                 /**
                  * @brief Sets the status to Off

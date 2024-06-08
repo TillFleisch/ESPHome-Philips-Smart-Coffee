@@ -110,10 +110,9 @@ namespace esphome
 
                 /**
                  * @brief Updates the sensor value based on the incoming messages.
-                 * @param data incoming data from the motherboard
-                 * @param len length of the incoming data
+                 * @param data incoming data from the motherboard (19 bytes)
                  */
-                void update_status(uint8_t *data, size_t len);
+                void update_status(uint8_t *data);
 
             private:
                 /// @brief Setting type to which this component applies

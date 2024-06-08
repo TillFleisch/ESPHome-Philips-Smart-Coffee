@@ -18,13 +18,8 @@ namespace esphome
                 ESP_LOGCONFIG(TAG, "Philips Status Text Sensor");
             }
 
-            void StatusSensor::update_status(uint8_t *data, size_t len)
+            void StatusSensor::update_status(uint8_t *data)
             {
-                // reject invalid messages
-                if (len < 19 && data[0] != message_header[0] && data[1] != message_header[1])
-                    return;
-
-                // TODO: figure out how the checksum is calculated and only parse valid messages
 
                 // Check if the play/pause button is on/off/blinking
                 if ((data[16] == led_on) != play_pause_led_)

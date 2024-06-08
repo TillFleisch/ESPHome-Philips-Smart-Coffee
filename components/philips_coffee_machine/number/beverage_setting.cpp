@@ -23,11 +23,8 @@ namespace esphome
                 target_amount_ = (std::isnan(value) || std::isnan(state)) ? -1 : value;
             }
 
-            void BeverageSetting::update_status(uint8_t *data, size_t len)
+            void BeverageSetting::update_status(uint8_t *data)
             {
-                // reject invalid messages
-                if (len < 19 && data[0] != message_header[0] && data[1] != message_header[1])
-                    return;
 
                 if (!status_sensor_->has_state())
                     return;

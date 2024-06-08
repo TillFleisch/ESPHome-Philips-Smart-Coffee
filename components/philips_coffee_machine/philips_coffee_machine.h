@@ -148,6 +148,9 @@ namespace esphome
             uint32_t last_message_from_mainboard_time_ = 0;
             uint32_t last_message_from_display_time_ = 0;
 
+            /// @brief the last received mainboard message checksum; new messages are compared to this as a kind of pseudo-checksum
+            uint8_t last_mainboard_message_checksum_[2] = {0x00};
+
             /// @brief reference to uart connected to the display unit
             uart::UARTDevice display_uart_;
 
