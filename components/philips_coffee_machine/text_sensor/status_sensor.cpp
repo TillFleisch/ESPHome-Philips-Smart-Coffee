@@ -67,7 +67,7 @@ namespace esphome
                     return;
                 }
 
-                 // All 3 warning leds(check 2)
+                // 3 warning lights indicate an internal error (i.e. overheating)
                 if (data[15] != led_off && data[14] == led_second)
                 {
                     update_state(state_internal_error);
@@ -95,7 +95,6 @@ namespace esphome
                     return;
                 }
 
-                
                 // Coffee selected
                 if (data[3] == led_off && data[4] == led_off && (data[5] == led_on || data[5] == led_second) && data[6] == led_off)
                 {
