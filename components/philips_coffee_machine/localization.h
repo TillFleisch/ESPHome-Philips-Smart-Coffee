@@ -104,6 +104,55 @@ namespace esphome
 
         const std::string state_steam_selected = "Vapore Selezionato";
         const std::string state_steam_brewing = "Erogazione Vapore";
+
+#elif defined(PHILIPS_COFFEE_LANG_hu_HU)
+        const std::string state_unknown = "Ismeretlen";
+        const std::string state_off = "Kikapcsolva";
+        const std::string state_idle = "Készenlét";
+        const std::string state_cleaning = "Öblítés";
+        const std::string state_preparing = "Előkészítés";
+        const std::string state_water_empty = "Víztartály üres";
+        const std::string state_waste_warning = "Zacctartály megtelt";
+        const std::string state_error = "Hiba";
+        const std::string state_internal_error = "Belső hiba";
+
+        const std::string state_ground_coffee_selected = "Őrölt kávé kiválasztva";
+        const std::string state_coffee_programming_mode = "Kávé programozási mód kiválasztva";
+        const std::string state_coffee_selected = "Kávé kiválasztva";
+        const std::string state_coffee_2x_selected = "2x kávé kiválasztva";
+        const std::string state_coffee_brewing = "Kávé készítése";
+        const std::string state_coffee_2x_brewing = "2x kávé készítése";
+
+        const std::string state_ground_espresso_selected = "Őrölt eszpresszó kiválasztva";
+        const std::string state_espresso_programming_mode = "Eszpresszó programozási mód kiválasztva";
+        const std::string state_espresso_selected = "Eszpresszó kiválasztva";
+        const std::string state_espresso_2x_selected = "2x eszpresszó kiválasztva";
+        const std::string state_espresso_brewing = "Eszpresszó készítése";
+        const std::string state_espresso_2x_brewing = "2x eszpresszó készítése";
+
+        const std::string state_ground_americano_selected = "Őrölt americano kiválasztva";
+        const std::string state_americano_programming_mode = "Americano programozási mód kiválasztva";
+        const std::string state_americano_selected = "Americano kiválasztva";
+        const std::string state_americano_2x_selected = "2x americano kiválasztva";
+        const std::string state_americano_brewing = "Americano készítése";
+        const std::string state_americano_2x_brewing = "2x americano készítése";
+
+        const std::string state_ground_cappuccino_selected = "Őrölt cappuccino kiválasztva";
+        const std::string state_cappuccino_programming_mode = "Cappuccino programozási mód kiválasztva";
+        const std::string state_cappuccino_selected = "Cappuccino kiválasztva";
+        const std::string state_cappuccino_brewing = "Cappuccino készítése";
+
+        const std::string state_ground_latte_selected = "Őrölt latte macchiato kiválasztva";
+        const std::string state_latte_programming_mode = "Latte macchiato programozási mód kiválasztva";
+        const std::string state_latte_selected = "Latte macchiato kiválasztva";
+        const std::string state_latte_brewing = "Latte macchiato készítése";
+
+        const std::string state_hot_water_programming_mode = "Forró víz programozási mód kiválasztva";
+        const std::string state_hot_water_selected = "Forró víz kiválasztva";
+        const std::string state_hot_water_brewing = "Forró víz készítése";
+
+        const std::string state_steam_selected = "Gőz kiválasztva";
+        const std::string state_steam_brewing = "Gőz készítése";
 #else
 #define PHILIPS_COFFEE_LANG_DEFAULT
 #endif
