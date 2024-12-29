@@ -29,6 +29,7 @@ LANGUAGES = {
     "en-US": "PHILIPS_COFFEE_LANG_en_US",
     "de-DE": "PHILIPS_COFFEE_LANG_de_DE",
     "it-IT": "PHILIPS_COFFEE_LANG_it_IT",
+    "hu-HU": "PHILIPS_COFFEE_LANG_hu_HU",
 }
 
 philips_coffee_machine_ns = cg.esphome_ns.namespace("philips_coffee_machine")
