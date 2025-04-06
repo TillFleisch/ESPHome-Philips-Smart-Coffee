@@ -27,6 +27,8 @@ namespace esphome
                 MAKE_COFFEE,
                 SELECT_ESPRESSO,
                 MAKE_ESPRESSO,
+                SELECT_ESPRESSO_LUNGO,
+                MAKE_ESPRESSO_LUNGO,
                 SELECT_HOT_WATER,
                 MAKE_HOT_WATER,
                 SELECT_STEAM,
@@ -108,6 +110,8 @@ namespace esphome
                  *
                  */
                 void press_action() override;
+
+                void execute_command(const std::vector<uint8_t> &command);
 
                 /**
                  * @brief Writes the button to uart or initializes loop based message sending

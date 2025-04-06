@@ -8,7 +8,7 @@ namespace esphome
     {
 #if defined(PHILIPS_EP2220) || defined(PHILIPS_EP2235)
 #define USE_DEFAULT_PHILIPS_COMMAND_SET
-#elif defined(PHILIPS_EP3243)
+#elif defined(PHILIPS_EP3243) || defined(PHILIPS_EP3221)
         // Note that the EP3243 and EP3246 are identical except for cosmetic differences
         const uint8_t message_header[2] = {0xD5, 0x55};
         const uint8_t led_off = 0x00;
@@ -27,22 +27,22 @@ namespace esphome
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x01, 0x00, 0x00, 0x39, 0x39};
         const std::vector<uint8_t> command_press_play_pause =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x00, 0x00, 0x01, 0x3D, 0x30};
-        /// @brief EP3243: Press Coffee Button
+        /// @brief EP3243: Press Coffee Button; EP3221: Press Espresso Lungo Button
         const std::vector<uint8_t> command_press_1 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x08, 0x00, 0x00, 0x1D, 0x1E};
         /// @brief EP3243: Press Espresso Button
         const std::vector<uint8_t> command_press_2 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x02, 0x00, 0x00, 0x2D, 0x2F};
-        /// @brief EP3243: Press Hot water Button
+        /// @brief EP3243: Press Hot water Button; EP3221: Press Steam Button
         const std::vector<uint8_t> command_press_3 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x00, 0x01, 0x00, 0x39, 0x38};
-        /// @brief EP3243: Press Latte Button
+        /// @brief EP3243: Press Latte Button; EP3221: Press Hot water Button
         const std::vector<uint8_t> command_press_4 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x10, 0x00, 0x00, 0x2D, 0x24};
-        /// @brief EP3243: Press Americano Button
+        /// @brief EP3243: Press Americano Button; EP3221: Press Coffee Button
         const std::vector<uint8_t> command_press_5 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x20, 0x00, 0x00, 0x04, 0x15};
-        /// @brief EP3243: Press cappuccino Button
+        /// @brief EP3243: Press Cappuccino Button; EP3221: Press Americano Button
         const std::vector<uint8_t> command_press_6 =
             {0xD5, 0x55, 0x00, 0x01, 0x03, 0x00, 0x0E, 0x04, 0x00, 0x00, 0x05, 0x03};
         const std::vector<uint8_t> command_press_bean =
