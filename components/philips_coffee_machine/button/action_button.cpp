@@ -73,7 +73,7 @@ namespace esphome
                 ) return;
 
                 delay(BUTTON_SEQUENCE_DELAY);
-                action = PLAY_PAUSE;
+                write_array(command_press_play_pause);
 
             }
 
