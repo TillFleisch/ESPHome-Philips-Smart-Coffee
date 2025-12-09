@@ -12,13 +12,17 @@ CLEAN_DURING_START = "clean"
 power_switch_namespace = philips_coffee_machine_ns.namespace("philips_power_switch")
 PowerSwitch = power_switch_namespace.class_("Power", switch.Switch, cg.Component)
 
-CONFIG_SCHEMA = switch.SWITCH_SCHEMA.extend(
-    {
-        cv.GenerateID(): cv.declare_id(PowerSwitch),
-        cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
-        cv.Optional(CLEAN_DURING_START, default=True): cv.boolean,
-    }
-).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = (
+    switch.switch_schema(PowerSwitch)
+    .extend(
+        {
+            cv.GenerateID(): cv.declare_id(PowerSwitch),
+            cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
+            cv.Optional(CLEAN_DURING_START, default=True): cv.boolean,
+        }
+    )
+    .extend(cv.COMPONENT_SCHEMA)
+)
 
 
 def to_code(config):

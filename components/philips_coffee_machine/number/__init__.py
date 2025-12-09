@@ -48,7 +48,8 @@ def validate_enum(config):
 
 
 CONFIG_SCHEMA = cv.Any(
-    number.NUMBER_SCHEMA.extend(
+    number.number_schema(BeverageSettings)
+    .extend(
         {
             cv.GenerateID(): cv.declare_id(BeverageSettings),
             cv.Required(CONTROLLER_ID): cv.use_id(PhilipsCoffeeMachine),
@@ -61,7 +62,8 @@ CONFIG_SCHEMA = cv.Any(
                 SOURCES, upper=True, space="_"
             ),
         }
-    ).extend(cv.COMPONENT_SCHEMA),
+    )
+    .extend(cv.COMPONENT_SCHEMA),
     validate_enum,
 )
 
