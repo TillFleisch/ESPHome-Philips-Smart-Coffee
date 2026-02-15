@@ -7,7 +7,7 @@ Currently supported Coffee Machine models include:
 |Series     | Model Number        |
 |-----------|---------------------|
 |Series 2200| `EP2220`, `EP2235`  |
-|Series 3200| `EP3243`, `EP3246`  |
+|Series 3200| `EP3221`, `EP3243`, `EP3246`  |
 
 My modified `EP2220`:
 ![Modified Coffee Machine](images/machine_inside.jpg)
@@ -34,7 +34,7 @@ A example configuration can be found [here](example.yaml)
 - **power_trip_delay**(**Optional**: Time): Determines the length of the power outage applied to the display unit, which is to trick it into turning on. Defaults to `500ms`.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
 - **language**(**Optional**: int): Status sensor language. Select one of `en-US`, `de-DE`, `it-IT`, `hu-HU`. Defaults to `en-US`.
-- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`.
+- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3221`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`.
 
 ## Philips Power switch
 
@@ -45,7 +45,7 @@ A example configuration can be found [here](example.yaml)
 ## Action Button
 
 - **controller_id**(**Required**, string): The Philips Coffee Machine-Controller to which this entity belongs
-- **action**(**Required**, int): The action performed by this button. Select one of `SELECT_COFFEE`, `MAKE_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `SELECT_CAPPUCCINO`, `MAKE_CAPPUCCINO`, `SELECT_LATTE`, `MAKE_LATTE`, `SELECT_AMERICANO`, `MAKE_AMERICANO`, `BEAN`, `SIZE`, `MILK`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`. Note that some options are only available on select models.
+- **action**(**Required**, int): The action performed by this button. Select one of `SELECT_COFFEE`, `MAKE_COFFEE`, `SELECT_ESPRESSO`, `MAKE_ESPRESSO`, `SELECT_ESPRESSO_LUNGO`, `MAKE_ESPRESSO_LUNGO`,`SELECT_HOT_WATER`, `MAKE_HOT_WATER`, `SELECT_STEAM`, `MAKE_STEAM`, `SELECT_CAPPUCCINO`, `MAKE_CAPPUCCINO`, `SELECT_LATTE`, `MAKE_LATTE`, `SELECT_AMERICANO`, `MAKE_AMERICANO`, `BEAN`, `SIZE`, `MILK`, `AQUA_CLEAN`, `CALC_CLEAN`, `PLAY_PAUSE`. Note that some options are only available on select models.
 - **long_press**(**Optional**, boolean): If set to `true` this button will perform a long press. This option is only available for actions which don't include `MAKE`.
 - All other options from [Button](https://esphome.io/components/button/index.html#config-button)
 

@@ -55,116 +55,132 @@ namespace esphome
                 }
             }
 
+            void ActionButton::execute_command(const std::vector<uint8_t> &command)
+            {
+                auto action = action_;
+
+                write_array(command);
+                
+                if (
+                    action == SELECT_COFFEE 
+                    || action == SELECT_ESPRESSO
+                    || action == SELECT_ESPRESSO_LUNGO
+                    || action == SELECT_HOT_WATER
+                    || action == SELECT_STEAM
+                    || action == SELECT_CAPPUCCINO
+                    || action == SELECT_LATTE
+                    || action == SELECT_AMERICANO
+                ) return;
+
+                delay(BUTTON_SEQUENCE_DELAY);
+                write_array(command_press_play_pause);
+
+            }
+
             void ActionButton::perform_action()
             {
                 auto action = action_;
-                // Coffee
-                if (action == SELECT_COFFEE || action == MAKE_COFFEE)
-                {
-                    write_array(command_press_1);
-                    if (action == SELECT_COFFEE)
-                        return;
 
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
+                // These are what the commands are mapped to.
+                // command[0] - Coffee
+                // command[1] - Espresso
+                // command[2] - Hot Water
+                // command[3] - Steam
+                // command[4] - Cappuccino
+                // command[5] - Latte
+                // command[6] - Americano
+                // command[7] - Espresso Lungo
 
-                // Espresso
-                if (action == SELECT_ESPRESSO || action == MAKE_ESPRESSO)
-                {
-                    write_array(command_press_2);
-                    if (action == SELECT_ESPRESSO)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
+                // Default for most models
+                std::vector<uint8_t> command[8] {
+                    command_press_1,
+                    command_press_2,
+                    command_press_3
+                };
 
-                // Hot water
-                if (action == SELECT_HOT_WATER || action == MAKE_HOT_WATER)
-                {
-                    write_array(command_press_3);
-                    if (action == SELECT_HOT_WATER)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
+                // command additions and overrides for specific models
+                #ifdef PHILIPS_EP2220
+                    command[3] = command_press_4;
+                #endif
 
-#ifdef PHILIPS_EP2220
-                // Steam
-                if (action == SELECT_STEAM || action == MAKE_STEAM)
-                {
-                    write_array(command_press_4);
-                    if (action == SELECT_STEAM)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
-#endif
-#ifdef PHILIPS_EP2235
-                // Cappuccino
-                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
-                {
-                    write_array(command_press_4);
-                    if (action == SELECT_CAPPUCCINO)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
-#endif
-#ifdef PHILIPS_EP3243
-                // Latte
-                if (action == SELECT_LATTE || action == MAKE_LATTE)
-                {
-                    write_array(command_press_4);
-                    if (action == SELECT_LATTE)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
+                #ifdef PHILIPS_EP2235
+                    command[4] = command_press_4;
+                #endif
 
-                // Americano
-                if (action == SELECT_AMERICANO || action == MAKE_AMERICANO)
-                {
-                    write_array(command_press_5);
-                    if (action == SELECT_AMERICANO)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
+                #ifdef PHILIPS_EP3221
+                    command[0] = command_press_5;
+                    command[2] = command_press_4;
+                    command[3] = command_press_3;
+                    command[6] = command_press_6;
+                    command[7] = command_press_1;
+                #endif
 
-                // Cappuccino
-                if (action == SELECT_CAPPUCCINO || action == MAKE_CAPPUCCINO)
-                {
-                    write_array(command_press_6);
-                    if (action == SELECT_CAPPUCCINO)
-                        return;
-                    delay(BUTTON_SEQUENCE_DELAY);
-                    action = PLAY_PAUSE;
-                }
-#endif
-                // press/play or subsequent press/play
-                if (action == PLAY_PAUSE)
-                    write_array(command_press_play_pause);
-                else if (action == SELECT_BEAN)
-                    // bean button
-                    write_array(command_press_bean);
-                else if (action == SELECT_SIZE)
-                    // size button
-                    write_array(command_press_size);
+                #ifdef PHILIPS_EP3243
+                    command[4] = command_press_6;
+                    command[5] = command_press_4;
+                    command[6] = command_press_5;
+                #endif
+                
+                switch (action) {
+                    case SELECT_COFFEE:
+                    case MAKE_COFFEE:
+                        execute_command(command[0]);
+                        break;
+                    case SELECT_ESPRESSO:
+                    case MAKE_ESPRESSO:
+                        execute_command(command[1]);
+                        break;
+                    case SELECT_HOT_WATER:
+                    case MAKE_HOT_WATER:
+                        execute_command(command[2]);
+                        break;
+                    case SELECT_STEAM:
+                    case MAKE_STEAM:
+                        execute_command(command[3]);
+                        break;
+                    case SELECT_CAPPUCCINO:
+                    case MAKE_CAPPUCCINO:
+                        execute_command(command[4]);
+                        break;
+                    case SELECT_LATTE:
+                    case MAKE_LATTE:
+                        execute_command(command[5]);
+                        break;
+                    case SELECT_AMERICANO:
+                    case MAKE_AMERICANO:
+                        execute_command(command[6]);
+                        break;
+                    case SELECT_ESPRESSO_LUNGO:
+                    case MAKE_ESPRESSO_LUNGO:
+                        execute_command(command[7]);
+                        break;
+                    case PLAY_PAUSE:
+                        write_array(command_press_play_pause);
+                        break;
+                    case SELECT_BEAN:
+                        write_array(command_press_bean);
+                        break;
+                    case SELECT_SIZE:
+                        write_array(command_press_size);
+                        break;
 #if defined(PHILIPS_EP3243)
-                else if (action == SELECT_MILK)
-                    // milk button
-                    write_array(command_press_milk);
+                    case SELECT_MILK:
+                        write_array(command_press_milk);
+                        break;
 #endif
-                else if (action == SELECT_AQUA_CLEAN)
-                    // aqua clean button
-                    write_array(command_press_aqua_clean);
-                else if (action == SELECT_CALC_CLEAN)
-                    // calc clean button
-                    write_array(command_press_calc_clean);
-                else
-                    ESP_LOGE(TAG, "Invalid Action provided!");
+                    case SELECT_AQUA_CLEAN:
+                        write_array(command_press_aqua_clean);
+                        break;
+                    case SELECT_CALC_CLEAN:
+                        write_array(command_press_calc_clean);
+                        break;
+                    default:
+                        ESP_LOGE(TAG, "Invalid Action provided!");
+                }
+
             }
+
+
         } // namespace philips_action_button
     }     // namespace philips_coffee_machine
 } // namespace esphome
