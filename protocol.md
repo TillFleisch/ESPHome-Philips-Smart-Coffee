@@ -8,6 +8,40 @@ If the user presses a button this this information is passed along in a message 
 If the machine is off/sleeping no messages are sent in either direction.
 The messages were obtained by listening to the bus.
 
+## Checksum
+
+The last 2 Bytes of every message, in both directions, are a CRC-16/CCITT over the whole message including the `D5 55` header.
+
+| Parameter  | Value                           |
+| ---------- | ------------------------------- |
+| Polynomial | `0x1021`                        |
+| Init       | `0xAAAA`                        |
+| Final XOR  | `0x0000`                        |
+| Input      | 8 bit, MSB first, not reflected |
+| Output     | not reflected                   |
+
+The 16 bit result is sent as two 6 bit values, low byte first, each carrying the top six bits of its byte:
+
+```
+byte[n-2] = (crc & 0xFF) >> 2
+byte[n-1] = (crc >> 8) >> 2
+```
+
+Four bits are discarded, which is why the checksum bytes are 6 bit like the rest of the payload.
+
+```python
+def checksum(message):
+    # message without its two checksum bytes
+    crc = 0xAAAA
+    for byte in message:
+        crc ^= byte << 8
+        for _ in range(8):
+            crc = ((crc << 1) ^ 0x1021) & 0xFFFF if crc & 0x8000 else (crc << 1) & 0xFFFF
+    return (crc & 0xFF) >> 2, (crc >> 8) >> 2
+```
+
+The parameters are the same for every machine, so the command set of a machine that has never been captured can be computed from its identifier bytes alone.
+
 ## Messages from the display to the mainboard
 
 All messages have the following structure:
@@ -17,7 +51,7 @@ All messages have the following structure:
 | `D5     55`   | `00   01   02   00   02   00   00   00` | `11   36` |
 
 The first 2 Bytes are always `D5 55`. The length of the message is not encoded but it also never changes.
-The last 2 Bytes are some sort of checksum. The rule for determining this checksum is not known.
+The last 2 Bytes are a checksum, see [Checksum](#checksum).
 
 ### Power on message
 
@@ -79,7 +113,7 @@ The 9th byte is used to transmit the right hand side button group in a similar f
 
 ### Encoding simultaneous button presses
 
-This should be possible but determining the correct checksum is required.
+Set both button bits and compute the checksum as described above. Untested on hardware.
 
 ## Messages from the mainboard to the display
 
